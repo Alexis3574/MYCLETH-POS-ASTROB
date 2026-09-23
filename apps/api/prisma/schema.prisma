@@ -1,0 +1,809 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["partialIndexes"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model almacen {
+  id                                                                      BigInt                  @id @default(autoincrement())
+  sucursal_id                                                             BigInt
+  codigo                                                                  String                  @db.VarChar(30)
+  nombre                                                                  String                  @db.VarChar(120)
+  descripcion                                                             String?
+  activo                                                                  Boolean                 @default(true)
+  creado_en                                                               DateTime                @default(now()) @db.Timestamptz(6)
+  actualizado_en                                                          DateTime                @default(now()) @db.Timestamptz(6)
+  sucursal                                                                sucursal                @relation(fields: [sucursal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  compra                                                                  compra[]
+  existencia                                                              existencia[]
+  movimiento_inventario                                                   movimiento_inventario[]
+  transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen transferencia_almacen[] @relation("transferencia_almacen_almacen_destino_idToalmacen")
+  transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen  transferencia_almacen[] @relation("transferencia_almacen_almacen_origen_idToalmacen")
+  venta                                                                   venta[]
+
+  @@unique([sucursal_id, codigo], map: "uq_almacen_sucursal_codigo")
+  @@index([sucursal_id], map: "idx_almacen_sucursal")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model auditoria {
+  id               BigInt   @id @default(autoincrement())
+  usuario_id       BigInt?
+  tabla            String   @db.VarChar(100)
+  registro_id      BigInt?
+  accion           String   @db.VarChar(20)
+  datos_anteriores Json?
+  datos_nuevos     Json?
+  ip_origen        String?  @db.Inet
+  creado_en        DateTime @default(now()) @db.Timestamptz(6)
+  usuario          usuario? @relation(fields: [usuario_id], references: [id], onUpdate: NoAction)
+
+  @@index([tabla, registro_id, creado_en(sort: Desc)], map: "idx_auditoria_tabla_registro")
+}
+
+model caja {
+  id             BigInt       @id @default(autoincrement())
+  sucursal_id    BigInt
+  codigo         String       @db.VarChar(30)
+  nombre         String       @db.VarChar(100)
+  activo         Boolean      @default(true)
+  creado_en      DateTime     @default(now()) @db.Timestamptz(6)
+  actualizado_en DateTime     @default(now()) @db.Timestamptz(6)
+  sucursal       sucursal     @relation(fields: [sucursal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  sesion_caja    sesion_caja?
+
+  @@unique([sucursal_id, codigo], map: "uq_caja_sucursal_codigo")
+}
+
+model categoria {
+  id                 BigInt      @id @default(autoincrement())
+  empresa_id         BigInt
+  categoria_padre_id BigInt?
+  nombre             String      @db.VarChar(120)
+  descripcion        String?
+  activo             Boolean     @default(true)
+  creado_en          DateTime    @default(now()) @db.Timestamptz(6)
+  actualizado_en     DateTime    @default(now()) @db.Timestamptz(6)
+  categoria          categoria?  @relation("categoriaTocategoria", fields: [categoria_padre_id], references: [id], onUpdate: NoAction)
+  other_categoria    categoria[] @relation("categoriaTocategoria")
+  empresa            empresa     @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto           producto[]
+
+  @@unique([empresa_id, nombre], map: "uq_categoria_empresa_nombre")
+  @@index([empresa_id], map: "idx_categoria_empresa")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cliente {
+  id                BigInt              @id @default(autoincrement())
+  empresa_id        BigInt
+  codigo            String              @db.VarChar(40)
+  nombre            String              @db.VarChar(180)
+  rfc               String?             @db.VarChar(20)
+  email             String?             @db.VarChar(180)
+  telefono          String?             @db.VarChar(30)
+  limite_credito    Decimal             @default(0) @db.Decimal(14, 2)
+  dias_credito      Int                 @default(0)
+  activo            Boolean             @default(true)
+  creado_en         DateTime            @default(now()) @db.Timestamptz(6)
+  actualizado_en    DateTime            @default(now()) @db.Timestamptz(6)
+  empresa           empresa             @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  cliente_direccion cliente_direccion[]
+  cotizacion        cotizacion[]
+  orden_venta       orden_venta[]
+  pedido_cliente    pedido_cliente[]
+  venta             venta[]
+
+  @@unique([empresa_id, codigo], map: "uq_cliente_empresa_codigo")
+  @@index([empresa_id], map: "idx_cliente_empresa")
+  @@index([nombre], map: "idx_cliente_nombre")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cliente_direccion {
+  id              BigInt  @id @default(autoincrement())
+  cliente_id      BigInt
+  tipo            String  @default("FISCAL") @db.VarChar(20)
+  calle           String? @db.VarChar(180)
+  numero_exterior String? @db.VarChar(30)
+  numero_interior String? @db.VarChar(30)
+  colonia         String? @db.VarChar(120)
+  municipio       String? @db.VarChar(120)
+  estado          String? @db.VarChar(120)
+  codigo_postal   String? @db.VarChar(15)
+  pais            String  @default("MÃ©xico") @db.VarChar(80)
+  es_principal    Boolean @default(false)
+  cliente         cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model compra {
+  id                BigInt           @id @default(autoincrement())
+  empresa_id        BigInt
+  sucursal_id       BigInt
+  almacen_id        BigInt
+  proveedor_id      BigInt
+  usuario_id        BigInt
+  folio             String           @db.VarChar(50)
+  factura_proveedor String?          @db.VarChar(80)
+  fecha             DateTime         @default(now()) @db.Timestamptz(6)
+  estado            String           @default("BORRADOR") @db.VarChar(20)
+  subtotal          Decimal          @default(0) @db.Decimal(14, 2)
+  descuento         Decimal          @default(0) @db.Decimal(14, 2)
+  impuesto          Decimal          @default(0) @db.Decimal(14, 2)
+  total             Decimal          @default(0) @db.Decimal(14, 2)
+  observaciones     String?
+  creado_en         DateTime         @default(now()) @db.Timestamptz(6)
+  actualizado_en    DateTime         @default(now()) @db.Timestamptz(6)
+  almacen           almacen          @relation(fields: [almacen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  empresa           empresa          @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  proveedor         proveedor        @relation(fields: [proveedor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sucursal          sucursal         @relation(fields: [sucursal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario           usuario          @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  compra_detalle    compra_detalle[]
+  compra_pago       compra_pago[]
+
+  @@unique([sucursal_id, folio], map: "uq_compra_sucursal_folio")
+  @@index([estado, fecha(sort: Desc)], map: "idx_compra_estado_fecha")
+  @@index([fecha(sort: Desc)], map: "idx_compra_fecha")
+  @@index([proveedor_id, fecha(sort: Desc)], map: "idx_compra_proveedor_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model compra_detalle {
+  id                   BigInt   @id @default(autoincrement())
+  compra_id            BigInt
+  producto_id          BigInt
+  descripcion          String?  @db.VarChar(250)
+  cantidad             Decimal  @db.Decimal(14, 3)
+  precio_unitario      Decimal  @db.Decimal(14, 4)
+  descuento_porcentaje Decimal  @default(0) @db.Decimal(7, 4)
+  tasa_impuesto        Decimal  @default(0) @db.Decimal(7, 4)
+  subtotal_linea       Decimal  @default(0) @db.Decimal(14, 2)
+  descuento_importe    Decimal  @default(0) @db.Decimal(14, 2)
+  impuesto_importe     Decimal  @default(0) @db.Decimal(14, 2)
+  total_linea          Decimal  @default(0) @db.Decimal(14, 2)
+  compra               compra   @relation(fields: [compra_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto             producto @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([producto_id], map: "idx_compra_detalle_producto")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model compra_pago {
+  id             BigInt       @id @default(autoincrement())
+  compra_id      BigInt
+  metodo_pago_id BigInt
+  sesion_caja_id BigInt?
+  monto          Decimal      @db.Decimal(14, 2)
+  referencia     String?      @db.VarChar(150)
+  fecha          DateTime     @default(now()) @db.Timestamptz(6)
+  creado_en      DateTime     @default(now()) @db.Timestamptz(6)
+  compra         compra       @relation(fields: [compra_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  metodo_pago    metodo_pago  @relation(fields: [metodo_pago_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sesion_caja    sesion_caja? @relation(fields: [sesion_caja_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([compra_id], map: "idx_compra_pago_compra")
+}
+
+model configuracion_empresa {
+  id             BigInt   @id @default(autoincrement())
+  empresa_id     BigInt
+  clave          String   @db.VarChar(120)
+  valor          Json     @default("{}")
+  descripcion    String?
+  creado_en      DateTime @default(now()) @db.Timestamptz(6)
+  actualizado_en DateTime @default(now()) @db.Timestamptz(6)
+  empresa        empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([empresa_id, clave], map: "uq_configuracion_empresa_clave")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cotizacion {
+  id                 BigInt               @id @default(autoincrement())
+  empresa_id         BigInt
+  sucursal_id        BigInt
+  cliente_id         BigInt?
+  usuario_id         BigInt
+  folio              String               @db.VarChar(50)
+  fecha              DateTime             @default(now()) @db.Timestamptz(6)
+  valida_hasta       DateTime?            @db.Date
+  estado             String               @default("BORRADOR") @db.VarChar(20)
+  subtotal           Decimal              @default(0) @db.Decimal(14, 2)
+  descuento          Decimal              @default(0) @db.Decimal(14, 2)
+  impuesto           Decimal              @default(0) @db.Decimal(14, 2)
+  total              Decimal              @default(0) @db.Decimal(14, 2)
+  observaciones      String?
+  creado_en          DateTime             @default(now()) @db.Timestamptz(6)
+  actualizado_en     DateTime             @default(now()) @db.Timestamptz(6)
+  cliente            cliente?             @relation(fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  empresa            empresa              @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sucursal           sucursal             @relation(fields: [sucursal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario            usuario              @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cotizacion_detalle cotizacion_detalle[]
+  orden_venta        orden_venta[]
+  venta              venta[]
+
+  @@unique([sucursal_id, folio], map: "uq_cotizacion_sucursal_folio")
+  @@index([cliente_id, fecha(sort: Desc)], map: "idx_cotizacion_cliente_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cotizacion_detalle {
+  id                   BigInt     @id @default(autoincrement())
+  cotizacion_id        BigInt
+  producto_id          BigInt
+  descripcion          String?    @db.VarChar(250)
+  cantidad             Decimal    @db.Decimal(14, 3)
+  precio_unitario      Decimal    @db.Decimal(14, 4)
+  descuento_porcentaje Decimal    @default(0) @db.Decimal(7, 4)
+  tasa_impuesto        Decimal    @default(0) @db.Decimal(7, 4)
+  subtotal_linea       Decimal    @default(0) @db.Decimal(14, 2)
+  descuento_importe    Decimal    @default(0) @db.Decimal(14, 2)
+  impuesto_importe     Decimal    @default(0) @db.Decimal(14, 2)
+  total_linea          Decimal    @default(0) @db.Decimal(14, 2)
+  cotizacion           cotizacion @relation(fields: [cotizacion_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto             producto   @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model empresa {
+  id                    BigInt                  @id @default(autoincrement())
+  razon_social          String                  @db.VarChar(180)
+  nombre_comercial      String                  @db.VarChar(180)
+  rfc                   String?                 @unique(map: "uq_empresa_rfc") @db.VarChar(20)
+  telefono              String?                 @db.VarChar(30)
+  email                 String?                 @db.VarChar(180)
+  direccion             String?
+  moneda                String                  @default("MXN") @db.Char(3)
+  zona_horaria          String                  @default("America/Mexico_City") @db.VarChar(80)
+  activo                Boolean                 @default(true)
+  creado_en             DateTime                @default(now()) @db.Timestamptz(6)
+  actualizado_en        DateTime                @default(now()) @db.Timestamptz(6)
+  categoria             categoria[]
+  cliente               cliente[]
+  compra                compra[]
+  configuracion_empresa configuracion_empresa[]
+  cotizacion            cotizacion[]
+  impuesto              impuesto[]
+  orden_venta           orden_venta[]
+  pedido_cliente        pedido_cliente[]
+  producto              producto[]
+  proveedor             proveedor[]
+  sucursal              sucursal[]
+  transferencia_almacen transferencia_almacen[]
+  usuario               usuario[]
+  venta                 venta[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model existencia {
+  producto_id    BigInt
+  almacen_id     BigInt
+  cantidad       Decimal  @default(0) @db.Decimal(14, 3)
+  reservado      Decimal  @default(0) @db.Decimal(14, 3)
+  disponible     Decimal? @default(dbgenerated("(cantidad - reservado)")) @db.Decimal(14, 3)
+  costo_promedio Decimal  @default(0) @db.Decimal(14, 4)
+  actualizado_en DateTime @default(now()) @db.Timestamptz(6)
+  almacen        almacen  @relation(fields: [almacen_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto       producto @relation(fields: [producto_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([producto_id, almacen_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model impuesto {
+  id                BigInt              @id @default(autoincrement())
+  empresa_id        BigInt
+  codigo            String              @db.VarChar(30)
+  nombre            String              @db.VarChar(100)
+  tasa              Decimal             @db.Decimal(7, 4)
+  activo            Boolean             @default(true)
+  creado_en         DateTime            @default(now()) @db.Timestamptz(6)
+  actualizado_en    DateTime            @default(now()) @db.Timestamptz(6)
+  empresa           empresa             @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto_impuesto producto_impuesto[]
+
+  @@unique([empresa_id, codigo], map: "uq_impuesto_empresa_codigo")
+}
+
+model metodo_pago {
+  id          BigInt        @id @default(autoincrement())
+  codigo      String        @unique @db.VarChar(30)
+  nombre      String        @db.VarChar(80)
+  es_efectivo Boolean       @default(false)
+  activo      Boolean       @default(true)
+  compra_pago compra_pago[]
+  venta_pago  venta_pago[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model movimiento_caja {
+  id             BigInt      @id @default(autoincrement())
+  sesion_caja_id BigInt
+  usuario_id     BigInt
+  tipo           String      @db.VarChar(10)
+  concepto       String      @db.VarChar(180)
+  monto          Decimal     @db.Decimal(14, 2)
+  referencia     String?     @db.VarChar(120)
+  fecha          DateTime    @default(now()) @db.Timestamptz(6)
+  creado_en      DateTime    @default(now()) @db.Timestamptz(6)
+  sesion_caja    sesion_caja @relation(fields: [sesion_caja_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario        usuario     @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([sesion_caja_id, fecha(sort: Desc)], map: "idx_movimiento_caja_sesion_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model movimiento_inventario {
+  id                   BigInt   @id @default(autoincrement())
+  producto_id          BigInt
+  almacen_id           BigInt
+  usuario_id           BigInt?
+  tipo                 String   @db.VarChar(30)
+  cantidad             Decimal  @db.Decimal(14, 3)
+  costo_unitario       Decimal? @db.Decimal(14, 4)
+  documento_tipo       String?  @db.VarChar(50)
+  documento_id         BigInt?
+  documento_detalle_id BigInt?
+  motivo               String?
+  fecha                DateTime @default(now()) @db.Timestamptz(6)
+  creado_en            DateTime @default(now()) @db.Timestamptz(6)
+  almacen              almacen  @relation(fields: [almacen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  producto             producto @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario              usuario? @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([documento_tipo, documento_detalle_id, tipo, almacen_id], map: "uq_movimiento_documento_detalle_tipo", where: raw("(documento_detalle_id IS NOT NULL)"))
+  @@index([documento_tipo, documento_id], map: "idx_movimiento_inv_documento")
+  @@index([producto_id, almacen_id, fecha(sort: Desc)], map: "idx_movimiento_inv_producto_almacen_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model orden_venta {
+  id                  BigInt                @id @default(autoincrement())
+  empresa_id          BigInt
+  sucursal_id         BigInt
+  cliente_id          BigInt?
+  usuario_id          BigInt
+  cotizacion_id       BigInt?
+  folio               String                @db.VarChar(50)
+  fecha               DateTime              @default(now()) @db.Timestamptz(6)
+  fecha_compromiso    DateTime?             @db.Date
+  estado              String                @default("PENDIENTE") @db.VarChar(20)
+  subtotal            Decimal               @default(0) @db.Decimal(14, 2)
+  descuento           Decimal               @default(0) @db.Decimal(14, 2)
+  impuesto            Decimal               @default(0) @db.Decimal(14, 2)
+  total               Decimal               @default(0) @db.Decimal(14, 2)
+  observaciones       String?
+  creado_en           DateTime              @default(now()) @db.Timestamptz(6)
+  actualizado_en      DateTime              @default(now()) @db.Timestamptz(6)
+  cliente             cliente?              @relation(fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cotizacion          cotizacion?           @relation(fields: [cotizacion_id], references: [id], onUpdate: NoAction)
+  empresa             empresa               @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sucursal            sucursal              @relation(fields: [sucursal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario             usuario               @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orden_venta_detalle orden_venta_detalle[]
+  venta               venta[]
+
+  @@unique([sucursal_id, folio], map: "uq_orden_venta_sucursal_folio")
+  @@index([cliente_id, fecha(sort: Desc)], map: "idx_orden_venta_cliente_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model orden_venta_detalle {
+  id                   BigInt      @id @default(autoincrement())
+  orden_venta_id       BigInt
+  producto_id          BigInt
+  descripcion          String?     @db.VarChar(250)
+  cantidad             Decimal     @db.Decimal(14, 3)
+  precio_unitario      Decimal     @db.Decimal(14, 4)
+  descuento_porcentaje Decimal     @default(0) @db.Decimal(7, 4)
+  tasa_impuesto        Decimal     @default(0) @db.Decimal(7, 4)
+  subtotal_linea       Decimal     @default(0) @db.Decimal(14, 2)
+  descuento_importe    Decimal     @default(0) @db.Decimal(14, 2)
+  impuesto_importe     Decimal     @default(0) @db.Decimal(14, 2)
+  total_linea          Decimal     @default(0) @db.Decimal(14, 2)
+  orden_venta          orden_venta @relation(fields: [orden_venta_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto             producto    @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pedido_cliente {
+  id                     BigInt                   @id @default(autoincrement())
+  empresa_id             BigInt
+  sucursal_id            BigInt
+  cliente_id             BigInt
+  usuario_id             BigInt
+  folio                  String                   @db.VarChar(50)
+  referencia_cliente     String?                  @db.VarChar(100)
+  fecha                  DateTime                 @default(now()) @db.Timestamptz(6)
+  fecha_entrega          DateTime?                @db.Date
+  estado                 String                   @default("PENDIENTE") @db.VarChar(20)
+  subtotal               Decimal                  @default(0) @db.Decimal(14, 2)
+  descuento              Decimal                  @default(0) @db.Decimal(14, 2)
+  impuesto               Decimal                  @default(0) @db.Decimal(14, 2)
+  total                  Decimal                  @default(0) @db.Decimal(14, 2)
+  observaciones          String?
+  creado_en              DateTime                 @default(now()) @db.Timestamptz(6)
+  actualizado_en         DateTime                 @default(now()) @db.Timestamptz(6)
+  cliente                cliente                  @relation(fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  empresa                empresa                  @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sucursal               sucursal                 @relation(fields: [sucursal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario                usuario                  @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pedido_cliente_detalle pedido_cliente_detalle[]
+  venta                  venta[]
+
+  @@unique([sucursal_id, folio], map: "uq_pedido_cliente_sucursal_folio")
+  @@index([cliente_id, fecha(sort: Desc)], map: "idx_pedido_cliente_cliente_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pedido_cliente_detalle {
+  id                   BigInt         @id @default(autoincrement())
+  pedido_cliente_id    BigInt
+  producto_id          BigInt
+  descripcion          String?        @db.VarChar(250)
+  cantidad             Decimal        @db.Decimal(14, 3)
+  precio_unitario      Decimal        @db.Decimal(14, 4)
+  descuento_porcentaje Decimal        @default(0) @db.Decimal(7, 4)
+  tasa_impuesto        Decimal        @default(0) @db.Decimal(7, 4)
+  subtotal_linea       Decimal        @default(0) @db.Decimal(14, 2)
+  descuento_importe    Decimal        @default(0) @db.Decimal(14, 2)
+  impuesto_importe     Decimal        @default(0) @db.Decimal(14, 2)
+  total_linea          Decimal        @default(0) @db.Decimal(14, 2)
+  pedido_cliente       pedido_cliente @relation(fields: [pedido_cliente_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto             producto       @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model permiso {
+  id          BigInt        @id @default(autoincrement())
+  codigo      String        @unique @db.VarChar(100)
+  modulo      String        @db.VarChar(80)
+  descripcion String?
+  creado_en   DateTime      @default(now()) @db.Timestamptz(6)
+  rol_permiso rol_permiso[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model producto {
+  id                     BigInt                   @id @default(autoincrement())
+  empresa_id             BigInt
+  categoria_id           BigInt?
+  unidad_medida_id       BigInt
+  sku                    String                   @db.VarChar(80)
+  codigo_barras          String?                  @db.VarChar(80)
+  nombre                 String                   @db.VarChar(180)
+  descripcion            String?
+  tipo                   String                   @default("PRODUCTO") @db.VarChar(20)
+  controla_inventario    Boolean                  @default(true)
+  costo_referencia       Decimal                  @default(0) @db.Decimal(14, 4)
+  precio_venta           Decimal                  @default(0) @db.Decimal(14, 2)
+  stock_minimo           Decimal                  @default(0) @db.Decimal(14, 3)
+  stock_maximo           Decimal?                 @db.Decimal(14, 3)
+  activo                 Boolean                  @default(true)
+  creado_en              DateTime                 @default(now()) @db.Timestamptz(6)
+  actualizado_en         DateTime                 @default(now()) @db.Timestamptz(6)
+  compra_detalle         compra_detalle[]
+  cotizacion_detalle     cotizacion_detalle[]
+  existencia             existencia[]
+  movimiento_inventario  movimiento_inventario[]
+  orden_venta_detalle    orden_venta_detalle[]
+  pedido_cliente_detalle pedido_cliente_detalle[]
+  categoria              categoria?               @relation(fields: [categoria_id], references: [id], onUpdate: NoAction)
+  empresa                empresa                  @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  unidad_medida          unidad_medida            @relation(fields: [unidad_medida_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  producto_impuesto      producto_impuesto[]
+  transferencia_detalle  transferencia_detalle[]
+  venta_detalle          venta_detalle[]
+
+  @@unique([empresa_id, codigo_barras], map: "uq_producto_empresa_codigo_barras")
+  @@unique([empresa_id, sku], map: "uq_producto_empresa_sku")
+  @@index([categoria_id], map: "idx_producto_categoria")
+  @@index([codigo_barras], map: "idx_producto_codigo_barras")
+  @@index([empresa_id], map: "idx_producto_empresa")
+  @@index([nombre], map: "idx_producto_nombre")
+}
+
+model producto_impuesto {
+  producto_id BigInt
+  impuesto_id BigInt
+  impuesto    impuesto @relation(fields: [impuesto_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  producto    producto @relation(fields: [producto_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([producto_id, impuesto_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model proveedor {
+  id                  BigInt                @id @default(autoincrement())
+  empresa_id          BigInt
+  codigo              String                @db.VarChar(40)
+  razon_social        String                @db.VarChar(180)
+  nombre_comercial    String?               @db.VarChar(180)
+  rfc                 String?               @db.VarChar(20)
+  email               String?               @db.VarChar(180)
+  telefono            String?               @db.VarChar(30)
+  contacto            String?               @db.VarChar(180)
+  dias_credito        Int                   @default(0)
+  activo              Boolean               @default(true)
+  creado_en           DateTime              @default(now()) @db.Timestamptz(6)
+  actualizado_en      DateTime              @default(now()) @db.Timestamptz(6)
+  compra              compra[]
+  empresa             empresa               @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  proveedor_direccion proveedor_direccion[]
+
+  @@unique([empresa_id, codigo], map: "uq_proveedor_empresa_codigo")
+  @@index([empresa_id], map: "idx_proveedor_empresa")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model proveedor_direccion {
+  id              BigInt    @id @default(autoincrement())
+  proveedor_id    BigInt
+  tipo            String    @default("FISCAL") @db.VarChar(20)
+  calle           String?   @db.VarChar(180)
+  numero_exterior String?   @db.VarChar(30)
+  numero_interior String?   @db.VarChar(30)
+  colonia         String?   @db.VarChar(120)
+  municipio       String?   @db.VarChar(120)
+  estado          String?   @db.VarChar(120)
+  codigo_postal   String?   @db.VarChar(15)
+  pais            String    @default("MÃ©xico") @db.VarChar(80)
+  es_principal    Boolean   @default(false)
+  proveedor       proveedor @relation(fields: [proveedor_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model rol {
+  id          BigInt        @id @default(autoincrement())
+  codigo      String        @unique @db.VarChar(60)
+  nombre      String        @db.VarChar(100)
+  descripcion String?
+  activo      Boolean       @default(true)
+  creado_en   DateTime      @default(now()) @db.Timestamptz(6)
+  rol_permiso rol_permiso[]
+  usuario_rol usuario_rol[]
+}
+
+model rol_permiso {
+  rol_id     BigInt
+  permiso_id BigInt
+  permiso    permiso @relation(fields: [permiso_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  rol        rol     @relation(fields: [rol_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([rol_id, permiso_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model sesion_caja {
+  id                                               BigInt            @id @default(autoincrement())
+  caja_id                                          BigInt            @unique(map: "uq_sesion_caja_abierta", where: raw("((estado)::text = 'ABIERTA'::text)"))
+  usuario_apertura_id                              BigInt
+  usuario_cierre_id                                BigInt?
+  fecha_apertura                                   DateTime          @default(now()) @db.Timestamptz(6)
+  fecha_cierre                                     DateTime?         @db.Timestamptz(6)
+  monto_apertura                                   Decimal           @default(0) @db.Decimal(14, 2)
+  monto_esperado                                   Decimal?          @db.Decimal(14, 2)
+  monto_cierre                                     Decimal?          @db.Decimal(14, 2)
+  diferencia                                       Decimal?          @db.Decimal(14, 2)
+  estado                                           String            @default("ABIERTA") @db.VarChar(20)
+  notas                                            String?
+  creado_en                                        DateTime          @default(now()) @db.Timestamptz(6)
+  actualizado_en                                   DateTime          @default(now()) @db.Timestamptz(6)
+  compra_pago                                      compra_pago[]
+  movimiento_caja                                  movimiento_caja[]
+  caja                                             caja              @relation(fields: [caja_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario_sesion_caja_usuario_apertura_idTousuario usuario           @relation("sesion_caja_usuario_apertura_idTousuario", fields: [usuario_apertura_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario_sesion_caja_usuario_cierre_idTousuario   usuario?          @relation("sesion_caja_usuario_cierre_idTousuario", fields: [usuario_cierre_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  venta                                            venta[]
+  venta_pago                                       venta_pago[]
+
+  @@index([caja_id, fecha_apertura(sort: Desc)], map: "idx_sesion_caja_caja_fecha")
+}
+
+model sucursal {
+  id               BigInt             @id @default(autoincrement())
+  empresa_id       BigInt
+  codigo           String             @db.VarChar(30)
+  nombre           String             @db.VarChar(120)
+  telefono         String?            @db.VarChar(30)
+  email            String?            @db.VarChar(180)
+  direccion        String?
+  activo           Boolean            @default(true)
+  creado_en        DateTime           @default(now()) @db.Timestamptz(6)
+  actualizado_en   DateTime           @default(now()) @db.Timestamptz(6)
+  almacen          almacen[]
+  caja             caja[]
+  compra           compra[]
+  cotizacion       cotizacion[]
+  orden_venta      orden_venta[]
+  pedido_cliente   pedido_cliente[]
+  empresa          empresa            @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario_sucursal usuario_sucursal[]
+  venta            venta[]
+
+  @@unique([empresa_id, codigo], map: "uq_sucursal_empresa_codigo")
+  @@index([empresa_id], map: "idx_sucursal_empresa")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model transferencia_almacen {
+  id                                                        BigInt                  @id @default(autoincrement())
+  empresa_id                                                BigInt
+  almacen_origen_id                                         BigInt
+  almacen_destino_id                                        BigInt
+  usuario_id                                                BigInt
+  folio                                                     String                  @db.VarChar(50)
+  fecha                                                     DateTime                @default(now()) @db.Timestamptz(6)
+  estado                                                    String                  @default("BORRADOR") @db.VarChar(20)
+  observaciones                                             String?
+  creado_en                                                 DateTime                @default(now()) @db.Timestamptz(6)
+  actualizado_en                                            DateTime                @default(now()) @db.Timestamptz(6)
+  almacen_transferencia_almacen_almacen_destino_idToalmacen almacen                 @relation("transferencia_almacen_almacen_destino_idToalmacen", fields: [almacen_destino_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  almacen_transferencia_almacen_almacen_origen_idToalmacen  almacen                 @relation("transferencia_almacen_almacen_origen_idToalmacen", fields: [almacen_origen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  empresa                                                   empresa                 @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario                                                   usuario                 @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  transferencia_detalle                                     transferencia_detalle[]
+
+  @@unique([empresa_id, folio], map: "uq_transferencia_empresa_folio")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model transferencia_detalle {
+  id                    BigInt                @id @default(autoincrement())
+  transferencia_id      BigInt
+  producto_id           BigInt
+  cantidad              Decimal               @db.Decimal(14, 3)
+  producto              producto              @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  transferencia_almacen transferencia_almacen @relation(fields: [transferencia_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([transferencia_id, producto_id], map: "uq_transferencia_detalle_producto")
+}
+
+model unidad_medida {
+  id                BigInt     @id @default(autoincrement())
+  codigo            String     @unique @db.VarChar(20)
+  nombre            String     @db.VarChar(80)
+  permite_decimales Boolean    @default(false)
+  activo            Boolean    @default(true)
+  producto          producto[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model usuario {
+  id                                                   BigInt                  @id @default(autoincrement())
+  empresa_id                                           BigInt
+  username                                             String                  @db.VarChar(80)
+  password_hash                                        String
+  nombre                                               String                  @db.VarChar(100)
+  apellido                                             String?                 @db.VarChar(120)
+  email                                                String?                 @db.VarChar(180)
+  telefono                                             String?                 @db.VarChar(30)
+  activo                                               Boolean                 @default(true)
+  bloqueado                                            Boolean                 @default(false)
+  intentos_fallidos                                    Int                     @default(0)
+  ultimo_acceso                                        DateTime?               @db.Timestamptz(6)
+  creado_en                                            DateTime                @default(now()) @db.Timestamptz(6)
+  actualizado_en                                       DateTime                @default(now()) @db.Timestamptz(6)
+  auditoria                                            auditoria[]
+  compra                                               compra[]
+  cotizacion                                           cotizacion[]
+  movimiento_caja                                      movimiento_caja[]
+  movimiento_inventario                                movimiento_inventario[]
+  orden_venta                                          orden_venta[]
+  pedido_cliente                                       pedido_cliente[]
+  sesion_caja_sesion_caja_usuario_apertura_idTousuario sesion_caja[]           @relation("sesion_caja_usuario_apertura_idTousuario")
+  sesion_caja_sesion_caja_usuario_cierre_idTousuario   sesion_caja[]           @relation("sesion_caja_usuario_cierre_idTousuario")
+  transferencia_almacen                                transferencia_almacen[]
+  empresa                                              empresa                 @relation(fields: [empresa_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario_rol                                          usuario_rol[]
+  usuario_sucursal                                     usuario_sucursal[]
+  venta                                                venta[]
+
+  @@unique([empresa_id, email], map: "uq_usuario_empresa_email")
+  @@unique([empresa_id, username], map: "uq_usuario_empresa_username")
+  @@index([empresa_id], map: "idx_usuario_empresa")
+}
+
+model usuario_rol {
+  usuario_id BigInt
+  rol_id     BigInt
+  rol        rol     @relation(fields: [rol_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario    usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([usuario_id, rol_id])
+  @@index([rol_id], map: "idx_usuario_rol_rol")
+}
+
+model usuario_sucursal {
+  usuario_id        BigInt
+  sucursal_id       BigInt
+  es_predeterminada Boolean  @default(false)
+  sucursal          sucursal @relation(fields: [sucursal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  usuario           usuario  @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([usuario_id, sucursal_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model venta {
+  id                BigInt          @id @default(autoincrement())
+  empresa_id        BigInt
+  sucursal_id       BigInt
+  almacen_id        BigInt
+  cliente_id        BigInt?
+  usuario_id        BigInt
+  sesion_caja_id    BigInt?
+  cotizacion_id     BigInt?
+  orden_venta_id    BigInt?
+  pedido_cliente_id BigInt?
+  folio             String          @db.VarChar(50)
+  fecha             DateTime        @default(now()) @db.Timestamptz(6)
+  condicion_pago    String          @default("CONTADO") @db.VarChar(20)
+  estado            String          @default("BORRADOR") @db.VarChar(20)
+  subtotal          Decimal         @default(0) @db.Decimal(14, 2)
+  descuento         Decimal         @default(0) @db.Decimal(14, 2)
+  impuesto          Decimal         @default(0) @db.Decimal(14, 2)
+  total             Decimal         @default(0) @db.Decimal(14, 2)
+  observaciones     String?
+  creado_en         DateTime        @default(now()) @db.Timestamptz(6)
+  actualizado_en    DateTime        @default(now()) @db.Timestamptz(6)
+  almacen           almacen         @relation(fields: [almacen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cliente           cliente?        @relation(fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cotizacion        cotizacion?     @relation(fields: [cotizacion_id], references: [id], onUpdate: NoAction)
+  empresa           empresa         @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orden_venta       orden_venta?    @relation(fields: [orden_venta_id], references: [id], onUpdate: NoAction)
+  pedido_cliente    pedido_cliente? @relation(fields: [pedido_cliente_id], references: [id], onUpdate: NoAction)
+  sesion_caja       sesion_caja?    @relation(fields: [sesion_caja_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sucursal          sucursal        @relation(fields: [sucursal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario           usuario         @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  venta_detalle     venta_detalle[]
+  venta_pago        venta_pago[]
+
+  @@unique([sucursal_id, folio], map: "uq_venta_sucursal_folio")
+  @@index([cliente_id, fecha(sort: Desc)], map: "idx_venta_cliente_fecha")
+  @@index([estado, fecha(sort: Desc)], map: "idx_venta_estado_fecha")
+  @@index([fecha(sort: Desc)], map: "idx_venta_fecha")
+  @@index([usuario_id, fecha(sort: Desc)], map: "idx_venta_usuario_fecha")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model venta_detalle {
+  id                   BigInt   @id @default(autoincrement())
+  venta_id             BigInt
+  producto_id          BigInt
+  descripcion          String?  @db.VarChar(250)
+  cantidad             Decimal  @db.Decimal(14, 3)
+  precio_unitario      Decimal  @db.Decimal(14, 4)
+  costo_unitario       Decimal? @db.Decimal(14, 4)
+  descuento_porcentaje Decimal  @default(0) @db.Decimal(7, 4)
+  tasa_impuesto        Decimal  @default(0) @db.Decimal(7, 4)
+  subtotal_linea       Decimal  @default(0) @db.Decimal(14, 2)
+  descuento_importe    Decimal  @default(0) @db.Decimal(14, 2)
+  impuesto_importe     Decimal  @default(0) @db.Decimal(14, 2)
+  total_linea          Decimal  @default(0) @db.Decimal(14, 2)
+  producto             producto @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  venta                venta    @relation(fields: [venta_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([producto_id], map: "idx_venta_detalle_producto")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model venta_pago {
+  id             BigInt       @id @default(autoincrement())
+  venta_id       BigInt
+  metodo_pago_id BigInt
+  sesion_caja_id BigInt?
+  monto          Decimal      @db.Decimal(14, 2)
+  referencia     String?      @db.VarChar(150)
+  fecha          DateTime     @default(now()) @db.Timestamptz(6)
+  creado_en      DateTime     @default(now()) @db.Timestamptz(6)
+  metodo_pago    metodo_pago  @relation(fields: [metodo_pago_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sesion_caja    sesion_caja? @relation(fields: [sesion_caja_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  venta          venta        @relation(fields: [venta_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([venta_id], map: "idx_venta_pago_venta")
+}
