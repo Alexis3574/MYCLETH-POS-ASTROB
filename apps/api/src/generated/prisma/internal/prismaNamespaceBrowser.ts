@@ -69,6 +69,7 @@ export const ModelName = {
   metodo_pago: 'metodo_pago',
   movimiento_caja: 'movimiento_caja',
   movimiento_inventario: 'movimiento_inventario',
+  sincronizacion_ecommerce_inventario: 'sincronizacion_ecommerce_inventario',
   orden_venta: 'orden_venta',
   orden_venta_detalle: 'orden_venta_detalle',
   pedido_cliente: 'pedido_cliente',
@@ -397,6 +398,25 @@ export const Movimiento_inventarioScalarFieldEnum = {
 } as const
 
 export type Movimiento_inventarioScalarFieldEnum = (typeof Movimiento_inventarioScalarFieldEnum)[keyof typeof Movimiento_inventarioScalarFieldEnum]
+
+
+export const Sincronizacion_ecommerce_inventarioScalarFieldEnum = {
+  id: 'id',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  operation_id: 'operation_id',
+  codigo_barras: 'codigo_barras',
+  sku: 'sku',
+  adjustment: 'adjustment',
+  ecommerce_product_id: 'ecommerce_product_id',
+  estado: 'estado',
+  intentos: 'intentos',
+  ultimo_error: 'ultimo_error',
+  creado_en: 'creado_en',
+  ultimo_intento_en: 'ultimo_intento_en',
+  sincronizado_en: 'sincronizado_en'
+} as const
+
+export type Sincronizacion_ecommerce_inventarioScalarFieldEnum = (typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum)[keyof typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum]
 
 
 export const Orden_ventaScalarFieldEnum = {

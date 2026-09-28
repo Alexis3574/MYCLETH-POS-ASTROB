@@ -1,5 +1,6 @@
 import express from "express";
 import { userRouter} from "./modules/users/user.routes.js"
+import { saleRouter } from "./modules/sales/sale.routes.js";
 import cors from "cors";
 import helmet from "helmet";
 
@@ -20,6 +21,8 @@ app.use(
 app.use(express.json());
 
 app.use("/api/v1/users", userRouter);  
+
+app.use("/api/v1/sales", saleRouter);
 
 app.use("/api/v1", apiRoutes);
 

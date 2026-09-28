@@ -415,6 +415,7 @@ export const ModelName = {
   metodo_pago: 'metodo_pago',
   movimiento_caja: 'movimiento_caja',
   movimiento_inventario: 'movimiento_inventario',
+  sincronizacion_ecommerce_inventario: 'sincronizacion_ecommerce_inventario',
   orden_venta: 'orden_venta',
   orden_venta_detalle: 'orden_venta_detalle',
   pedido_cliente: 'pedido_cliente',
@@ -452,7 +453,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago"
+    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1785,6 +1786,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.movimiento_inventarioCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.Movimiento_inventarioCountAggregateOutputType> | number
+        }
+      }
+    }
+    sincronizacion_ecommerce_inventario: {
+      payload: Prisma.$sincronizacion_ecommerce_inventarioPayload<ExtArgs>
+      fields: Prisma.sincronizacion_ecommerce_inventarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        findFirst: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        findMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        create: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        createMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        delete: {
+          args: Prisma.sincronizacion_ecommerce_inventarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        update: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        aggregate: {
+          args: Prisma.Sincronizacion_ecommerce_inventarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSincronizacion_ecommerce_inventario>
+        }
+        groupBy: {
+          args: Prisma.sincronizacion_ecommerce_inventarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Sincronizacion_ecommerce_inventarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Sincronizacion_ecommerce_inventarioCountAggregateOutputType> | number
         }
       }
     }
@@ -3745,6 +3820,25 @@ export const Movimiento_inventarioScalarFieldEnum = {
 export type Movimiento_inventarioScalarFieldEnum = (typeof Movimiento_inventarioScalarFieldEnum)[keyof typeof Movimiento_inventarioScalarFieldEnum]
 
 
+export const Sincronizacion_ecommerce_inventarioScalarFieldEnum = {
+  id: 'id',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  operation_id: 'operation_id',
+  codigo_barras: 'codigo_barras',
+  sku: 'sku',
+  adjustment: 'adjustment',
+  ecommerce_product_id: 'ecommerce_product_id',
+  estado: 'estado',
+  intentos: 'intentos',
+  ultimo_error: 'ultimo_error',
+  creado_en: 'creado_en',
+  ultimo_intento_en: 'ultimo_intento_en',
+  sincronizado_en: 'sincronizado_en'
+} as const
+
+export type Sincronizacion_ecommerce_inventarioScalarFieldEnum = (typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum)[keyof typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum]
+
+
 export const Orden_ventaScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -4424,6 +4518,7 @@ export type GlobalOmitConfig = {
   metodo_pago?: Prisma.metodo_pagoOmit
   movimiento_caja?: Prisma.movimiento_cajaOmit
   movimiento_inventario?: Prisma.movimiento_inventarioOmit
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioOmit
   orden_venta?: Prisma.orden_ventaOmit
   orden_venta_detalle?: Prisma.orden_venta_detalleOmit
   pedido_cliente?: Prisma.pedido_clienteOmit

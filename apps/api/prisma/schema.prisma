@@ -353,13 +353,36 @@ model movimiento_inventario {
   motivo               String?
   fecha                DateTime @default(now()) @db.Timestamptz(6)
   creado_en            DateTime @default(now()) @db.Timestamptz(6)
-  almacen              almacen  @relation(fields: [almacen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  producto             producto @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  usuario              usuario? @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  almacen  almacen  @relation(fields: [almacen_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  producto producto @relation(fields: [producto_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario  usuario? @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  sincronizacion_ecommerce_inventario sincronizacion_ecommerce_inventario?
 
   @@unique([documento_tipo, documento_detalle_id, tipo, almacen_id], map: "uq_movimiento_documento_detalle_tipo", where: raw("(documento_detalle_id IS NOT NULL)"))
   @@index([documento_tipo, documento_id], map: "idx_movimiento_inv_documento")
   @@index([producto_id, almacen_id, fecha(sort: Desc)], map: "idx_movimiento_inv_producto_almacen_fecha")
+}
+
+model sincronizacion_ecommerce_inventario {
+  id                       BigInt    @id @default(autoincrement())
+  movimiento_inventario_id BigInt    @unique
+  operation_id             String    @unique @db.VarChar(120)
+  codigo_barras            String?   @db.VarChar(80)
+  sku                      String    @db.VarChar(80)
+  adjustment               Int
+  ecommerce_product_id     BigInt?
+  estado                   String    @default("PENDIENTE") @db.VarChar(20)
+  intentos                 Int       @default(0)
+  ultimo_error             String?
+  creado_en                DateTime  @default(now()) @db.Timestamptz(6)
+  ultimo_intento_en        DateTime? @db.Timestamptz(6)
+  sincronizado_en          DateTime? @db.Timestamptz(6)
+
+  movimiento_inventario movimiento_inventario @relation(fields: [movimiento_inventario_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([estado, creado_en], map: "idx_sync_ecommerce_estado_creado")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
