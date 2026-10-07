@@ -2,7 +2,7 @@ import type { Prisma } from "../../generated/prisma/client.js";
 import { buildInventoryOperationId } from "../../integrations/ecommerce/inventory-operation-id.js";
 import { inventorySyncRepository } from "./inventory-sync.repository.js";
 
-interface CreateSaleStockOutSyncParams {
+interface CreateSaleInventorySyncParams {
   tx: Prisma.TransactionClient;
   movimientoInventarioId: bigint;
   saleId: bigint;
@@ -10,6 +10,19 @@ interface CreateSaleStockOutSyncParams {
   codigoBarras: string | null;
   sku: string;
   quantity: number;
+}
+
+function validateQuantity(
+  quantity: number,
+) {
+  if (
+    !Number.isInteger(quantity) ||
+    quantity <= 0
+  ) {
+    throw new Error(
+      "La sincronización de inventario con el e-commerce requiere una cantidad entera positiva.",
+    );
+  }
 }
 
 export async function createSaleStockOutSync({
@@ -20,18 +33,15 @@ export async function createSaleStockOutSync({
   codigoBarras,
   sku,
   quantity,
-}: CreateSaleStockOutSyncParams) {
-  if (!Number.isInteger(quantity) || quantity <= 0) {
-    throw new Error(
-      "E-commerce inventory synchronization requires a positive integer quantity",
-    );
-  }
+}: CreateSaleInventorySyncParams) {
+  validateQuantity(quantity);
 
-  const operationId = buildInventoryOperationId({
-    saleId,
-    saleDetailId,
-    operation: "stock-out",
-  });
+  const operationId =
+    buildInventoryOperationId({
+      saleId,
+      saleDetailId,
+      operation: "stock-out",
+    });
 
   return inventorySyncRepository.createPending(
     {
@@ -40,6 +50,36 @@ export async function createSaleStockOutSync({
       codigoBarras,
       sku,
       adjustment: -quantity,
+    },
+    tx,
+  );
+}
+
+export async function createSaleStockInSync({
+  tx,
+  movimientoInventarioId,
+  saleId,
+  saleDetailId,
+  codigoBarras,
+  sku,
+  quantity,
+}: CreateSaleInventorySyncParams) {
+  validateQuantity(quantity);
+
+  const operationId =
+    buildInventoryOperationId({
+      saleId,
+      saleDetailId,
+      operation: "stock-in",
+    });
+
+  return inventorySyncRepository.createPending(
+    {
+      movimientoInventarioId,
+      operationId,
+      codigoBarras,
+      sku,
+      adjustment: quantity,
     },
     tx,
   );

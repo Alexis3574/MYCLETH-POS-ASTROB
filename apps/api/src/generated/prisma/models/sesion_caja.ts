@@ -317,6 +317,8 @@ export type sesion_cajaWhereInput = {
   creado_en?: Prisma.DateTimeFilter<"sesion_caja"> | Date | string
   actualizado_en?: Prisma.DateTimeFilter<"sesion_caja"> | Date | string
   compra_pago?: Prisma.Compra_pagoListRelationFilter
+  devolucion_pago?: Prisma.Devolucion_pagoListRelationFilter
+  devolucion_venta?: Prisma.Devolucion_ventaListRelationFilter
   movimiento_caja?: Prisma.Movimiento_cajaListRelationFilter
   caja?: Prisma.XOR<Prisma.CajaScalarRelationFilter, Prisma.cajaWhereInput>
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
@@ -341,6 +343,8 @@ export type sesion_cajaOrderByWithRelationInput = {
   creado_en?: Prisma.SortOrder
   actualizado_en?: Prisma.SortOrder
   compra_pago?: Prisma.compra_pagoOrderByRelationAggregateInput
+  devolucion_pago?: Prisma.devolucion_pagoOrderByRelationAggregateInput
+  devolucion_venta?: Prisma.devolucion_ventaOrderByRelationAggregateInput
   movimiento_caja?: Prisma.movimiento_cajaOrderByRelationAggregateInput
   caja?: Prisma.cajaOrderByWithRelationInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioOrderByWithRelationInput
@@ -368,6 +372,8 @@ export type sesion_cajaWhereUniqueInput = Prisma.AtLeast<{
   creado_en?: Prisma.DateTimeFilter<"sesion_caja"> | Date | string
   actualizado_en?: Prisma.DateTimeFilter<"sesion_caja"> | Date | string
   compra_pago?: Prisma.Compra_pagoListRelationFilter
+  devolucion_pago?: Prisma.Devolucion_pagoListRelationFilter
+  devolucion_venta?: Prisma.Devolucion_ventaListRelationFilter
   movimiento_caja?: Prisma.Movimiento_cajaListRelationFilter
   caja?: Prisma.XOR<Prisma.CajaScalarRelationFilter, Prisma.cajaWhereInput>
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
@@ -431,6 +437,8 @@ export type sesion_cajaCreateInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
@@ -455,6 +463,8 @@ export type sesion_cajaUncheckedCreateInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
@@ -473,6 +483,8 @@ export type sesion_cajaUpdateInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
@@ -497,6 +509,8 @@ export type sesion_cajaUncheckedUpdateInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
@@ -821,6 +835,38 @@ export type sesion_cajaUpdateOneWithoutVenta_pagoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.sesion_cajaUpdateToOneWithWhereWithoutVenta_pagoInput, Prisma.sesion_cajaUpdateWithoutVenta_pagoInput>, Prisma.sesion_cajaUncheckedUpdateWithoutVenta_pagoInput>
 }
 
+export type sesion_cajaCreateNestedOneWithoutDevolucion_pagoInput = {
+  create?: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_pagoInput>
+  connectOrCreate?: Prisma.sesion_cajaCreateOrConnectWithoutDevolucion_pagoInput
+  connect?: Prisma.sesion_cajaWhereUniqueInput
+}
+
+export type sesion_cajaUpdateOneWithoutDevolucion_pagoNestedInput = {
+  create?: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_pagoInput>
+  connectOrCreate?: Prisma.sesion_cajaCreateOrConnectWithoutDevolucion_pagoInput
+  upsert?: Prisma.sesion_cajaUpsertWithoutDevolucion_pagoInput
+  disconnect?: Prisma.sesion_cajaWhereInput | boolean
+  delete?: Prisma.sesion_cajaWhereInput | boolean
+  connect?: Prisma.sesion_cajaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.sesion_cajaUpdateToOneWithWhereWithoutDevolucion_pagoInput, Prisma.sesion_cajaUpdateWithoutDevolucion_pagoInput>, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_pagoInput>
+}
+
+export type sesion_cajaCreateNestedOneWithoutDevolucion_ventaInput = {
+  create?: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_ventaInput>
+  connectOrCreate?: Prisma.sesion_cajaCreateOrConnectWithoutDevolucion_ventaInput
+  connect?: Prisma.sesion_cajaWhereUniqueInput
+}
+
+export type sesion_cajaUpdateOneWithoutDevolucion_ventaNestedInput = {
+  create?: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_ventaInput>
+  connectOrCreate?: Prisma.sesion_cajaCreateOrConnectWithoutDevolucion_ventaInput
+  upsert?: Prisma.sesion_cajaUpsertWithoutDevolucion_ventaInput
+  disconnect?: Prisma.sesion_cajaWhereInput | boolean
+  delete?: Prisma.sesion_cajaWhereInput | boolean
+  connect?: Prisma.sesion_cajaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.sesion_cajaUpdateToOneWithWhereWithoutDevolucion_ventaInput, Prisma.sesion_cajaUpdateWithoutDevolucion_ventaInput>, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_ventaInput>
+}
+
 export type sesion_cajaCreateWithoutCajaInput = {
   id?: bigint | number
   fecha_apertura?: Date | string
@@ -834,6 +880,8 @@ export type sesion_cajaCreateWithoutCajaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioInput
@@ -856,6 +904,8 @@ export type sesion_cajaUncheckedCreateWithoutCajaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
@@ -890,6 +940,8 @@ export type sesion_cajaUpdateWithoutCajaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioUpdateOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioNestedInput
@@ -912,6 +964,8 @@ export type sesion_cajaUncheckedUpdateWithoutCajaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
@@ -929,6 +983,8 @@ export type sesion_cajaCreateWithoutCompra_pagoInput = {
   notas?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
@@ -952,6 +1008,8 @@ export type sesion_cajaUncheckedCreateWithoutCompra_pagoInput = {
   notas?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
@@ -985,6 +1043,8 @@ export type sesion_cajaUpdateWithoutCompra_pagoInput = {
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
@@ -1008,6 +1068,8 @@ export type sesion_cajaUncheckedUpdateWithoutCompra_pagoInput = {
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
@@ -1026,6 +1088,8 @@ export type sesion_cajaCreateWithoutMovimiento_cajaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioInput
@@ -1049,6 +1113,8 @@ export type sesion_cajaUncheckedCreateWithoutMovimiento_cajaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
 }
@@ -1082,6 +1148,8 @@ export type sesion_cajaUpdateWithoutMovimiento_cajaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioUpdateOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioNestedInput
@@ -1105,6 +1173,8 @@ export type sesion_cajaUncheckedUpdateWithoutMovimiento_cajaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
 }
@@ -1122,6 +1192,8 @@ export type sesion_cajaCreateWithoutUsuario_sesion_caja_usuario_apertura_idTousu
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioInput
@@ -1144,6 +1216,8 @@ export type sesion_cajaUncheckedCreateWithoutUsuario_sesion_caja_usuario_apertur
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
@@ -1172,6 +1246,8 @@ export type sesion_cajaCreateWithoutUsuario_sesion_caja_usuario_cierre_idTousuar
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
@@ -1194,6 +1270,8 @@ export type sesion_cajaUncheckedCreateWithoutUsuario_sesion_caja_usuario_cierre_
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
@@ -1274,6 +1352,8 @@ export type sesion_cajaCreateWithoutVentaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
@@ -1297,6 +1377,8 @@ export type sesion_cajaUncheckedCreateWithoutVentaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
 }
@@ -1330,6 +1412,8 @@ export type sesion_cajaUpdateWithoutVentaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
@@ -1353,6 +1437,8 @@ export type sesion_cajaUncheckedUpdateWithoutVentaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
 }
@@ -1370,6 +1456,8 @@ export type sesion_cajaCreateWithoutVenta_pagoInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
   caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
   usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
@@ -1393,6 +1481,8 @@ export type sesion_cajaUncheckedCreateWithoutVenta_pagoInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
 }
@@ -1426,6 +1516,8 @@ export type sesion_cajaUpdateWithoutVenta_pagoInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
@@ -1449,8 +1541,218 @@ export type sesion_cajaUncheckedUpdateWithoutVenta_pagoInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+}
+
+export type sesion_cajaCreateWithoutDevolucion_pagoInput = {
+  id?: bigint | number
+  fecha_apertura?: Date | string
+  fecha_cierre?: Date | string | null
+  monto_apertura?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: string
+  notas?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutSesion_cajaInput
+  movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
+  caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
+  usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
+  usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioInput
+  venta?: Prisma.ventaCreateNestedManyWithoutSesion_cajaInput
+  venta_pago?: Prisma.venta_pagoCreateNestedManyWithoutSesion_cajaInput
+}
+
+export type sesion_cajaUncheckedCreateWithoutDevolucion_pagoInput = {
+  id?: bigint | number
+  caja_id: bigint | number
+  usuario_apertura_id: bigint | number
+  usuario_cierre_id?: bigint | number | null
+  fecha_apertura?: Date | string
+  fecha_cierre?: Date | string | null
+  monto_apertura?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: string
+  notas?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
+  movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
+  venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
+  venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+}
+
+export type sesion_cajaCreateOrConnectWithoutDevolucion_pagoInput = {
+  where: Prisma.sesion_cajaWhereUniqueInput
+  create: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_pagoInput>
+}
+
+export type sesion_cajaUpsertWithoutDevolucion_pagoInput = {
+  update: Prisma.XOR<Prisma.sesion_cajaUpdateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_pagoInput>
+  create: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_pagoInput>
+  where?: Prisma.sesion_cajaWhereInput
+}
+
+export type sesion_cajaUpdateToOneWithWhereWithoutDevolucion_pagoInput = {
+  where?: Prisma.sesion_cajaWhereInput
+  data: Prisma.XOR<Prisma.sesion_cajaUpdateWithoutDevolucion_pagoInput, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_pagoInput>
+}
+
+export type sesion_cajaUpdateWithoutDevolucion_pagoInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fecha_apertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fecha_cierre?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  monto_apertura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
+  movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
+  caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
+  usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
+  usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioUpdateOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioNestedInput
+  venta?: Prisma.ventaUpdateManyWithoutSesion_cajaNestedInput
+  venta_pago?: Prisma.venta_pagoUpdateManyWithoutSesion_cajaNestedInput
+}
+
+export type sesion_cajaUncheckedUpdateWithoutDevolucion_pagoInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  caja_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_apertura_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_cierre_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  fecha_apertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fecha_cierre?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  monto_apertura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+}
+
+export type sesion_cajaCreateWithoutDevolucion_ventaInput = {
+  id?: bigint | number
+  fecha_apertura?: Date | string
+  fecha_cierre?: Date | string | null
+  monto_apertura?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: string
+  notas?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutSesion_cajaInput
+  movimiento_caja?: Prisma.movimiento_cajaCreateNestedManyWithoutSesion_cajaInput
+  caja: Prisma.cajaCreateNestedOneWithoutSesion_cajaInput
+  usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioInput
+  usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioCreateNestedOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioInput
+  venta?: Prisma.ventaCreateNestedManyWithoutSesion_cajaInput
+  venta_pago?: Prisma.venta_pagoCreateNestedManyWithoutSesion_cajaInput
+}
+
+export type sesion_cajaUncheckedCreateWithoutDevolucion_ventaInput = {
+  id?: bigint | number
+  caja_id: bigint | number
+  usuario_apertura_id: bigint | number
+  usuario_cierre_id?: bigint | number | null
+  fecha_apertura?: Date | string
+  fecha_cierre?: Date | string | null
+  monto_apertura?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: string
+  notas?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+  movimiento_caja?: Prisma.movimiento_cajaUncheckedCreateNestedManyWithoutSesion_cajaInput
+  venta?: Prisma.ventaUncheckedCreateNestedManyWithoutSesion_cajaInput
+  venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutSesion_cajaInput
+}
+
+export type sesion_cajaCreateOrConnectWithoutDevolucion_ventaInput = {
+  where: Prisma.sesion_cajaWhereUniqueInput
+  create: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_ventaInput>
+}
+
+export type sesion_cajaUpsertWithoutDevolucion_ventaInput = {
+  update: Prisma.XOR<Prisma.sesion_cajaUpdateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_ventaInput>
+  create: Prisma.XOR<Prisma.sesion_cajaCreateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedCreateWithoutDevolucion_ventaInput>
+  where?: Prisma.sesion_cajaWhereInput
+}
+
+export type sesion_cajaUpdateToOneWithWhereWithoutDevolucion_ventaInput = {
+  where?: Prisma.sesion_cajaWhereInput
+  data: Prisma.XOR<Prisma.sesion_cajaUpdateWithoutDevolucion_ventaInput, Prisma.sesion_cajaUncheckedUpdateWithoutDevolucion_ventaInput>
+}
+
+export type sesion_cajaUpdateWithoutDevolucion_ventaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fecha_apertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fecha_cierre?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  monto_apertura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
+  caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
+  usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
+  usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioUpdateOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioNestedInput
+  venta?: Prisma.ventaUpdateManyWithoutSesion_cajaNestedInput
+  venta_pago?: Prisma.venta_pagoUpdateManyWithoutSesion_cajaNestedInput
+}
+
+export type sesion_cajaUncheckedUpdateWithoutDevolucion_ventaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  caja_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_apertura_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_cierre_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  fecha_apertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fecha_cierre?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  monto_apertura?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  monto_esperado?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  monto_cierre?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  diferencia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
 }
 
 export type sesion_cajaCreateManyUsuario_sesion_caja_usuario_apertura_idTousuarioInput = {
@@ -1498,6 +1800,8 @@ export type sesion_cajaUpdateWithoutUsuario_sesion_caja_usuario_apertura_idTousu
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_cierre_idTousuario?: Prisma.usuarioUpdateOneWithoutSesion_caja_sesion_caja_usuario_cierre_idTousuarioNestedInput
@@ -1520,6 +1824,8 @@ export type sesion_cajaUncheckedUpdateWithoutUsuario_sesion_caja_usuario_apertur
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
@@ -1554,6 +1860,8 @@ export type sesion_cajaUpdateWithoutUsuario_sesion_caja_usuario_cierre_idTousuar
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUpdateManyWithoutSesion_cajaNestedInput
   caja?: Prisma.cajaUpdateOneRequiredWithoutSesion_cajaNestedInput
   usuario_sesion_caja_usuario_apertura_idTousuario?: Prisma.usuarioUpdateOneRequiredWithoutSesion_caja_sesion_caja_usuario_apertura_idTousuarioNestedInput
@@ -1576,6 +1884,8 @@ export type sesion_cajaUncheckedUpdateWithoutUsuario_sesion_caja_usuario_cierre_
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   movimiento_caja?: Prisma.movimiento_cajaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutSesion_cajaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutSesion_cajaNestedInput
@@ -1604,6 +1914,8 @@ export type sesion_cajaUncheckedUpdateManyWithoutUsuario_sesion_caja_usuario_cie
 
 export type Sesion_cajaCountOutputType = {
   compra_pago: number
+  devolucion_pago: number
+  devolucion_venta: number
   movimiento_caja: number
   venta: number
   venta_pago: number
@@ -1611,6 +1923,8 @@ export type Sesion_cajaCountOutputType = {
 
 export type Sesion_cajaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   compra_pago?: boolean | Sesion_cajaCountOutputTypeCountCompra_pagoArgs
+  devolucion_pago?: boolean | Sesion_cajaCountOutputTypeCountDevolucion_pagoArgs
+  devolucion_venta?: boolean | Sesion_cajaCountOutputTypeCountDevolucion_ventaArgs
   movimiento_caja?: boolean | Sesion_cajaCountOutputTypeCountMovimiento_cajaArgs
   venta?: boolean | Sesion_cajaCountOutputTypeCountVentaArgs
   venta_pago?: boolean | Sesion_cajaCountOutputTypeCountVenta_pagoArgs
@@ -1631,6 +1945,20 @@ export type Sesion_cajaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
  */
 export type Sesion_cajaCountOutputTypeCountCompra_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.compra_pagoWhereInput
+}
+
+/**
+ * Sesion_cajaCountOutputType without action
+ */
+export type Sesion_cajaCountOutputTypeCountDevolucion_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devolucion_pagoWhereInput
+}
+
+/**
+ * Sesion_cajaCountOutputType without action
+ */
+export type Sesion_cajaCountOutputTypeCountDevolucion_ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devolucion_ventaWhereInput
 }
 
 /**
@@ -1671,6 +1999,8 @@ export type sesion_cajaSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   creado_en?: boolean
   actualizado_en?: boolean
   compra_pago?: boolean | Prisma.sesion_caja$compra_pagoArgs<ExtArgs>
+  devolucion_pago?: boolean | Prisma.sesion_caja$devolucion_pagoArgs<ExtArgs>
+  devolucion_venta?: boolean | Prisma.sesion_caja$devolucion_ventaArgs<ExtArgs>
   movimiento_caja?: boolean | Prisma.sesion_caja$movimiento_cajaArgs<ExtArgs>
   caja?: boolean | Prisma.cajaDefaultArgs<ExtArgs>
   usuario_sesion_caja_usuario_apertura_idTousuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
@@ -1740,6 +2070,8 @@ export type sesion_cajaSelectScalar = {
 export type sesion_cajaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caja_id" | "usuario_apertura_id" | "usuario_cierre_id" | "fecha_apertura" | "fecha_cierre" | "monto_apertura" | "monto_esperado" | "monto_cierre" | "diferencia" | "estado" | "notas" | "creado_en" | "actualizado_en", ExtArgs["result"]["sesion_caja"]>
 export type sesion_cajaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   compra_pago?: boolean | Prisma.sesion_caja$compra_pagoArgs<ExtArgs>
+  devolucion_pago?: boolean | Prisma.sesion_caja$devolucion_pagoArgs<ExtArgs>
+  devolucion_venta?: boolean | Prisma.sesion_caja$devolucion_ventaArgs<ExtArgs>
   movimiento_caja?: boolean | Prisma.sesion_caja$movimiento_cajaArgs<ExtArgs>
   caja?: boolean | Prisma.cajaDefaultArgs<ExtArgs>
   usuario_sesion_caja_usuario_apertura_idTousuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
@@ -1763,6 +2095,8 @@ export type $sesion_cajaPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "sesion_caja"
   objects: {
     compra_pago: Prisma.$compra_pagoPayload<ExtArgs>[]
+    devolucion_pago: Prisma.$devolucion_pagoPayload<ExtArgs>[]
+    devolucion_venta: Prisma.$devolucion_ventaPayload<ExtArgs>[]
     movimiento_caja: Prisma.$movimiento_cajaPayload<ExtArgs>[]
     caja: Prisma.$cajaPayload<ExtArgs>
     usuario_sesion_caja_usuario_apertura_idTousuario: Prisma.$usuarioPayload<ExtArgs>
@@ -2180,6 +2514,8 @@ readonly fields: sesion_cajaFieldRefs;
 export interface Prisma__sesion_cajaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   compra_pago<T extends Prisma.sesion_caja$compra_pagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sesion_caja$compra_pagoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$compra_pagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  devolucion_pago<T extends Prisma.sesion_caja$devolucion_pagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sesion_caja$devolucion_pagoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devolucion_pagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  devolucion_venta<T extends Prisma.sesion_caja$devolucion_ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sesion_caja$devolucion_ventaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devolucion_ventaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   movimiento_caja<T extends Prisma.sesion_caja$movimiento_cajaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sesion_caja$movimiento_cajaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$movimiento_cajaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   caja<T extends Prisma.cajaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.cajaDefaultArgs<ExtArgs>>): Prisma.Prisma__cajaClient<runtime.Types.Result.GetResult<Prisma.$cajaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuario_sesion_caja_usuario_apertura_idTousuario<T extends Prisma.usuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -2651,6 +2987,54 @@ export type sesion_caja$compra_pagoArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.Compra_pagoScalarFieldEnum | Prisma.Compra_pagoScalarFieldEnum[]
+}
+
+/**
+ * sesion_caja.devolucion_pago
+ */
+export type sesion_caja$devolucion_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devolucion_pago
+   */
+  select?: Prisma.devolucion_pagoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devolucion_pago
+   */
+  omit?: Prisma.devolucion_pagoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devolucion_pagoInclude<ExtArgs> | null
+  where?: Prisma.devolucion_pagoWhereInput
+  orderBy?: Prisma.devolucion_pagoOrderByWithRelationInput | Prisma.devolucion_pagoOrderByWithRelationInput[]
+  cursor?: Prisma.devolucion_pagoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Devolucion_pagoScalarFieldEnum | Prisma.Devolucion_pagoScalarFieldEnum[]
+}
+
+/**
+ * sesion_caja.devolucion_venta
+ */
+export type sesion_caja$devolucion_ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devolucion_venta
+   */
+  select?: Prisma.devolucion_ventaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devolucion_venta
+   */
+  omit?: Prisma.devolucion_ventaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devolucion_ventaInclude<ExtArgs> | null
+  where?: Prisma.devolucion_ventaWhereInput
+  orderBy?: Prisma.devolucion_ventaOrderByWithRelationInput | Prisma.devolucion_ventaOrderByWithRelationInput[]
+  cursor?: Prisma.devolucion_ventaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Devolucion_ventaScalarFieldEnum | Prisma.Devolucion_ventaScalarFieldEnum[]
 }
 
 /**

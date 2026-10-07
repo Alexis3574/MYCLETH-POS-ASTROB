@@ -91,7 +91,10 @@ export const ModelName = {
   usuario_sucursal: 'usuario_sucursal',
   venta: 'venta',
   venta_detalle: 'venta_detalle',
-  venta_pago: 'venta_pago'
+  venta_pago: 'venta_pago',
+  devolucion_pago: 'devolucion_pago',
+  devolucion_venta: 'devolucion_venta',
+  devolucion_venta_detalle: 'devolucion_venta_detalle'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -769,6 +772,54 @@ export const Venta_pagoScalarFieldEnum = {
 } as const
 
 export type Venta_pagoScalarFieldEnum = (typeof Venta_pagoScalarFieldEnum)[keyof typeof Venta_pagoScalarFieldEnum]
+
+
+export const Devolucion_pagoScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_pago_id: 'venta_pago_id',
+  sesion_caja_id: 'sesion_caja_id',
+  monto: 'monto',
+  referencia: 'referencia',
+  fecha: 'fecha',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_pagoScalarFieldEnum = (typeof Devolucion_pagoScalarFieldEnum)[keyof typeof Devolucion_pagoScalarFieldEnum]
+
+
+export const Devolucion_ventaScalarFieldEnum = {
+  id: 'id',
+  venta_id: 'venta_id',
+  usuario_id: 'usuario_id',
+  sesion_caja_id: 'sesion_caja_id',
+  folio: 'folio',
+  motivo: 'motivo',
+  subtotal: 'subtotal',
+  descuento: 'descuento',
+  impuesto: 'impuesto',
+  total: 'total',
+  fecha: 'fecha',
+  creado_en: 'creado_en',
+  actualizado_en: 'actualizado_en'
+} as const
+
+export type Devolucion_ventaScalarFieldEnum = (typeof Devolucion_ventaScalarFieldEnum)[keyof typeof Devolucion_ventaScalarFieldEnum]
+
+
+export const Devolucion_venta_detalleScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_detalle_id: 'venta_detalle_id',
+  cantidad: 'cantidad',
+  subtotal_linea: 'subtotal_linea',
+  descuento_importe: 'descuento_importe',
+  impuesto_importe: 'impuesto_importe',
+  total_linea: 'total_linea',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_venta_detalleScalarFieldEnum = (typeof Devolucion_venta_detalleScalarFieldEnum)[keyof typeof Devolucion_venta_detalleScalarFieldEnum]
 
 
 export const SortOrder = {

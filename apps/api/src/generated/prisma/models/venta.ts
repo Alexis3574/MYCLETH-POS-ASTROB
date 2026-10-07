@@ -396,6 +396,7 @@ export type ventaWhereInput = {
   observaciones?: Prisma.StringNullableFilter<"venta"> | string | null
   creado_en?: Prisma.DateTimeFilter<"venta"> | Date | string
   actualizado_en?: Prisma.DateTimeFilter<"venta"> | Date | string
+  devolucion_venta?: Prisma.Devolucion_ventaListRelationFilter
   almacen?: Prisma.XOR<Prisma.AlmacenScalarRelationFilter, Prisma.almacenWhereInput>
   cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.clienteWhereInput> | null
   cotizacion?: Prisma.XOR<Prisma.CotizacionNullableScalarRelationFilter, Prisma.cotizacionWhereInput> | null
@@ -431,6 +432,7 @@ export type ventaOrderByWithRelationInput = {
   observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
   creado_en?: Prisma.SortOrder
   actualizado_en?: Prisma.SortOrder
+  devolucion_venta?: Prisma.devolucion_ventaOrderByRelationAggregateInput
   almacen?: Prisma.almacenOrderByWithRelationInput
   cliente?: Prisma.clienteOrderByWithRelationInput
   cotizacion?: Prisma.cotizacionOrderByWithRelationInput
@@ -470,6 +472,7 @@ export type ventaWhereUniqueInput = Prisma.AtLeast<{
   observaciones?: Prisma.StringNullableFilter<"venta"> | string | null
   creado_en?: Prisma.DateTimeFilter<"venta"> | Date | string
   actualizado_en?: Prisma.DateTimeFilter<"venta"> | Date | string
+  devolucion_venta?: Prisma.Devolucion_ventaListRelationFilter
   almacen?: Prisma.XOR<Prisma.AlmacenScalarRelationFilter, Prisma.almacenWhereInput>
   cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.clienteWhereInput> | null
   cotizacion?: Prisma.XOR<Prisma.CotizacionNullableScalarRelationFilter, Prisma.cotizacionWhereInput> | null
@@ -552,6 +555,7 @@ export type ventaCreateInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -587,6 +591,7 @@ export type ventaUncheckedCreateInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -604,6 +609,7 @@ export type ventaUpdateInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -639,6 +645,7 @@ export type ventaUncheckedUpdateInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -1238,6 +1245,20 @@ export type ventaUpdateOneRequiredWithoutVenta_pagoNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ventaUpdateToOneWithWhereWithoutVenta_pagoInput, Prisma.ventaUpdateWithoutVenta_pagoInput>, Prisma.ventaUncheckedUpdateWithoutVenta_pagoInput>
 }
 
+export type ventaCreateNestedOneWithoutDevolucion_ventaInput = {
+  create?: Prisma.XOR<Prisma.ventaCreateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedCreateWithoutDevolucion_ventaInput>
+  connectOrCreate?: Prisma.ventaCreateOrConnectWithoutDevolucion_ventaInput
+  connect?: Prisma.ventaWhereUniqueInput
+}
+
+export type ventaUpdateOneRequiredWithoutDevolucion_ventaNestedInput = {
+  create?: Prisma.XOR<Prisma.ventaCreateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedCreateWithoutDevolucion_ventaInput>
+  connectOrCreate?: Prisma.ventaCreateOrConnectWithoutDevolucion_ventaInput
+  upsert?: Prisma.ventaUpsertWithoutDevolucion_ventaInput
+  connect?: Prisma.ventaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ventaUpdateToOneWithWhereWithoutDevolucion_ventaInput, Prisma.ventaUpdateWithoutDevolucion_ventaInput>, Prisma.ventaUncheckedUpdateWithoutDevolucion_ventaInput>
+}
+
 export type ventaCreateWithoutAlmacenInput = {
   id?: bigint | number
   folio: string
@@ -1251,6 +1272,7 @@ export type ventaCreateWithoutAlmacenInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
   empresa: Prisma.empresaCreateNestedOneWithoutVentaInput
@@ -1284,6 +1306,7 @@ export type ventaUncheckedCreateWithoutAlmacenInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1354,6 +1377,7 @@ export type ventaCreateWithoutClienteInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
   empresa: Prisma.empresaCreateNestedOneWithoutVentaInput
@@ -1387,6 +1411,7 @@ export type ventaUncheckedCreateWithoutClienteInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1430,6 +1455,7 @@ export type ventaCreateWithoutCotizacionInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   empresa: Prisma.empresaCreateNestedOneWithoutVentaInput
@@ -1463,6 +1489,7 @@ export type ventaUncheckedCreateWithoutCotizacionInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1506,6 +1533,7 @@ export type ventaCreateWithoutEmpresaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1539,6 +1567,7 @@ export type ventaUncheckedCreateWithoutEmpresaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1582,6 +1611,7 @@ export type ventaCreateWithoutOrden_ventaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1615,6 +1645,7 @@ export type ventaUncheckedCreateWithoutOrden_ventaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1658,6 +1689,7 @@ export type ventaCreateWithoutPedido_clienteInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1691,6 +1723,7 @@ export type ventaUncheckedCreateWithoutPedido_clienteInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1734,6 +1767,7 @@ export type ventaCreateWithoutSesion_cajaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1767,6 +1801,7 @@ export type ventaUncheckedCreateWithoutSesion_cajaInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1810,6 +1845,7 @@ export type ventaCreateWithoutSucursalInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1843,6 +1879,7 @@ export type ventaUncheckedCreateWithoutSucursalInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1886,6 +1923,7 @@ export type ventaCreateWithoutUsuarioInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1919,6 +1957,7 @@ export type ventaUncheckedCreateWithoutUsuarioInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
@@ -1962,6 +2001,7 @@ export type ventaCreateWithoutVenta_detalleInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -1996,6 +2036,7 @@ export type ventaUncheckedCreateWithoutVenta_detalleInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
 }
 
@@ -2028,6 +2069,7 @@ export type ventaUpdateWithoutVenta_detalleInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2062,6 +2104,7 @@ export type ventaUncheckedUpdateWithoutVenta_detalleInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
 
@@ -2078,6 +2121,7 @@ export type ventaCreateWithoutVenta_pagoInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaCreateNestedManyWithoutVentaInput
   almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
   cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
   cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
@@ -2112,6 +2156,7 @@ export type ventaUncheckedCreateWithoutVenta_pagoInput = {
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedCreateNestedManyWithoutVentaInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
 }
 
@@ -2144,6 +2189,7 @@ export type ventaUpdateWithoutVenta_pagoInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2178,7 +2224,128 @@ export type ventaUncheckedUpdateWithoutVenta_pagoInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
+}
+
+export type ventaCreateWithoutDevolucion_ventaInput = {
+  id?: bigint | number
+  folio: string
+  fecha?: Date | string
+  condicion_pago?: string
+  estado?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  almacen: Prisma.almacenCreateNestedOneWithoutVentaInput
+  cliente?: Prisma.clienteCreateNestedOneWithoutVentaInput
+  cotizacion?: Prisma.cotizacionCreateNestedOneWithoutVentaInput
+  empresa: Prisma.empresaCreateNestedOneWithoutVentaInput
+  orden_venta?: Prisma.orden_ventaCreateNestedOneWithoutVentaInput
+  pedido_cliente?: Prisma.pedido_clienteCreateNestedOneWithoutVentaInput
+  sesion_caja?: Prisma.sesion_cajaCreateNestedOneWithoutVentaInput
+  sucursal: Prisma.sucursalCreateNestedOneWithoutVentaInput
+  usuario: Prisma.usuarioCreateNestedOneWithoutVentaInput
+  venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutVentaInput
+  venta_pago?: Prisma.venta_pagoCreateNestedManyWithoutVentaInput
+}
+
+export type ventaUncheckedCreateWithoutDevolucion_ventaInput = {
+  id?: bigint | number
+  empresa_id: bigint | number
+  sucursal_id: bigint | number
+  almacen_id: bigint | number
+  cliente_id?: bigint | number | null
+  usuario_id: bigint | number
+  sesion_caja_id?: bigint | number | null
+  cotizacion_id?: bigint | number | null
+  orden_venta_id?: bigint | number | null
+  pedido_cliente_id?: bigint | number | null
+  folio: string
+  fecha?: Date | string
+  condicion_pago?: string
+  estado?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutVentaInput
+  venta_pago?: Prisma.venta_pagoUncheckedCreateNestedManyWithoutVentaInput
+}
+
+export type ventaCreateOrConnectWithoutDevolucion_ventaInput = {
+  where: Prisma.ventaWhereUniqueInput
+  create: Prisma.XOR<Prisma.ventaCreateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedCreateWithoutDevolucion_ventaInput>
+}
+
+export type ventaUpsertWithoutDevolucion_ventaInput = {
+  update: Prisma.XOR<Prisma.ventaUpdateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedUpdateWithoutDevolucion_ventaInput>
+  create: Prisma.XOR<Prisma.ventaCreateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedCreateWithoutDevolucion_ventaInput>
+  where?: Prisma.ventaWhereInput
+}
+
+export type ventaUpdateToOneWithWhereWithoutDevolucion_ventaInput = {
+  where?: Prisma.ventaWhereInput
+  data: Prisma.XOR<Prisma.ventaUpdateWithoutDevolucion_ventaInput, Prisma.ventaUncheckedUpdateWithoutDevolucion_ventaInput>
+}
+
+export type ventaUpdateWithoutDevolucion_ventaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  condicion_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
+  cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
+  cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
+  empresa?: Prisma.empresaUpdateOneRequiredWithoutVentaNestedInput
+  orden_venta?: Prisma.orden_ventaUpdateOneWithoutVentaNestedInput
+  pedido_cliente?: Prisma.pedido_clienteUpdateOneWithoutVentaNestedInput
+  sesion_caja?: Prisma.sesion_cajaUpdateOneWithoutVentaNestedInput
+  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutVentaNestedInput
+  usuario?: Prisma.usuarioUpdateOneRequiredWithoutVentaNestedInput
+  venta_detalle?: Prisma.venta_detalleUpdateManyWithoutVentaNestedInput
+  venta_pago?: Prisma.venta_pagoUpdateManyWithoutVentaNestedInput
+}
+
+export type ventaUncheckedUpdateWithoutDevolucion_ventaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  empresa_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sucursal_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  almacen_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  cliente_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  usuario_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sesion_caja_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  cotizacion_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  orden_venta_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  pedido_cliente_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  condicion_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
+  venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
 
 export type ventaCreateManyAlmacenInput = {
@@ -2217,6 +2384,7 @@ export type ventaUpdateWithoutAlmacenInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
   empresa?: Prisma.empresaUpdateOneRequiredWithoutVentaNestedInput
@@ -2250,6 +2418,7 @@ export type ventaUncheckedUpdateWithoutAlmacenInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2313,6 +2482,7 @@ export type ventaUpdateWithoutClienteInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
   empresa?: Prisma.empresaUpdateOneRequiredWithoutVentaNestedInput
@@ -2346,6 +2516,7 @@ export type ventaUncheckedUpdateWithoutClienteInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2409,6 +2580,7 @@ export type ventaUpdateWithoutCotizacionInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   empresa?: Prisma.empresaUpdateOneRequiredWithoutVentaNestedInput
@@ -2442,6 +2614,7 @@ export type ventaUncheckedUpdateWithoutCotizacionInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2505,6 +2678,7 @@ export type ventaUpdateWithoutEmpresaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2538,6 +2712,7 @@ export type ventaUncheckedUpdateWithoutEmpresaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2601,6 +2776,7 @@ export type ventaUpdateWithoutOrden_ventaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2634,6 +2810,7 @@ export type ventaUncheckedUpdateWithoutOrden_ventaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2697,6 +2874,7 @@ export type ventaUpdateWithoutPedido_clienteInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2730,6 +2908,7 @@ export type ventaUncheckedUpdateWithoutPedido_clienteInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2793,6 +2972,7 @@ export type ventaUpdateWithoutSesion_cajaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2826,6 +3006,7 @@ export type ventaUncheckedUpdateWithoutSesion_cajaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2889,6 +3070,7 @@ export type ventaUpdateWithoutSucursalInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -2922,6 +3104,7 @@ export type ventaUncheckedUpdateWithoutSucursalInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -2985,6 +3168,7 @@ export type ventaUpdateWithoutUsuarioInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUpdateManyWithoutVentaNestedInput
   almacen?: Prisma.almacenUpdateOneRequiredWithoutVentaNestedInput
   cliente?: Prisma.clienteUpdateOneWithoutVentaNestedInput
   cotizacion?: Prisma.cotizacionUpdateOneWithoutVentaNestedInput
@@ -3018,6 +3202,7 @@ export type ventaUncheckedUpdateWithoutUsuarioInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_venta?: Prisma.devolucion_ventaUncheckedUpdateManyWithoutVentaNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutVentaNestedInput
   venta_pago?: Prisma.venta_pagoUncheckedUpdateManyWithoutVentaNestedInput
 }
@@ -3051,11 +3236,13 @@ export type ventaUncheckedUpdateManyWithoutUsuarioInput = {
  */
 
 export type VentaCountOutputType = {
+  devolucion_venta: number
   venta_detalle: number
   venta_pago: number
 }
 
 export type VentaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_venta?: boolean | VentaCountOutputTypeCountDevolucion_ventaArgs
   venta_detalle?: boolean | VentaCountOutputTypeCountVenta_detalleArgs
   venta_pago?: boolean | VentaCountOutputTypeCountVenta_pagoArgs
 }
@@ -3068,6 +3255,13 @@ export type VentaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the VentaCountOutputType
    */
   select?: Prisma.VentaCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * VentaCountOutputType without action
+ */
+export type VentaCountOutputTypeCountDevolucion_ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devolucion_ventaWhereInput
 }
 
 /**
@@ -3107,6 +3301,7 @@ export type ventaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   observaciones?: boolean
   creado_en?: boolean
   actualizado_en?: boolean
+  devolucion_venta?: boolean | Prisma.venta$devolucion_ventaArgs<ExtArgs>
   almacen?: boolean | Prisma.almacenDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.venta$clienteArgs<ExtArgs>
   cotizacion?: boolean | Prisma.venta$cotizacionArgs<ExtArgs>
@@ -3213,6 +3408,7 @@ export type ventaSelectScalar = {
 
 export type ventaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "empresa_id" | "sucursal_id" | "almacen_id" | "cliente_id" | "usuario_id" | "sesion_caja_id" | "cotizacion_id" | "orden_venta_id" | "pedido_cliente_id" | "folio" | "fecha" | "condicion_pago" | "estado" | "subtotal" | "descuento" | "impuesto" | "total" | "observaciones" | "creado_en" | "actualizado_en", ExtArgs["result"]["venta"]>
 export type ventaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_venta?: boolean | Prisma.venta$devolucion_ventaArgs<ExtArgs>
   almacen?: boolean | Prisma.almacenDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.venta$clienteArgs<ExtArgs>
   cotizacion?: boolean | Prisma.venta$cotizacionArgs<ExtArgs>
@@ -3252,6 +3448,7 @@ export type ventaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $ventaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "venta"
   objects: {
+    devolucion_venta: Prisma.$devolucion_ventaPayload<ExtArgs>[]
     almacen: Prisma.$almacenPayload<ExtArgs>
     cliente: Prisma.$clientePayload<ExtArgs> | null
     cotizacion: Prisma.$cotizacionPayload<ExtArgs> | null
@@ -3680,6 +3877,7 @@ readonly fields: ventaFieldRefs;
  */
 export interface Prisma__ventaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  devolucion_venta<T extends Prisma.venta$devolucion_ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta$devolucion_ventaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devolucion_ventaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   almacen<T extends Prisma.almacenDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.almacenDefaultArgs<ExtArgs>>): Prisma.Prisma__almacenClient<runtime.Types.Result.GetResult<Prisma.$almacenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   cliente<T extends Prisma.venta$clienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta$clienteArgs<ExtArgs>>): Prisma.Prisma__clienteClient<runtime.Types.Result.GetResult<Prisma.$clientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cotizacion<T extends Prisma.venta$cotizacionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta$cotizacionArgs<ExtArgs>>): Prisma.Prisma__cotizacionClient<runtime.Types.Result.GetResult<Prisma.$cotizacionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -4139,6 +4337,30 @@ export type ventaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many ventas to delete.
    */
   limit?: number
+}
+
+/**
+ * venta.devolucion_venta
+ */
+export type venta$devolucion_ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devolucion_venta
+   */
+  select?: Prisma.devolucion_ventaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devolucion_venta
+   */
+  omit?: Prisma.devolucion_ventaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devolucion_ventaInclude<ExtArgs> | null
+  where?: Prisma.devolucion_ventaWhereInput
+  orderBy?: Prisma.devolucion_ventaOrderByWithRelationInput | Prisma.devolucion_ventaOrderByWithRelationInput[]
+  cursor?: Prisma.devolucion_ventaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Devolucion_ventaScalarFieldEnum | Prisma.Devolucion_ventaScalarFieldEnum[]
 }
 
 /**

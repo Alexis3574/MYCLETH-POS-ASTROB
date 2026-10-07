@@ -2,98 +2,216 @@ import { z } from "zod";
 
 const idSchema = z.coerce
   .string()
-  .regex(/^\d+$/, "El ID debe ser válido");
+  .regex(
+    /^\d+$/,
+    "El ID debe ser válido",
+  );
 
-const decimalSchema = z.union([
-  z.number(),
+const numericDecimalSchema = z.union([
+  z
+    .number()
+    .finite(),
+
   z
     .string()
     .trim()
     .regex(
       /^\d+(\.\d+)?$/,
       "El valor debe ser numérico",
-    ),
+    )
+    .transform(Number),
 ]);
 
-const saleDetailSchema = z.object({
-  producto_id: idSchema,
+const quantitySchema =
+  numericDecimalSchema
+    .refine(
+      (value) =>
+        value > 0,
+      {
+        message:
+          "La cantidad debe ser mayor que cero",
+      },
+    )
+    .refine(
+      (value) => {
+        const scaled =
+          value * 1000;
 
-  descripcion: z
-    .string()
-    .trim()
-    .max(250)
-    .nullable()
-    .optional(),
+        return (
+          Math.abs(
+            scaled -
+              Math.round(scaled),
+          ) < 0.00000001
+        );
+      },
+      {
+        message:
+          "La cantidad puede tener como máximo 3 decimales",
+      },
+    );
 
-  cantidad: decimalSchema,
+const percentageSchema =
+  numericDecimalSchema
+    .refine(
+      (value) =>
+        value >= 0 &&
+        value <= 100,
+      {
+        message:
+          "El porcentaje debe estar entre 0 y 100",
+      },
+    )
+    .refine(
+      (value) => {
+        const scaled =
+          value * 10000;
 
-  precio_unitario: decimalSchema,
+        return (
+          Math.abs(
+            scaled -
+              Math.round(scaled),
+          ) < 0.00000001
+        );
+      },
+      {
+        message:
+          "El porcentaje puede tener como máximo 4 decimales",
+      },
+    );
 
-  costo_unitario: decimalSchema
-    .nullable()
-    .optional(),
+const paymentAmountSchema =
+  numericDecimalSchema
+    .refine(
+      (value) =>
+        value > 0,
+      {
+        message:
+          "El monto del pago debe ser mayor que cero",
+      },
+    )
+    .refine(
+      (value) => {
+        const cents =
+          value * 100;
 
-  descuento_porcentaje:
-    decimalSchema.default(0),
+        return (
+          Math.abs(
+            cents -
+              Math.round(cents),
+          ) <
+          0.00000001
+        );
+      },
+      {
+        message:
+          "El monto del pago puede tener como máximo 2 decimales",
+      },
+    )
+    .refine(
+      (value) =>
+        value <=
+        999999999999.99,
+      {
+        message:
+          "El monto del pago es demasiado grande",
+      },
+    );
 
-  tasa_impuesto:
-    decimalSchema.default(0),
+const saleDetailSchema =
+  z.object({
+    producto_id:
+      idSchema,
 
-  subtotal_linea: decimalSchema,
+    descripcion: z
+      .string()
+      .trim()
+      .max(250)
+      .nullable()
+      .optional(),
 
-  descuento_importe:
-    decimalSchema.default(0),
+    cantidad:
+      quantitySchema,
 
-  impuesto_importe:
-    decimalSchema.default(0),
+    descuento_porcentaje:
+      percentageSchema
+        .default(0),
+  });
 
-  total_linea: decimalSchema,
-});
+const salePaymentSchema =
+  z.object({
+    metodo_pago_id:
+      idSchema,
 
-export const createSaleSchema = z.object({
-  empresa_id: idSchema,
-  sucursal_id: idSchema,
-  almacen_id: idSchema,
+    monto:
+      paymentAmountSchema,
 
-  cliente_id: idSchema
-    .nullable()
-    .optional(),
+    referencia: z
+      .string()
+      .trim()
+      .max(
+        150,
+        "La referencia no puede superar los 150 caracteres",
+      )
+      .nullable()
+      .optional(),
+  });
 
-  usuario_id: idSchema,
+export const createSaleSchema =
+  z.object({
+    empresa_id:
+      idSchema,
 
-  sesion_caja_id: idSchema
-    .nullable()
-    .optional(),
+    sucursal_id:
+      idSchema,
 
-  folio: z
-    .string()
-    .trim()
-    .min(1, "El folio es obligatorio")
-    .max(50),
+    almacen_id:
+      idSchema,
 
-  subtotal: decimalSchema,
+    cliente_id:
+      idSchema
+        .nullable()
+        .optional(),
 
-  descuento:
-    decimalSchema.default(0),
+    sesion_caja_id:
+      idSchema
+        .nullable()
+        .optional(),
 
-  impuesto:
-    decimalSchema.default(0),
+    folio: z
+      .string()
+      .trim()
+      .min(
+        1,
+        "El folio es obligatorio",
+      )
+      .max(50),
 
-  total: decimalSchema,
+    observaciones: z
+      .string()
+      .trim()
+      .nullable()
+      .optional(),
 
-  observaciones: z
-    .string()
-    .trim()
-    .nullable()
-    .optional(),
+    detalles: z
+      .array(
+        saleDetailSchema,
+      )
+      .min(
+        1,
+        "La venta debe contener al menos un producto",
+      ),
 
-  detalles: z
-    .array(saleDetailSchema)
-    .min(
-      1,
-      "La venta debe contener al menos un producto",
-    ),
-});
+    pagos: z
+      .array(
+        salePaymentSchema,
+      )
+      .min(
+        1,
+        "La venta debe contener al menos un pago",
+      ),
+  });
 
 export type CreateSaleInput =
-  z.infer<typeof createSaleSchema>;
+  z.infer<
+    typeof createSaleSchema
+  >;

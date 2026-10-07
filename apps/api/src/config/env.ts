@@ -6,6 +6,23 @@ export const env = {
     process.env.CORS_ORIGIN ||
     "http://localhost:5173",
 
+  auth: {
+  jwtSecret:
+    process.env.JWT_SECRET || "",
+
+  jwtExpiresInSeconds:
+    Number(
+      process.env.JWT_EXPIRES_IN_SECONDS,
+    ) || 28800,
+
+  maxFailedAttempts:
+    Number(
+      process.env.AUTH_MAX_FAILED_ATTEMPTS,
+    ) || 5,
+    
+},
+
+
   ecommerce: {
     baseUrl:
       process.env.ECOMMERCE_API_URL ||

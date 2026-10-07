@@ -1,8 +1,16 @@
 import { hash } from "bcryptjs";
-import { userRepository } from "./user.repository.js";
-import type { ChangePasswordInput, CreateUserInput, UpdateUserInput } from "./user.schema.js";
 
-function serializeValue(value: unknown): unknown {
+import type {
+  ChangePasswordInput,
+  CreateUserInput,
+  UpdateUserInput,
+} from "./user.schema.js";
+
+import { userRepository } from "./user.repository.js";
+
+function serializeValue(
+  value: unknown,
+): unknown {
   if (typeof value === "bigint") {
     return value.toString();
   }
@@ -15,12 +23,17 @@ function serializeValue(value: unknown): unknown {
     return value.map(serializeValue);
   }
 
-  if (value !== null && typeof value === "object") {
+  if (
+    value !== null &&
+    typeof value === "object"
+  ) {
     return Object.fromEntries(
-      Object.entries(value).map(([key, nestedValue]) => [
-        key,
-        serializeValue(nestedValue),
-      ])
+      Object.entries(value).map(
+        ([key, nestedValue]) => [
+          key,
+          serializeValue(nestedValue),
+        ],
+      ),
     );
   }
 
@@ -28,13 +41,15 @@ function serializeValue(value: unknown): unknown {
 }
 
 function serializeUser(
-  user: object
+  user: object,
 ): Record<string, unknown> {
   return Object.fromEntries(
-    Object.entries(user).map(([key, value]) => [
-      key,
-      serializeValue(value),
-    ])
+    Object.entries(user).map(
+      ([key, value]) => [
+        key,
+        serializeValue(value),
+      ],
+    ),
   );
 }
 
@@ -43,33 +58,54 @@ export const userService = {
     return userRepository.count();
   },
 
-  async listUsers(page: number, limit: number) {
-    const safePage = Math.max(page, 1);
-    const safeLimit = Math.min(Math.max(limit, 1), 100);
+  async listUsers(
+    page: number,
+    limit: number,
+  ) {
+    const safePage =
+      Math.max(page, 1);
 
-    const skip = (safePage - 1) * safeLimit;
+    const safeLimit =
+      Math.min(
+        Math.max(limit, 1),
+        100,
+      );
 
-    const [users, total] = await Promise.all([
-      userRepository.findMany({
-        skip,
-        take: safeLimit,
-      }),
-      userRepository.count(),
-    ]);
+    const skip =
+      (safePage - 1) * safeLimit;
+
+    const [users, total] =
+      await Promise.all([
+        userRepository.findMany({
+          skip,
+          take: safeLimit,
+        }),
+
+        userRepository.count(),
+      ]);
 
     return {
-      users: users.map((user) => serializeUser(user)),
+      users: users.map((user) =>
+        serializeUser(user),
+      ),
+
       pagination: {
         page: safePage,
         limit: safeLimit,
         total,
-        totalPages: Math.ceil(total / safeLimit),
+        totalPages:
+          Math.ceil(
+            total / safeLimit,
+          ),
       },
     };
   },
 
   async getUserById(id: bigint) {
-    const user = await userRepository.findById(id);
+    const user =
+      await userRepository.findById(
+        id,
+      );
 
     if (!user) {
       return null;
@@ -78,172 +114,264 @@ export const userService = {
     return serializeUser(user);
   },
 
-  async createUser(input: CreateUserInput) {
-  const empresaId = BigInt(input.empresa_id);
+  async createUser(
+    input: CreateUserInput,
+  ) {
+    const empresaId =
+      BigInt(input.empresa_id);
 
-  const company = await userRepository.companyExists(empresaId);
+    const company =
+      await userRepository.companyExists(
+        empresaId,
+      );
 
-  if (!company) {
-    return {
-      status: "COMPANY_NOT_FOUND" as const,
-    };
-  }
-
-  const normalizedUsername = input.username.trim();
-
-  const existingUsername = await userRepository.findByUsername(
-    empresaId,
-    normalizedUsername
-  );
-
-  if (existingUsername) {
-    return {
-      status: "USERNAME_EXISTS" as const,
-    };
-  }
-
-  const normalizedEmail = input.email
-    ? input.email.trim().toLowerCase()
-    : null;
-
-  if (normalizedEmail) {
-    const existingEmail = await userRepository.findByEmail(
-      empresaId,
-      normalizedEmail
-    );
-
-    if (existingEmail) {
+    if (!company) {
       return {
-        status: "EMAIL_EXISTS" as const,
+        status:
+          "COMPANY_NOT_FOUND" as const,
       };
     }
-  }
 
-  const passwordHash = await hash(input.password, 12);
+    const normalizedUsername =
+      input.username.trim();
 
-  const user = await userRepository.create({
-    empresa_id: empresaId,
-    username: normalizedUsername,
-    password_hash: passwordHash,
-    nombre: input.nombre.trim(),
-    apellido: input.apellido?.trim() || null,
-    email: normalizedEmail,
-    telefono: input.telefono?.trim() || null,
-    activo: input.activo ?? true,
-  });
+    const existingUsername =
+      await userRepository
+        .findByUsername(
+          empresaId,
+          normalizedUsername,
+        );
 
-  return {
-    status: "CREATED" as const,
-    user: serializeUser(user),
-  };
-},
-  async updateUser(id: bigint, input: UpdateUserInput) {
-  const currentUser = await userRepository.findById(id);
+    if (existingUsername) {
+      return {
+        status:
+          "USERNAME_EXISTS" as const,
+      };
+    }
 
-  if (!currentUser) {
-    return {
-      status: "NOT_FOUND" as const,
-    };
-  }
+    const normalizedEmail =
+      input.email
+        ? input.email
+            .trim()
+            .toLowerCase()
+        : null;
 
-  const data: {
-    username?: string;
-    nombre?: string;
-    apellido?: string | null;
-    email?: string | null;
-    telefono?: string | null;
-    activo?: boolean;
-  } = {};
+    if (normalizedEmail) {
+      const existingEmail =
+        await userRepository.findByEmail(
+          empresaId,
+          normalizedEmail,
+        );
 
-  if (input.username !== undefined) {
-    const normalizedUsername = input.username.trim();
-
-    if (normalizedUsername !== currentUser.username) {
-      const existingUsername = await userRepository.findByUsername(
-        currentUser.empresa_id,
-        normalizedUsername
-      );
-
-      if (existingUsername && existingUsername.id !== id) {
+      if (existingEmail) {
         return {
-          status: "USERNAME_EXISTS" as const,
+          status:
+            "EMAIL_EXISTS" as const,
         };
       }
     }
 
-    data.username = normalizedUsername;
-  }
+    const passwordHash =
+      await hash(
+        input.password,
+        12,
+      );
 
-  if (input.nombre !== undefined) {
-    data.nombre = input.nombre.trim();
-  }
+    const user =
+      await userRepository.create({
+        empresa_id: empresaId,
+        username:
+          normalizedUsername,
+        password_hash:
+          passwordHash,
+        nombre:
+          input.nombre.trim(),
+        apellido:
+          input.apellido?.trim() ||
+          null,
+        email:
+          normalizedEmail,
+        telefono:
+          input.telefono?.trim() ||
+          null,
+        activo:
+          input.activo ?? true,
+      });
 
-  if (input.apellido !== undefined) {
-    data.apellido = input.apellido?.trim() || null;
-  }
+    return {
+      status: "CREATED" as const,
+      user: serializeUser(user),
+    };
+  },
 
-  if (input.email !== undefined) {
-    const normalizedEmail =
-      input.email === null
-        ? null
-        : input.email.trim().toLowerCase();
+  async updateUser(
+    id: bigint,
+    input: UpdateUserInput,
+  ) {
+    const currentUser =
+      await userRepository.findById(
+        id,
+      );
+
+    if (!currentUser) {
+      return {
+        status:
+          "NOT_FOUND" as const,
+      };
+    }
+
+    const data: {
+      username?: string;
+      nombre?: string;
+      apellido?: string | null;
+      email?: string | null;
+      telefono?: string | null;
+      activo?: boolean;
+    } = {};
 
     if (
-      normalizedEmail &&
-      normalizedEmail !== currentUser.email?.toLowerCase()
+      input.username !== undefined
     ) {
-      const existingEmail = await userRepository.findByEmail(
-        currentUser.empresa_id,
-        normalizedEmail
-      );
+      const normalizedUsername =
+        input.username.trim();
 
-      if (existingEmail && existingEmail.id !== id) {
-        return {
-          status: "EMAIL_EXISTS" as const,
-        };
+      if (
+        normalizedUsername !==
+        currentUser.username
+      ) {
+        const existingUsername =
+          await userRepository
+            .findByUsername(
+              currentUser.empresa_id,
+              normalizedUsername,
+            );
+
+        if (
+          existingUsername &&
+          existingUsername.id !== id
+        ) {
+          return {
+            status:
+              "USERNAME_EXISTS" as const,
+          };
+        }
       }
+
+      data.username =
+        normalizedUsername;
     }
 
-    data.email = normalizedEmail;
-  }
+    if (
+      input.nombre !== undefined
+    ) {
+      data.nombre =
+        input.nombre.trim();
+    }
 
-  if (input.telefono !== undefined) {
-    data.telefono = input.telefono?.trim() || null;
-  }
+    if (
+      input.apellido !== undefined
+    ) {
+      data.apellido =
+        input.apellido?.trim() ||
+        null;
+    }
 
-  if (input.activo !== undefined) {
-    data.activo = input.activo;
-  }
+    if (
+      input.email !== undefined
+    ) {
+      const normalizedEmail =
+        input.email === null
+          ? null
+          : input.email
+              .trim()
+              .toLowerCase();
 
-  const updatedUser = await userRepository.update(id, data);
+      if (
+        normalizedEmail &&
+        normalizedEmail !==
+          currentUser.email
+            ?.toLowerCase()
+      ) {
+        const existingEmail =
+          await userRepository
+            .findByEmail(
+              currentUser.empresa_id,
+              normalizedEmail,
+            );
 
-  return {
-    status: "UPDATED" as const,
-    user: serializeUser(updatedUser),
-  };
-},
+        if (
+          existingEmail &&
+          existingEmail.id !== id
+        ) {
+          return {
+            status:
+              "EMAIL_EXISTS" as const,
+          };
+        }
+      }
+
+      data.email =
+        normalizedEmail;
+    }
+
+    if (
+      input.telefono !== undefined
+    ) {
+      data.telefono =
+        input.telefono?.trim() ||
+        null;
+    }
+
+    if (
+      input.activo !== undefined
+    ) {
+      data.activo =
+        input.activo;
+    }
+
+    const updatedUser =
+      await userRepository.update(
+        id,
+        data,
+      );
+
+    return {
+      status: "UPDATED" as const,
+      user:
+        serializeUser(updatedUser),
+    };
+  },
 
   async changePassword(
-  id: bigint,
-  input: ChangePasswordInput
-) {
-  const user = await userRepository.findById(id);
+    id: bigint,
+    input: ChangePasswordInput,
+  ) {
+    const user =
+      await userRepository.findById(
+        id,
+      );
 
-  if (!user) {
+    if (!user) {
+      return {
+        status:
+          "NOT_FOUND" as const,
+      };
+    }
+
+    const passwordHash =
+      await hash(
+        input.password,
+        12,
+      );
+
+    await userRepository
+      .updatePassword(
+        id,
+        passwordHash,
+      );
+
     return {
-      status: "NOT_FOUND" as const,
+      status: "UPDATED" as const,
     };
-  }
-
-  const passwordHash = await hash(input.password, 12);
-
-  await userRepository.updatePassword(
-    id,
-    passwordHash
-  );
-
-  return {
-    status: "UPDATED" as const,
-  };
-},
+  },
 };
