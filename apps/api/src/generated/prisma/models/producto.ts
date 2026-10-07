@@ -352,6 +352,7 @@ export type productoWhereInput = {
   producto_impuesto?: Prisma.Producto_impuestoListRelationFilter
   transferencia_detalle?: Prisma.Transferencia_detalleListRelationFilter
   venta_detalle?: Prisma.Venta_detalleListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
 }
 
 export type productoOrderByWithRelationInput = {
@@ -384,6 +385,7 @@ export type productoOrderByWithRelationInput = {
   producto_impuesto?: Prisma.producto_impuestoOrderByRelationAggregateInput
   transferencia_detalle?: Prisma.transferencia_detalleOrderByRelationAggregateInput
   venta_detalle?: Prisma.venta_detalleOrderByRelationAggregateInput
+  ajuste_inventario?: Prisma.ajuste_inventarioOrderByRelationAggregateInput
 }
 
 export type productoWhereUniqueInput = Prisma.AtLeast<{
@@ -421,6 +423,7 @@ export type productoWhereUniqueInput = Prisma.AtLeast<{
   producto_impuesto?: Prisma.Producto_impuestoListRelationFilter
   transferencia_detalle?: Prisma.Transferencia_detalleListRelationFilter
   venta_detalle?: Prisma.Venta_detalleListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
 }, "id" | "empresa_id_codigo_barras" | "empresa_id_sku">
 
 export type productoOrderByWithAggregationInput = {
@@ -498,6 +501,7 @@ export type productoCreateInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateInput = {
@@ -527,6 +531,7 @@ export type productoUncheckedCreateInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoUpdateInput = {
@@ -556,6 +561,7 @@ export type productoUpdateInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateInput = {
@@ -585,6 +591,7 @@ export type productoUncheckedUpdateInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateManyInput = {
@@ -1003,6 +1010,20 @@ export type productoUpdateOneRequiredWithoutVenta_detalleNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.productoUpdateToOneWithWhereWithoutVenta_detalleInput, Prisma.productoUpdateWithoutVenta_detalleInput>, Prisma.productoUncheckedUpdateWithoutVenta_detalleInput>
 }
 
+export type productoCreateNestedOneWithoutAjuste_inventarioInput = {
+  create?: Prisma.XOR<Prisma.productoCreateWithoutAjuste_inventarioInput, Prisma.productoUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.productoCreateOrConnectWithoutAjuste_inventarioInput
+  connect?: Prisma.productoWhereUniqueInput
+}
+
+export type productoUpdateOneRequiredWithoutAjuste_inventarioNestedInput = {
+  create?: Prisma.XOR<Prisma.productoCreateWithoutAjuste_inventarioInput, Prisma.productoUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.productoCreateOrConnectWithoutAjuste_inventarioInput
+  upsert?: Prisma.productoUpsertWithoutAjuste_inventarioInput
+  connect?: Prisma.productoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.productoUpdateToOneWithWhereWithoutAjuste_inventarioInput, Prisma.productoUpdateWithoutAjuste_inventarioInput>, Prisma.productoUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
 export type productoCreateWithoutCategoriaInput = {
   id?: bigint | number
   sku: string
@@ -1029,6 +1050,7 @@ export type productoCreateWithoutCategoriaInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutCategoriaInput = {
@@ -1057,6 +1079,7 @@ export type productoUncheckedCreateWithoutCategoriaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutCategoriaInput = {
@@ -1134,6 +1157,7 @@ export type productoCreateWithoutCompra_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutCompra_detalleInput = {
@@ -1162,6 +1186,7 @@ export type productoUncheckedCreateWithoutCompra_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutCompra_detalleInput = {
@@ -1206,6 +1231,7 @@ export type productoUpdateWithoutCompra_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutCompra_detalleInput = {
@@ -1234,6 +1260,7 @@ export type productoUncheckedUpdateWithoutCompra_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutCotizacion_detalleInput = {
@@ -1262,6 +1289,7 @@ export type productoCreateWithoutCotizacion_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutCotizacion_detalleInput = {
@@ -1290,6 +1318,7 @@ export type productoUncheckedCreateWithoutCotizacion_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutCotizacion_detalleInput = {
@@ -1334,6 +1363,7 @@ export type productoUpdateWithoutCotizacion_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutCotizacion_detalleInput = {
@@ -1362,6 +1392,7 @@ export type productoUncheckedUpdateWithoutCotizacion_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutEmpresaInput = {
@@ -1390,6 +1421,7 @@ export type productoCreateWithoutEmpresaInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutEmpresaInput = {
@@ -1418,6 +1450,7 @@ export type productoUncheckedCreateWithoutEmpresaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutEmpresaInput = {
@@ -1472,6 +1505,7 @@ export type productoCreateWithoutExistenciaInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutExistenciaInput = {
@@ -1500,6 +1534,7 @@ export type productoUncheckedCreateWithoutExistenciaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutExistenciaInput = {
@@ -1544,6 +1579,7 @@ export type productoUpdateWithoutExistenciaInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutExistenciaInput = {
@@ -1572,6 +1608,7 @@ export type productoUncheckedUpdateWithoutExistenciaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutMovimiento_inventarioInput = {
@@ -1600,6 +1637,7 @@ export type productoCreateWithoutMovimiento_inventarioInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutMovimiento_inventarioInput = {
@@ -1628,6 +1666,7 @@ export type productoUncheckedCreateWithoutMovimiento_inventarioInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutMovimiento_inventarioInput = {
@@ -1672,6 +1711,7 @@ export type productoUpdateWithoutMovimiento_inventarioInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutMovimiento_inventarioInput = {
@@ -1700,6 +1740,7 @@ export type productoUncheckedUpdateWithoutMovimiento_inventarioInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutOrden_venta_detalleInput = {
@@ -1728,6 +1769,7 @@ export type productoCreateWithoutOrden_venta_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutOrden_venta_detalleInput = {
@@ -1756,6 +1798,7 @@ export type productoUncheckedCreateWithoutOrden_venta_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutOrden_venta_detalleInput = {
@@ -1800,6 +1843,7 @@ export type productoUpdateWithoutOrden_venta_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutOrden_venta_detalleInput = {
@@ -1828,6 +1872,7 @@ export type productoUncheckedUpdateWithoutOrden_venta_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutPedido_cliente_detalleInput = {
@@ -1856,6 +1901,7 @@ export type productoCreateWithoutPedido_cliente_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutPedido_cliente_detalleInput = {
@@ -1884,6 +1930,7 @@ export type productoUncheckedCreateWithoutPedido_cliente_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutPedido_cliente_detalleInput = {
@@ -1928,6 +1975,7 @@ export type productoUpdateWithoutPedido_cliente_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutPedido_cliente_detalleInput = {
@@ -1956,6 +2004,7 @@ export type productoUncheckedUpdateWithoutPedido_cliente_detalleInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutProducto_impuestoInput = {
@@ -1984,6 +2033,7 @@ export type productoCreateWithoutProducto_impuestoInput = {
   unidad_medida: Prisma.unidad_medidaCreateNestedOneWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutProducto_impuestoInput = {
@@ -2012,6 +2062,7 @@ export type productoUncheckedCreateWithoutProducto_impuestoInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutProducto_impuestoInput = {
@@ -2056,6 +2107,7 @@ export type productoUpdateWithoutProducto_impuestoInput = {
   unidad_medida?: Prisma.unidad_medidaUpdateOneRequiredWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutProducto_impuestoInput = {
@@ -2084,6 +2136,7 @@ export type productoUncheckedUpdateWithoutProducto_impuestoInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutTransferencia_detalleInput = {
@@ -2112,6 +2165,7 @@ export type productoCreateWithoutTransferencia_detalleInput = {
   unidad_medida: Prisma.unidad_medidaCreateNestedOneWithoutProductoInput
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutTransferencia_detalleInput = {
@@ -2140,6 +2194,7 @@ export type productoUncheckedCreateWithoutTransferencia_detalleInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedCreateNestedManyWithoutProductoInput
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutTransferencia_detalleInput = {
@@ -2184,6 +2239,7 @@ export type productoUpdateWithoutTransferencia_detalleInput = {
   unidad_medida?: Prisma.unidad_medidaUpdateOneRequiredWithoutProductoNestedInput
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutTransferencia_detalleInput = {
@@ -2212,6 +2268,7 @@ export type productoUncheckedUpdateWithoutTransferencia_detalleInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedUpdateManyWithoutProductoNestedInput
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateWithoutUnidad_medidaInput = {
@@ -2240,6 +2297,7 @@ export type productoCreateWithoutUnidad_medidaInput = {
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutUnidad_medidaInput = {
@@ -2268,6 +2326,7 @@ export type productoUncheckedCreateWithoutUnidad_medidaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
   venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutUnidad_medidaInput = {
@@ -2322,6 +2381,7 @@ export type productoCreateWithoutVenta_detalleInput = {
   unidad_medida: Prisma.unidad_medidaCreateNestedOneWithoutProductoInput
   producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutProductoInput
 }
 
 export type productoUncheckedCreateWithoutVenta_detalleInput = {
@@ -2350,6 +2410,7 @@ export type productoUncheckedCreateWithoutVenta_detalleInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedCreateNestedManyWithoutProductoInput
   producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutProductoInput
 }
 
 export type productoCreateOrConnectWithoutVenta_detalleInput = {
@@ -2394,6 +2455,7 @@ export type productoUpdateWithoutVenta_detalleInput = {
   unidad_medida?: Prisma.unidad_medidaUpdateOneRequiredWithoutProductoNestedInput
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutVenta_detalleInput = {
@@ -2422,6 +2484,139 @@ export type productoUncheckedUpdateWithoutVenta_detalleInput = {
   pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedUpdateManyWithoutProductoNestedInput
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
+}
+
+export type productoCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  sku: string
+  codigo_barras?: string | null
+  nombre: string
+  descripcion?: string | null
+  tipo?: string
+  controla_inventario?: boolean
+  costo_referencia?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_venta?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_minimo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_maximo?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutProductoInput
+  cotizacion_detalle?: Prisma.cotizacion_detalleCreateNestedManyWithoutProductoInput
+  existencia?: Prisma.existenciaCreateNestedManyWithoutProductoInput
+  movimiento_inventario?: Prisma.movimiento_inventarioCreateNestedManyWithoutProductoInput
+  orden_venta_detalle?: Prisma.orden_venta_detalleCreateNestedManyWithoutProductoInput
+  pedido_cliente_detalle?: Prisma.pedido_cliente_detalleCreateNestedManyWithoutProductoInput
+  categoria?: Prisma.categoriaCreateNestedOneWithoutProductoInput
+  empresa: Prisma.empresaCreateNestedOneWithoutProductoInput
+  unidad_medida: Prisma.unidad_medidaCreateNestedOneWithoutProductoInput
+  producto_impuesto?: Prisma.producto_impuestoCreateNestedManyWithoutProductoInput
+  transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutProductoInput
+  venta_detalle?: Prisma.venta_detalleCreateNestedManyWithoutProductoInput
+}
+
+export type productoUncheckedCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  empresa_id: bigint | number
+  categoria_id?: bigint | number | null
+  unidad_medida_id: bigint | number
+  sku: string
+  codigo_barras?: string | null
+  nombre: string
+  descripcion?: string | null
+  tipo?: string
+  controla_inventario?: boolean
+  costo_referencia?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_venta?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_minimo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_maximo?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutProductoInput
+  cotizacion_detalle?: Prisma.cotizacion_detalleUncheckedCreateNestedManyWithoutProductoInput
+  existencia?: Prisma.existenciaUncheckedCreateNestedManyWithoutProductoInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUncheckedCreateNestedManyWithoutProductoInput
+  orden_venta_detalle?: Prisma.orden_venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+  pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedCreateNestedManyWithoutProductoInput
+  producto_impuesto?: Prisma.producto_impuestoUncheckedCreateNestedManyWithoutProductoInput
+  transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutProductoInput
+  venta_detalle?: Prisma.venta_detalleUncheckedCreateNestedManyWithoutProductoInput
+}
+
+export type productoCreateOrConnectWithoutAjuste_inventarioInput = {
+  where: Prisma.productoWhereUniqueInput
+  create: Prisma.XOR<Prisma.productoCreateWithoutAjuste_inventarioInput, Prisma.productoUncheckedCreateWithoutAjuste_inventarioInput>
+}
+
+export type productoUpsertWithoutAjuste_inventarioInput = {
+  update: Prisma.XOR<Prisma.productoUpdateWithoutAjuste_inventarioInput, Prisma.productoUncheckedUpdateWithoutAjuste_inventarioInput>
+  create: Prisma.XOR<Prisma.productoCreateWithoutAjuste_inventarioInput, Prisma.productoUncheckedCreateWithoutAjuste_inventarioInput>
+  where?: Prisma.productoWhereInput
+}
+
+export type productoUpdateToOneWithWhereWithoutAjuste_inventarioInput = {
+  where?: Prisma.productoWhereInput
+  data: Prisma.XOR<Prisma.productoUpdateWithoutAjuste_inventarioInput, Prisma.productoUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
+export type productoUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo_barras?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  controla_inventario?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costo_referencia?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_venta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_minimo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_maximo?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_detalle?: Prisma.compra_detalleUpdateManyWithoutProductoNestedInput
+  cotizacion_detalle?: Prisma.cotizacion_detalleUpdateManyWithoutProductoNestedInput
+  existencia?: Prisma.existenciaUpdateManyWithoutProductoNestedInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUpdateManyWithoutProductoNestedInput
+  orden_venta_detalle?: Prisma.orden_venta_detalleUpdateManyWithoutProductoNestedInput
+  pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUpdateManyWithoutProductoNestedInput
+  categoria?: Prisma.categoriaUpdateOneWithoutProductoNestedInput
+  empresa?: Prisma.empresaUpdateOneRequiredWithoutProductoNestedInput
+  unidad_medida?: Prisma.unidad_medidaUpdateOneRequiredWithoutProductoNestedInput
+  producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
+  transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
+  venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+}
+
+export type productoUncheckedUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  empresa_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  categoria_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  unidad_medida_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo_barras?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  controla_inventario?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costo_referencia?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_venta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_minimo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  stock_maximo?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  cotizacion_detalle?: Prisma.cotizacion_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  existencia?: Prisma.existenciaUncheckedUpdateManyWithoutProductoNestedInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUncheckedUpdateManyWithoutProductoNestedInput
+  orden_venta_detalle?: Prisma.orden_venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  pedido_cliente_detalle?: Prisma.pedido_cliente_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
+  transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoCreateManyCategoriaInput = {
@@ -2469,6 +2664,7 @@ export type productoUpdateWithoutCategoriaInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutCategoriaInput = {
@@ -2497,6 +2693,7 @@ export type productoUncheckedUpdateWithoutCategoriaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateManyWithoutCategoriaInput = {
@@ -2563,6 +2760,7 @@ export type productoUpdateWithoutEmpresaInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutEmpresaInput = {
@@ -2591,6 +2789,7 @@ export type productoUncheckedUpdateWithoutEmpresaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -2657,6 +2856,7 @@ export type productoUpdateWithoutUnidad_medidaInput = {
   producto_impuesto?: Prisma.producto_impuestoUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateWithoutUnidad_medidaInput = {
@@ -2685,6 +2885,7 @@ export type productoUncheckedUpdateWithoutUnidad_medidaInput = {
   producto_impuesto?: Prisma.producto_impuestoUncheckedUpdateManyWithoutProductoNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutProductoNestedInput
   venta_detalle?: Prisma.venta_detalleUncheckedUpdateManyWithoutProductoNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutProductoNestedInput
 }
 
 export type productoUncheckedUpdateManyWithoutUnidad_medidaInput = {
@@ -2721,6 +2922,7 @@ export type ProductoCountOutputType = {
   producto_impuesto: number
   transferencia_detalle: number
   venta_detalle: number
+  ajuste_inventario: number
 }
 
 export type ProductoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2733,6 +2935,7 @@ export type ProductoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   producto_impuesto?: boolean | ProductoCountOutputTypeCountProducto_impuestoArgs
   transferencia_detalle?: boolean | ProductoCountOutputTypeCountTransferencia_detalleArgs
   venta_detalle?: boolean | ProductoCountOutputTypeCountVenta_detalleArgs
+  ajuste_inventario?: boolean | ProductoCountOutputTypeCountAjuste_inventarioArgs
 }
 
 /**
@@ -2808,6 +3011,13 @@ export type ProductoCountOutputTypeCountVenta_detalleArgs<ExtArgs extends runtim
   where?: Prisma.venta_detalleWhereInput
 }
 
+/**
+ * ProductoCountOutputType without action
+ */
+export type ProductoCountOutputTypeCountAjuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ajuste_inventarioWhereInput
+}
+
 
 export type productoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2839,6 +3049,7 @@ export type productoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   producto_impuesto?: boolean | Prisma.producto$producto_impuestoArgs<ExtArgs>
   transferencia_detalle?: boolean | Prisma.producto$transferencia_detalleArgs<ExtArgs>
   venta_detalle?: boolean | Prisma.producto$venta_detalleArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.producto$ajuste_inventarioArgs<ExtArgs>
   _count?: boolean | Prisma.ProductoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["producto"]>
 
@@ -2922,6 +3133,7 @@ export type productoInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   producto_impuesto?: boolean | Prisma.producto$producto_impuestoArgs<ExtArgs>
   transferencia_detalle?: boolean | Prisma.producto$transferencia_detalleArgs<ExtArgs>
   venta_detalle?: boolean | Prisma.producto$venta_detalleArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.producto$ajuste_inventarioArgs<ExtArgs>
   _count?: boolean | Prisma.ProductoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type productoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2950,6 +3162,7 @@ export type $productoPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     producto_impuesto: Prisma.$producto_impuestoPayload<ExtArgs>[]
     transferencia_detalle: Prisma.$transferencia_detallePayload<ExtArgs>[]
     venta_detalle: Prisma.$venta_detallePayload<ExtArgs>[]
+    ajuste_inventario: Prisma.$ajuste_inventarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -3375,6 +3588,7 @@ export interface Prisma__productoClient<T, Null = never, ExtArgs extends runtime
   producto_impuesto<T extends Prisma.producto$producto_impuestoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producto$producto_impuestoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$producto_impuestoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transferencia_detalle<T extends Prisma.producto$transferencia_detalleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producto$transferencia_detalleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$transferencia_detallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   venta_detalle<T extends Prisma.producto$venta_detalleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producto$venta_detalleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$venta_detallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ajuste_inventario<T extends Prisma.producto$ajuste_inventarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producto$ajuste_inventarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ajuste_inventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4054,6 +4268,30 @@ export type producto$venta_detalleArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Venta_detalleScalarFieldEnum | Prisma.Venta_detalleScalarFieldEnum[]
+}
+
+/**
+ * producto.ajuste_inventario
+ */
+export type producto$ajuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ajuste_inventario
+   */
+  select?: Prisma.ajuste_inventarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ajuste_inventario
+   */
+  omit?: Prisma.ajuste_inventarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ajuste_inventarioInclude<ExtArgs> | null
+  where?: Prisma.ajuste_inventarioWhereInput
+  orderBy?: Prisma.ajuste_inventarioOrderByWithRelationInput | Prisma.ajuste_inventarioOrderByWithRelationInput[]
+  cursor?: Prisma.ajuste_inventarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Ajuste_inventarioScalarFieldEnum | Prisma.Ajuste_inventarioScalarFieldEnum[]
 }
 
 /**

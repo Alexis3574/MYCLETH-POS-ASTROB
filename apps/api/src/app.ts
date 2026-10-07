@@ -1,3 +1,4 @@
+import { inventoryRouter } from "./modules/inventory/inventory.routes.js";
 import { productRouter, categoryRouter, unitRouter, taxRouter } from "./modules/products/product.routes.js";
 import express from "express";
 import { userRouter} from "./modules/users/user.routes.js"
@@ -40,6 +41,8 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/units", unitRouter);
 app.use("/api/v1/taxes", taxRouter);
+
+app.use("/api/v1/inventory", inventoryRouter);
 
 app.use("/api/v1", apiRoutes);
 

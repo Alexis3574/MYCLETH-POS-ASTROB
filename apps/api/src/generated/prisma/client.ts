@@ -261,3 +261,8 @@ export type devolucion_venta = Prisma.devolucion_ventaModel
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type devolucion_venta_detalle = Prisma.devolucion_venta_detalleModel
+/**
+ * Model ajuste_inventario
+ * Un ajuste aplicado por petición. La clave identifica reintentos dentro de una empresa.
+ */
+export type ajuste_inventario = Prisma.ajuste_inventarioModel

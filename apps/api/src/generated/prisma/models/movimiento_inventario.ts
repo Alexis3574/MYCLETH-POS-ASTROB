@@ -312,6 +312,7 @@ export type movimiento_inventarioWhereInput = {
   producto?: Prisma.XOR<Prisma.ProductoScalarRelationFilter, Prisma.productoWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.usuarioWhereInput> | null
   sincronizacion_ecommerce_inventario?: Prisma.XOR<Prisma.Sincronizacion_ecommerce_inventarioNullableScalarRelationFilter, Prisma.sincronizacion_ecommerce_inventarioWhereInput> | null
+  ajuste_inventario?: Prisma.XOR<Prisma.Ajuste_inventarioNullableScalarRelationFilter, Prisma.ajuste_inventarioWhereInput> | null
 }
 
 export type movimiento_inventarioOrderByWithRelationInput = {
@@ -332,6 +333,7 @@ export type movimiento_inventarioOrderByWithRelationInput = {
   producto?: Prisma.productoOrderByWithRelationInput
   usuario?: Prisma.usuarioOrderByWithRelationInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioOrderByWithRelationInput
+  ajuste_inventario?: Prisma.ajuste_inventarioOrderByWithRelationInput
 }
 
 export type movimiento_inventarioWhereUniqueInput = Prisma.AtLeast<{
@@ -356,6 +358,7 @@ export type movimiento_inventarioWhereUniqueInput = Prisma.AtLeast<{
   producto?: Prisma.XOR<Prisma.ProductoScalarRelationFilter, Prisma.productoWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.usuarioWhereInput> | null
   sincronizacion_ecommerce_inventario?: Prisma.XOR<Prisma.Sincronizacion_ecommerce_inventarioNullableScalarRelationFilter, Prisma.sincronizacion_ecommerce_inventarioWhereInput> | null
+  ajuste_inventario?: Prisma.XOR<Prisma.Ajuste_inventarioNullableScalarRelationFilter, Prisma.ajuste_inventarioWhereInput> | null
 }, "id" | "documento_tipo_documento_detalle_id_tipo_almacen_id">
 
 export type movimiento_inventarioOrderByWithAggregationInput = {
@@ -413,6 +416,7 @@ export type movimiento_inventarioCreateInput = {
   producto: Prisma.productoCreateNestedOneWithoutMovimiento_inventarioInput
   usuario?: Prisma.usuarioCreateNestedOneWithoutMovimiento_inventarioInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUncheckedCreateInput = {
@@ -430,6 +434,7 @@ export type movimiento_inventarioUncheckedCreateInput = {
   fecha?: Date | string
   creado_en?: Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUpdateInput = {
@@ -447,6 +452,7 @@ export type movimiento_inventarioUpdateInput = {
   producto?: Prisma.productoUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   usuario?: Prisma.usuarioUpdateOneWithoutMovimiento_inventarioNestedInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateInput = {
@@ -464,6 +470,7 @@ export type movimiento_inventarioUncheckedUpdateInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioCreateManyInput = {
@@ -743,6 +750,20 @@ export type movimiento_inventarioUncheckedUpdateManyWithoutUsuarioNestedInput = 
   deleteMany?: Prisma.movimiento_inventarioScalarWhereInput | Prisma.movimiento_inventarioScalarWhereInput[]
 }
 
+export type movimiento_inventarioCreateNestedOneWithoutAjuste_inventarioInput = {
+  create?: Prisma.XOR<Prisma.movimiento_inventarioCreateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.movimiento_inventarioCreateOrConnectWithoutAjuste_inventarioInput
+  connect?: Prisma.movimiento_inventarioWhereUniqueInput
+}
+
+export type movimiento_inventarioUpdateOneRequiredWithoutAjuste_inventarioNestedInput = {
+  create?: Prisma.XOR<Prisma.movimiento_inventarioCreateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.movimiento_inventarioCreateOrConnectWithoutAjuste_inventarioInput
+  upsert?: Prisma.movimiento_inventarioUpsertWithoutAjuste_inventarioInput
+  connect?: Prisma.movimiento_inventarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.movimiento_inventarioUpdateToOneWithWhereWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUpdateWithoutAjuste_inventarioInput>, Prisma.movimiento_inventarioUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
 export type movimiento_inventarioCreateWithoutAlmacenInput = {
   id?: bigint | number
   tipo: string
@@ -757,6 +778,7 @@ export type movimiento_inventarioCreateWithoutAlmacenInput = {
   producto: Prisma.productoCreateNestedOneWithoutMovimiento_inventarioInput
   usuario?: Prisma.usuarioCreateNestedOneWithoutMovimiento_inventarioInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUncheckedCreateWithoutAlmacenInput = {
@@ -773,6 +795,7 @@ export type movimiento_inventarioUncheckedCreateWithoutAlmacenInput = {
   fecha?: Date | string
   creado_en?: Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioCreateOrConnectWithoutAlmacenInput = {
@@ -834,6 +857,7 @@ export type movimiento_inventarioCreateWithoutSincronizacion_ecommerce_inventari
   almacen: Prisma.almacenCreateNestedOneWithoutMovimiento_inventarioInput
   producto: Prisma.productoCreateNestedOneWithoutMovimiento_inventarioInput
   usuario?: Prisma.usuarioCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUncheckedCreateWithoutSincronizacion_ecommerce_inventarioInput = {
@@ -850,6 +874,7 @@ export type movimiento_inventarioUncheckedCreateWithoutSincronizacion_ecommerce_
   motivo?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioCreateOrConnectWithoutSincronizacion_ecommerce_inventarioInput = {
@@ -882,6 +907,7 @@ export type movimiento_inventarioUpdateWithoutSincronizacion_ecommerce_inventari
   almacen?: Prisma.almacenUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   producto?: Prisma.productoUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   usuario?: Prisma.usuarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateWithoutSincronizacion_ecommerce_inventarioInput = {
@@ -898,6 +924,7 @@ export type movimiento_inventarioUncheckedUpdateWithoutSincronizacion_ecommerce_
   motivo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioCreateWithoutProductoInput = {
@@ -914,6 +941,7 @@ export type movimiento_inventarioCreateWithoutProductoInput = {
   almacen: Prisma.almacenCreateNestedOneWithoutMovimiento_inventarioInput
   usuario?: Prisma.usuarioCreateNestedOneWithoutMovimiento_inventarioInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUncheckedCreateWithoutProductoInput = {
@@ -930,6 +958,7 @@ export type movimiento_inventarioUncheckedCreateWithoutProductoInput = {
   fecha?: Date | string
   creado_en?: Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioCreateOrConnectWithoutProductoInput = {
@@ -972,6 +1001,7 @@ export type movimiento_inventarioCreateWithoutUsuarioInput = {
   almacen: Prisma.almacenCreateNestedOneWithoutMovimiento_inventarioInput
   producto: Prisma.productoCreateNestedOneWithoutMovimiento_inventarioInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioUncheckedCreateWithoutUsuarioInput = {
@@ -988,6 +1018,7 @@ export type movimiento_inventarioUncheckedCreateWithoutUsuarioInput = {
   fecha?: Date | string
   creado_en?: Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
 }
 
 export type movimiento_inventarioCreateOrConnectWithoutUsuarioInput = {
@@ -1014,6 +1045,90 @@ export type movimiento_inventarioUpdateWithWhereUniqueWithoutUsuarioInput = {
 export type movimiento_inventarioUpdateManyWithWhereWithoutUsuarioInput = {
   where: Prisma.movimiento_inventarioScalarWhereInput
   data: Prisma.XOR<Prisma.movimiento_inventarioUpdateManyMutationInput, Prisma.movimiento_inventarioUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type movimiento_inventarioCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  tipo: string
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  documento_tipo?: string | null
+  documento_id?: bigint | number | null
+  documento_detalle_id?: bigint | number | null
+  motivo?: string | null
+  fecha?: Date | string
+  creado_en?: Date | string
+  almacen: Prisma.almacenCreateNestedOneWithoutMovimiento_inventarioInput
+  producto: Prisma.productoCreateNestedOneWithoutMovimiento_inventarioInput
+  usuario?: Prisma.usuarioCreateNestedOneWithoutMovimiento_inventarioInput
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioCreateNestedOneWithoutMovimiento_inventarioInput
+}
+
+export type movimiento_inventarioUncheckedCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  producto_id: bigint | number
+  almacen_id: bigint | number
+  usuario_id?: bigint | number | null
+  tipo: string
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  documento_tipo?: string | null
+  documento_id?: bigint | number | null
+  documento_detalle_id?: bigint | number | null
+  motivo?: string | null
+  fecha?: Date | string
+  creado_en?: Date | string
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedCreateNestedOneWithoutMovimiento_inventarioInput
+}
+
+export type movimiento_inventarioCreateOrConnectWithoutAjuste_inventarioInput = {
+  where: Prisma.movimiento_inventarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.movimiento_inventarioCreateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedCreateWithoutAjuste_inventarioInput>
+}
+
+export type movimiento_inventarioUpsertWithoutAjuste_inventarioInput = {
+  update: Prisma.XOR<Prisma.movimiento_inventarioUpdateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedUpdateWithoutAjuste_inventarioInput>
+  create: Prisma.XOR<Prisma.movimiento_inventarioCreateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedCreateWithoutAjuste_inventarioInput>
+  where?: Prisma.movimiento_inventarioWhereInput
+}
+
+export type movimiento_inventarioUpdateToOneWithWhereWithoutAjuste_inventarioInput = {
+  where?: Prisma.movimiento_inventarioWhereInput
+  data: Prisma.XOR<Prisma.movimiento_inventarioUpdateWithoutAjuste_inventarioInput, Prisma.movimiento_inventarioUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
+export type movimiento_inventarioUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  documento_tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documento_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  documento_detalle_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  motivo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  almacen?: Prisma.almacenUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
+  producto?: Prisma.productoUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
+  usuario?: Prisma.usuarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
+}
+
+export type movimiento_inventarioUncheckedUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  producto_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  almacen_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  documento_tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documento_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  documento_detalle_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  motivo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioCreateManyAlmacenInput = {
@@ -1045,6 +1160,7 @@ export type movimiento_inventarioUpdateWithoutAlmacenInput = {
   producto?: Prisma.productoUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   usuario?: Prisma.usuarioUpdateOneWithoutMovimiento_inventarioNestedInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateWithoutAlmacenInput = {
@@ -1061,6 +1177,7 @@ export type movimiento_inventarioUncheckedUpdateWithoutAlmacenInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateManyWithoutAlmacenInput = {
@@ -1107,6 +1224,7 @@ export type movimiento_inventarioUpdateWithoutProductoInput = {
   almacen?: Prisma.almacenUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   usuario?: Prisma.usuarioUpdateOneWithoutMovimiento_inventarioNestedInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateWithoutProductoInput = {
@@ -1123,6 +1241,7 @@ export type movimiento_inventarioUncheckedUpdateWithoutProductoInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateManyWithoutProductoInput = {
@@ -1169,6 +1288,7 @@ export type movimiento_inventarioUpdateWithoutUsuarioInput = {
   almacen?: Prisma.almacenUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   producto?: Prisma.productoUpdateOneRequiredWithoutMovimiento_inventarioNestedInput
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateWithoutUsuarioInput = {
@@ -1185,6 +1305,7 @@ export type movimiento_inventarioUncheckedUpdateWithoutUsuarioInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateOneWithoutMovimiento_inventarioNestedInput
 }
 
 export type movimiento_inventarioUncheckedUpdateManyWithoutUsuarioInput = {
@@ -1222,6 +1343,7 @@ export type movimiento_inventarioSelect<ExtArgs extends runtime.Types.Extensions
   producto?: boolean | Prisma.productoDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.movimiento_inventario$usuarioArgs<ExtArgs>
   sincronizacion_ecommerce_inventario?: boolean | Prisma.movimiento_inventario$sincronizacion_ecommerce_inventarioArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.movimiento_inventario$ajuste_inventarioArgs<ExtArgs>
 }, ExtArgs["result"]["movimiento_inventario"]>
 
 export type movimiento_inventarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1284,6 +1406,7 @@ export type movimiento_inventarioInclude<ExtArgs extends runtime.Types.Extension
   producto?: boolean | Prisma.productoDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.movimiento_inventario$usuarioArgs<ExtArgs>
   sincronizacion_ecommerce_inventario?: boolean | Prisma.movimiento_inventario$sincronizacion_ecommerce_inventarioArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.movimiento_inventario$ajuste_inventarioArgs<ExtArgs>
 }
 export type movimiento_inventarioIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   almacen?: boolean | Prisma.almacenDefaultArgs<ExtArgs>
@@ -1303,6 +1426,7 @@ export type $movimiento_inventarioPayload<ExtArgs extends runtime.Types.Extensio
     producto: Prisma.$productoPayload<ExtArgs>
     usuario: Prisma.$usuarioPayload<ExtArgs> | null
     sincronizacion_ecommerce_inventario: Prisma.$sincronizacion_ecommerce_inventarioPayload<ExtArgs> | null
+    ajuste_inventario: Prisma.$ajuste_inventarioPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1716,6 +1840,7 @@ export interface Prisma__movimiento_inventarioClient<T, Null = never, ExtArgs ex
   producto<T extends Prisma.productoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.productoDefaultArgs<ExtArgs>>): Prisma.Prisma__productoClient<runtime.Types.Result.GetResult<Prisma.$productoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuario<T extends Prisma.movimiento_inventario$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.movimiento_inventario$usuarioArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sincronizacion_ecommerce_inventario<T extends Prisma.movimiento_inventario$sincronizacion_ecommerce_inventarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.movimiento_inventario$sincronizacion_ecommerce_inventarioArgs<ExtArgs>>): Prisma.Prisma__sincronizacion_ecommerce_inventarioClient<runtime.Types.Result.GetResult<Prisma.$sincronizacion_ecommerce_inventarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  ajuste_inventario<T extends Prisma.movimiento_inventario$ajuste_inventarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.movimiento_inventario$ajuste_inventarioArgs<ExtArgs>>): Prisma.Prisma__ajuste_inventarioClient<runtime.Types.Result.GetResult<Prisma.$ajuste_inventarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2194,6 +2319,25 @@ export type movimiento_inventario$sincronizacion_ecommerce_inventarioArgs<ExtArg
    */
   include?: Prisma.sincronizacion_ecommerce_inventarioInclude<ExtArgs> | null
   where?: Prisma.sincronizacion_ecommerce_inventarioWhereInput
+}
+
+/**
+ * movimiento_inventario.ajuste_inventario
+ */
+export type movimiento_inventario$ajuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ajuste_inventario
+   */
+  select?: Prisma.ajuste_inventarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ajuste_inventario
+   */
+  omit?: Prisma.ajuste_inventarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ajuste_inventarioInclude<ExtArgs> | null
+  where?: Prisma.ajuste_inventarioWhereInput
 }
 
 /**

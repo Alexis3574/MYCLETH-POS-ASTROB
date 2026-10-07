@@ -440,7 +440,8 @@ export const ModelName = {
   venta_pago: 'venta_pago',
   devolucion_pago: 'devolucion_pago',
   devolucion_venta: 'devolucion_venta',
-  devolucion_venta_detalle: 'devolucion_venta_detalle'
+  devolucion_venta_detalle: 'devolucion_venta_detalle',
+  ajuste_inventario: 'ajuste_inventario'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -456,7 +457,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle"
+    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3716,6 +3717,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ajuste_inventario: {
+      payload: Prisma.$ajuste_inventarioPayload<ExtArgs>
+      fields: Prisma.ajuste_inventarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ajuste_inventarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ajuste_inventarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        findFirst: {
+          args: Prisma.ajuste_inventarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ajuste_inventarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        findMany: {
+          args: Prisma.ajuste_inventarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        create: {
+          args: Prisma.ajuste_inventarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        createMany: {
+          args: Prisma.ajuste_inventarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ajuste_inventarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        delete: {
+          args: Prisma.ajuste_inventarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        update: {
+          args: Prisma.ajuste_inventarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.ajuste_inventarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ajuste_inventarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ajuste_inventarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.ajuste_inventarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        aggregate: {
+          args: Prisma.Ajuste_inventarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAjuste_inventario>
+        }
+        groupBy: {
+          args: Prisma.ajuste_inventarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Ajuste_inventarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ajuste_inventarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Ajuste_inventarioCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4464,6 +4539,27 @@ export const Devolucion_venta_detalleScalarFieldEnum = {
 export type Devolucion_venta_detalleScalarFieldEnum = (typeof Devolucion_venta_detalleScalarFieldEnum)[keyof typeof Devolucion_venta_detalleScalarFieldEnum]
 
 
+export const Ajuste_inventarioScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  almacen_id: 'almacen_id',
+  producto_id: 'producto_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  request_hash: 'request_hash',
+  tipo: 'tipo',
+  cantidad: 'cantidad',
+  costo_unitario: 'costo_unitario',
+  motivo: 'motivo',
+  sincronizar_ecommerce: 'sincronizar_ecommerce',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Ajuste_inventarioScalarFieldEnum = (typeof Ajuste_inventarioScalarFieldEnum)[keyof typeof Ajuste_inventarioScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -4817,6 +4913,7 @@ export type GlobalOmitConfig = {
   devolucion_pago?: Prisma.devolucion_pagoOmit
   devolucion_venta?: Prisma.devolucion_ventaOmit
   devolucion_venta_detalle?: Prisma.devolucion_venta_detalleOmit
+  ajuste_inventario?: Prisma.ajuste_inventarioOmit
 }
 
 /* Types for Logging */
