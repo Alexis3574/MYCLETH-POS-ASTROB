@@ -198,6 +198,11 @@ export type unidad_medida = Prisma.unidad_medidaModel
  */
 export type usuario = Prisma.usuarioModel
 /**
+ * Model operacion_transferencia
+ *
+ */
+export type operacion_transferencia = Prisma.operacion_transferenciaModel
+/**
  * Model usuario_rol
  * 
  */
