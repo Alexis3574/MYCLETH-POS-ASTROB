@@ -87,6 +87,7 @@ export const ModelName = {
   transferencia_detalle: 'transferencia_detalle',
   unidad_medida: 'unidad_medida',
   usuario: 'usuario',
+  operacion_transferencia: 'operacion_transferencia',
   usuario_rol: 'usuario_rol',
   usuario_sucursal: 'usuario_sucursal',
   venta: 'venta',
@@ -696,6 +697,21 @@ export const UsuarioScalarFieldEnum = {
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const Operacion_transferenciaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  transferencia_id: 'transferencia_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  accion: 'accion',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_transferenciaScalarFieldEnum = (typeof Operacion_transferenciaScalarFieldEnum)[keyof typeof Operacion_transferenciaScalarFieldEnum]
 
 
 export const Usuario_rolScalarFieldEnum = {

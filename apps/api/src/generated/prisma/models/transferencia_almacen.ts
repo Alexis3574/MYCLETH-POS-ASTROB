@@ -285,6 +285,7 @@ export type transferencia_almacenWhereInput = {
   empresa?: Prisma.XOR<Prisma.EmpresaScalarRelationFilter, Prisma.empresaWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
   transferencia_detalle?: Prisma.Transferencia_detalleListRelationFilter
+  operacion_transferencia?: Prisma.Operacion_transferenciaListRelationFilter
 }
 
 export type transferencia_almacenOrderByWithRelationInput = {
@@ -304,6 +305,7 @@ export type transferencia_almacenOrderByWithRelationInput = {
   empresa?: Prisma.empresaOrderByWithRelationInput
   usuario?: Prisma.usuarioOrderByWithRelationInput
   transferencia_detalle?: Prisma.transferencia_detalleOrderByRelationAggregateInput
+  operacion_transferencia?: Prisma.operacion_transferenciaOrderByRelationAggregateInput
 }
 
 export type transferencia_almacenWhereUniqueInput = Prisma.AtLeast<{
@@ -327,6 +329,7 @@ export type transferencia_almacenWhereUniqueInput = Prisma.AtLeast<{
   empresa?: Prisma.XOR<Prisma.EmpresaScalarRelationFilter, Prisma.empresaWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
   transferencia_detalle?: Prisma.Transferencia_detalleListRelationFilter
+  operacion_transferencia?: Prisma.Operacion_transferenciaListRelationFilter
 }, "id" | "empresa_id_folio">
 
 export type transferencia_almacenOrderByWithAggregationInput = {
@@ -378,6 +381,7 @@ export type transferencia_almacenCreateInput = {
   empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
   usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateInput = {
@@ -393,6 +397,7 @@ export type transferencia_almacenUncheckedCreateInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUpdateInput = {
@@ -408,6 +413,7 @@ export type transferencia_almacenUpdateInput = {
   empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateInput = {
@@ -423,6 +429,7 @@ export type transferencia_almacenUncheckedUpdateInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenCreateManyInput = {
@@ -723,6 +730,20 @@ export type transferencia_almacenUncheckedUpdateManyWithoutUsuarioNestedInput = 
   deleteMany?: Prisma.transferencia_almacenScalarWhereInput | Prisma.transferencia_almacenScalarWhereInput[]
 }
 
+export type transferencia_almacenCreateNestedOneWithoutOperacion_transferenciaInput = {
+  create?: Prisma.XOR<Prisma.transferencia_almacenCreateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedCreateWithoutOperacion_transferenciaInput>
+  connectOrCreate?: Prisma.transferencia_almacenCreateOrConnectWithoutOperacion_transferenciaInput
+  connect?: Prisma.transferencia_almacenWhereUniqueInput
+}
+
+export type transferencia_almacenUpdateOneRequiredWithoutOperacion_transferenciaNestedInput = {
+  create?: Prisma.XOR<Prisma.transferencia_almacenCreateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedCreateWithoutOperacion_transferenciaInput>
+  connectOrCreate?: Prisma.transferencia_almacenCreateOrConnectWithoutOperacion_transferenciaInput
+  upsert?: Prisma.transferencia_almacenUpsertWithoutOperacion_transferenciaInput
+  connect?: Prisma.transferencia_almacenWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.transferencia_almacenUpdateToOneWithWhereWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUpdateWithoutOperacion_transferenciaInput>, Prisma.transferencia_almacenUncheckedUpdateWithoutOperacion_transferenciaInput>
+}
+
 export type transferencia_almacenCreateWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
   id?: bigint | number
   folio: string
@@ -735,6 +756,7 @@ export type transferencia_almacenCreateWithoutAlmacen_transferencia_almacen_alma
   empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
   usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -749,6 +771,7 @@ export type transferencia_almacenUncheckedCreateWithoutAlmacen_transferencia_alm
   creado_en?: Date | string
   actualizado_en?: Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenCreateOrConnectWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -773,6 +796,7 @@ export type transferencia_almacenCreateWithoutAlmacen_transferencia_almacen_alma
   empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
   usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -787,6 +811,7 @@ export type transferencia_almacenUncheckedCreateWithoutAlmacen_transferencia_alm
   creado_en?: Date | string
   actualizado_en?: Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenCreateOrConnectWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -860,6 +885,7 @@ export type transferencia_almacenCreateWithoutEmpresaInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen: Prisma.almacenCreateNestedOneWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput
   usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateWithoutEmpresaInput = {
@@ -874,6 +900,7 @@ export type transferencia_almacenUncheckedCreateWithoutEmpresaInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenCreateOrConnectWithoutEmpresaInput = {
@@ -914,6 +941,7 @@ export type transferencia_almacenCreateWithoutTransferencia_detalleInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen: Prisma.almacenCreateNestedOneWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput
   empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
   usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateWithoutTransferencia_detalleInput = {
@@ -928,6 +956,7 @@ export type transferencia_almacenUncheckedCreateWithoutTransferencia_detalleInpu
   observaciones?: string | null
   creado_en?: Date | string
   actualizado_en?: Date | string
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenCreateOrConnectWithoutTransferencia_detalleInput = {
@@ -958,6 +987,7 @@ export type transferencia_almacenUpdateWithoutTransferencia_detalleInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.almacenUpdateOneRequiredWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateWithoutTransferencia_detalleInput = {
@@ -972,6 +1002,7 @@ export type transferencia_almacenUncheckedUpdateWithoutTransferencia_detalleInpu
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenCreateWithoutUsuarioInput = {
@@ -986,6 +1017,7 @@ export type transferencia_almacenCreateWithoutUsuarioInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen: Prisma.almacenCreateNestedOneWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput
   empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
   transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenUncheckedCreateWithoutUsuarioInput = {
@@ -1000,6 +1032,7 @@ export type transferencia_almacenUncheckedCreateWithoutUsuarioInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutTransferencia_almacenInput
 }
 
 export type transferencia_almacenCreateOrConnectWithoutUsuarioInput = {
@@ -1026,6 +1059,82 @@ export type transferencia_almacenUpdateWithWhereUniqueWithoutUsuarioInput = {
 export type transferencia_almacenUpdateManyWithWhereWithoutUsuarioInput = {
   where: Prisma.transferencia_almacenScalarWhereInput
   data: Prisma.XOR<Prisma.transferencia_almacenUpdateManyMutationInput, Prisma.transferencia_almacenUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type transferencia_almacenCreateWithoutOperacion_transferenciaInput = {
+  id?: bigint | number
+  folio: string
+  fecha?: Date | string
+  estado?: string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  almacen_transferencia_almacen_almacen_destino_idToalmacen: Prisma.almacenCreateNestedOneWithoutTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenInput
+  almacen_transferencia_almacen_almacen_origen_idToalmacen: Prisma.almacenCreateNestedOneWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput
+  empresa: Prisma.empresaCreateNestedOneWithoutTransferencia_almacenInput
+  usuario: Prisma.usuarioCreateNestedOneWithoutTransferencia_almacenInput
+  transferencia_detalle?: Prisma.transferencia_detalleCreateNestedManyWithoutTransferencia_almacenInput
+}
+
+export type transferencia_almacenUncheckedCreateWithoutOperacion_transferenciaInput = {
+  id?: bigint | number
+  empresa_id: bigint | number
+  almacen_origen_id: bigint | number
+  almacen_destino_id: bigint | number
+  usuario_id: bigint | number
+  folio: string
+  fecha?: Date | string
+  estado?: string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  transferencia_detalle?: Prisma.transferencia_detalleUncheckedCreateNestedManyWithoutTransferencia_almacenInput
+}
+
+export type transferencia_almacenCreateOrConnectWithoutOperacion_transferenciaInput = {
+  where: Prisma.transferencia_almacenWhereUniqueInput
+  create: Prisma.XOR<Prisma.transferencia_almacenCreateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedCreateWithoutOperacion_transferenciaInput>
+}
+
+export type transferencia_almacenUpsertWithoutOperacion_transferenciaInput = {
+  update: Prisma.XOR<Prisma.transferencia_almacenUpdateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedUpdateWithoutOperacion_transferenciaInput>
+  create: Prisma.XOR<Prisma.transferencia_almacenCreateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedCreateWithoutOperacion_transferenciaInput>
+  where?: Prisma.transferencia_almacenWhereInput
+}
+
+export type transferencia_almacenUpdateToOneWithWhereWithoutOperacion_transferenciaInput = {
+  where?: Prisma.transferencia_almacenWhereInput
+  data: Prisma.XOR<Prisma.transferencia_almacenUpdateWithoutOperacion_transferenciaInput, Prisma.transferencia_almacenUncheckedUpdateWithoutOperacion_transferenciaInput>
+}
+
+export type transferencia_almacenUpdateWithoutOperacion_transferenciaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.almacenUpdateOneRequiredWithoutTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
+  almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.almacenUpdateOneRequiredWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
+  empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
+  usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
+  transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+}
+
+export type transferencia_almacenUncheckedUpdateWithoutOperacion_transferenciaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  empresa_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  almacen_origen_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  almacen_destino_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenCreateManyAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -1066,6 +1175,7 @@ export type transferencia_almacenUpdateWithoutAlmacen_transferencia_almacen_alma
   empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -1080,6 +1190,7 @@ export type transferencia_almacenUncheckedUpdateWithoutAlmacen_transferencia_alm
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -1107,6 +1218,7 @@ export type transferencia_almacenUpdateWithoutAlmacen_transferencia_almacen_alma
   empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1121,6 +1233,7 @@ export type transferencia_almacenUncheckedUpdateWithoutAlmacen_transferencia_alm
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1161,6 +1274,7 @@ export type transferencia_almacenUpdateWithoutEmpresaInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.almacenUpdateOneRequiredWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateWithoutEmpresaInput = {
@@ -1175,6 +1289,7 @@ export type transferencia_almacenUncheckedUpdateWithoutEmpresaInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateManyWithoutEmpresaInput = {
@@ -1215,6 +1330,7 @@ export type transferencia_almacenUpdateWithoutUsuarioInput = {
   almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.almacenUpdateOneRequiredWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   empresa?: Prisma.empresaUpdateOneRequiredWithoutTransferencia_almacenNestedInput
   transferencia_detalle?: Prisma.transferencia_detalleUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateWithoutUsuarioInput = {
@@ -1229,6 +1345,7 @@ export type transferencia_almacenUncheckedUpdateWithoutUsuarioInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transferencia_detalle?: Prisma.transferencia_detalleUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutTransferencia_almacenNestedInput
 }
 
 export type transferencia_almacenUncheckedUpdateManyWithoutUsuarioInput = {
@@ -1251,10 +1368,12 @@ export type transferencia_almacenUncheckedUpdateManyWithoutUsuarioInput = {
 
 export type Transferencia_almacenCountOutputType = {
   transferencia_detalle: number
+  operacion_transferencia: number
 }
 
 export type Transferencia_almacenCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   transferencia_detalle?: boolean | Transferencia_almacenCountOutputTypeCountTransferencia_detalleArgs
+  operacion_transferencia?: boolean | Transferencia_almacenCountOutputTypeCountOperacion_transferenciaArgs
 }
 
 /**
@@ -1272,6 +1391,13 @@ export type Transferencia_almacenCountOutputTypeDefaultArgs<ExtArgs extends runt
  */
 export type Transferencia_almacenCountOutputTypeCountTransferencia_detalleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.transferencia_detalleWhereInput
+}
+
+/**
+ * Transferencia_almacenCountOutputType without action
+ */
+export type Transferencia_almacenCountOutputTypeCountOperacion_transferenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.operacion_transferenciaWhereInput
 }
 
 
@@ -1292,6 +1418,7 @@ export type transferencia_almacenSelect<ExtArgs extends runtime.Types.Extensions
   empresa?: boolean | Prisma.empresaDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
   transferencia_detalle?: boolean | Prisma.transferencia_almacen$transferencia_detalleArgs<ExtArgs>
+  operacion_transferencia?: boolean | Prisma.transferencia_almacen$operacion_transferenciaArgs<ExtArgs>
   _count?: boolean | Prisma.Transferencia_almacenCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transferencia_almacen"]>
 
@@ -1352,6 +1479,7 @@ export type transferencia_almacenInclude<ExtArgs extends runtime.Types.Extension
   empresa?: boolean | Prisma.empresaDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
   transferencia_detalle?: boolean | Prisma.transferencia_almacen$transferencia_detalleArgs<ExtArgs>
+  operacion_transferencia?: boolean | Prisma.transferencia_almacen$operacion_transferenciaArgs<ExtArgs>
   _count?: boolean | Prisma.Transferencia_almacenCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type transferencia_almacenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1375,6 +1503,7 @@ export type $transferencia_almacenPayload<ExtArgs extends runtime.Types.Extensio
     empresa: Prisma.$empresaPayload<ExtArgs>
     usuario: Prisma.$usuarioPayload<ExtArgs>
     transferencia_detalle: Prisma.$transferencia_detallePayload<ExtArgs>[]
+    operacion_transferencia: Prisma.$operacion_transferenciaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1787,6 +1916,7 @@ export interface Prisma__transferencia_almacenClient<T, Null = never, ExtArgs ex
   empresa<T extends Prisma.empresaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresaDefaultArgs<ExtArgs>>): Prisma.Prisma__empresaClient<runtime.Types.Result.GetResult<Prisma.$empresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuario<T extends Prisma.usuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   transferencia_detalle<T extends Prisma.transferencia_almacen$transferencia_detalleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.transferencia_almacen$transferencia_detalleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$transferencia_detallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  operacion_transferencia<T extends Prisma.transferencia_almacen$operacion_transferenciaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.transferencia_almacen$operacion_transferenciaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$operacion_transferenciaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2249,6 +2379,30 @@ export type transferencia_almacen$transferencia_detalleArgs<ExtArgs extends runt
   take?: number
   skip?: number
   distinct?: Prisma.Transferencia_detalleScalarFieldEnum | Prisma.Transferencia_detalleScalarFieldEnum[]
+}
+
+/**
+ * transferencia_almacen.operacion_transferencia
+ */
+export type transferencia_almacen$operacion_transferenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the operacion_transferencia
+   */
+  select?: Prisma.operacion_transferenciaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the operacion_transferencia
+   */
+  omit?: Prisma.operacion_transferenciaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.operacion_transferenciaInclude<ExtArgs> | null
+  where?: Prisma.operacion_transferenciaWhereInput
+  orderBy?: Prisma.operacion_transferenciaOrderByWithRelationInput | Prisma.operacion_transferenciaOrderByWithRelationInput[]
+  cursor?: Prisma.operacion_transferenciaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Operacion_transferenciaScalarFieldEnum | Prisma.Operacion_transferenciaScalarFieldEnum[]
 }
 
 /**

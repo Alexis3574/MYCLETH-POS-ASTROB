@@ -433,6 +433,7 @@ export const ModelName = {
   transferencia_detalle: 'transferencia_detalle',
   unidad_medida: 'unidad_medida',
   usuario: 'usuario',
+  operacion_transferencia: 'operacion_transferencia',
   usuario_rol: 'usuario_rol',
   usuario_sucursal: 'usuario_sucursal',
   venta: 'venta',
@@ -457,7 +458,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario"
+    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "operacion_transferencia" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3125,6 +3126,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    operacion_transferencia: {
+      payload: Prisma.$operacion_transferenciaPayload<ExtArgs>
+      fields: Prisma.operacion_transferenciaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.operacion_transferenciaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.operacion_transferenciaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        findFirst: {
+          args: Prisma.operacion_transferenciaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.operacion_transferenciaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        findMany: {
+          args: Prisma.operacion_transferenciaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        create: {
+          args: Prisma.operacion_transferenciaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        createMany: {
+          args: Prisma.operacion_transferenciaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.operacion_transferenciaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        delete: {
+          args: Prisma.operacion_transferenciaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        update: {
+          args: Prisma.operacion_transferenciaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        deleteMany: {
+          args: Prisma.operacion_transferenciaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.operacion_transferenciaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.operacion_transferenciaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        upsert: {
+          args: Prisma.operacion_transferenciaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        aggregate: {
+          args: Prisma.Operacion_transferenciaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOperacion_transferencia>
+        }
+        groupBy: {
+          args: Prisma.operacion_transferenciaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_transferenciaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.operacion_transferenciaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_transferenciaCountAggregateOutputType> | number
+        }
+      }
+    }
     usuario_rol: {
       payload: Prisma.$usuario_rolPayload<ExtArgs>
       fields: Prisma.usuario_rolFieldRefs
@@ -4414,6 +4489,21 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
+export const Operacion_transferenciaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  transferencia_id: 'transferencia_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  accion: 'accion',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_transferenciaScalarFieldEnum = (typeof Operacion_transferenciaScalarFieldEnum)[keyof typeof Operacion_transferenciaScalarFieldEnum]
+
+
 export const Usuario_rolScalarFieldEnum = {
   usuario_id: 'usuario_id',
   rol_id: 'rol_id'
@@ -4905,6 +4995,7 @@ export type GlobalOmitConfig = {
   transferencia_detalle?: Prisma.transferencia_detalleOmit
   unidad_medida?: Prisma.unidad_medidaOmit
   usuario?: Prisma.usuarioOmit
+  operacion_transferencia?: Prisma.operacion_transferenciaOmit
   usuario_rol?: Prisma.usuario_rolOmit
   usuario_sucursal?: Prisma.usuario_sucursalOmit
   venta?: Prisma.ventaOmit

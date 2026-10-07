@@ -1,3 +1,4 @@
+import { transferRouter } from "./modules/transfers/transfer.routes.js";
 import { inventoryRouter } from "./modules/inventory/inventory.routes.js";
 import { productRouter, categoryRouter, unitRouter, taxRouter } from "./modules/products/product.routes.js";
 import express from "express";
@@ -43,6 +44,7 @@ app.use("/api/v1/units", unitRouter);
 app.use("/api/v1/taxes", taxRouter);
 
 app.use("/api/v1/inventory", inventoryRouter);
+app.use("/api/v1/transfers", transferRouter);
 
 app.use("/api/v1", apiRoutes);
 
