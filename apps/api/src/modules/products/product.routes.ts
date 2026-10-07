@@ -7,7 +7,6 @@ import type { CatalogKind } from "./types/product.types.js";
 export const productRouter = Router();
 productRouter.use(requireAuth);
 productRouter.get("/", requirePermission("PRODUCTOS.VER"), productController.list);
-// Ruta específica primero para que barcode no se interprete como un ID.
 productRouter.get("/barcode/:barcode", requirePermission("PRODUCTOS.VER"), productController.barcode);
 productRouter.get("/:id", requirePermission("PRODUCTOS.VER"), productController.get);
 productRouter.post("/", requirePermission("PRODUCTOS.CREAR"), productController.create);

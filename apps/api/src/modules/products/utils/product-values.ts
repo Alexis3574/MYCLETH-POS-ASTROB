@@ -1,4 +1,4 @@
-// Validación exacta de NUMERIC(14, scale), sin convertir importes a float.
+
 export function normalizeDecimal(value: string | number, scale: number): string | null {
   const text = String(value).trim();
   const match = /^(\d+)(?:\.(\d+))?$/.exec(text);

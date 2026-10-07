@@ -45,8 +45,7 @@ export const createProductSchema = z.object({
   controla_inventario: z.boolean().optional(),
 }).strict();
 
-// Identificadores y campos operativos se fijan al crear. La sincronización
-// actual resuelve productos por código de barras, incluso en devoluciones.
+
 export const updateProductSchema = z.object(editableFields).omit({ sku: true, codigo_barras: true }).partial().strict()
   .refine((value) => Object.keys(value).length > 0, "Indique al menos un campo para editar.");
 
