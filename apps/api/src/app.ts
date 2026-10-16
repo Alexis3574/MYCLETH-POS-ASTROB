@@ -16,6 +16,12 @@ import { rolePermissionRouter } from "./modules/role-permissions/role-permission
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 
+import { cashRouter } from "./modules/cash/cash.routes.js";
+
+import { supplierRouter } from "./modules/suppliers/supplier.routes.js";
+
+import { customerRouter } from "./modules/customers/customer.routes.js";
+
 export const app = express();
 
 app.use(helmet());
@@ -47,5 +53,11 @@ app.use("/api/v1/inventory", inventoryRouter);
 app.use("/api/v1/transfers", transferRouter);
 
 app.use("/api/v1", apiRoutes);
+
+app.use("/api/v1/cash", cashRouter);
+
+app.use("/api/v1/suppliers", supplierRouter);
+
+app.use("/api/v1/customers", customerRouter);
 
 app.use(errorMiddleware);

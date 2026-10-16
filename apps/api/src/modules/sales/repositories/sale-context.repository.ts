@@ -98,6 +98,12 @@ export const saleContextRepository = {
     tx: SaleTransaction,
     sesionCajaId: bigint,
   ) {
+    await tx.$queryRaw`
+      SELECT id FROM "pos"."sesion_caja"
+      WHERE id = ${sesionCajaId}
+      FOR UPDATE
+    `;
+
     return tx.sesion_caja.findUnique({
       where: {
         id: sesionCajaId,
