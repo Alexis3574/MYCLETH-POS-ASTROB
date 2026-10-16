@@ -286,6 +286,8 @@ export type empresaWhereInput = {
   transferencia_almacen?: Prisma.Transferencia_almacenListRelationFilter
   usuario?: Prisma.UsuarioListRelationFilter
   venta?: Prisma.VentaListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
+  operacion_transferencia?: Prisma.Operacion_transferenciaListRelationFilter
 }
 
 export type empresaOrderByWithRelationInput = {
@@ -315,6 +317,8 @@ export type empresaOrderByWithRelationInput = {
   transferencia_almacen?: Prisma.transferencia_almacenOrderByRelationAggregateInput
   usuario?: Prisma.usuarioOrderByRelationAggregateInput
   venta?: Prisma.ventaOrderByRelationAggregateInput
+  ajuste_inventario?: Prisma.ajuste_inventarioOrderByRelationAggregateInput
+  operacion_transferencia?: Prisma.operacion_transferenciaOrderByRelationAggregateInput
 }
 
 export type empresaWhereUniqueInput = Prisma.AtLeast<{
@@ -347,6 +351,8 @@ export type empresaWhereUniqueInput = Prisma.AtLeast<{
   transferencia_almacen?: Prisma.Transferencia_almacenListRelationFilter
   usuario?: Prisma.UsuarioListRelationFilter
   venta?: Prisma.VentaListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
+  operacion_transferencia?: Prisma.Operacion_transferenciaListRelationFilter
 }, "id" | "rfc">
 
 export type empresaOrderByWithAggregationInput = {
@@ -414,6 +420,8 @@ export type empresaCreateInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateInput = {
@@ -443,6 +451,8 @@ export type empresaUncheckedCreateInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUpdateInput = {
@@ -472,6 +482,8 @@ export type empresaUpdateInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateInput = {
@@ -501,6 +513,8 @@ export type empresaUncheckedUpdateInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateManyInput = {
@@ -788,6 +802,20 @@ export type empresaUpdateOneRequiredWithoutUsuarioNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.empresaUpdateToOneWithWhereWithoutUsuarioInput, Prisma.empresaUpdateWithoutUsuarioInput>, Prisma.empresaUncheckedUpdateWithoutUsuarioInput>
 }
 
+export type empresaCreateNestedOneWithoutOperacion_transferenciaInput = {
+  create?: Prisma.XOR<Prisma.empresaCreateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedCreateWithoutOperacion_transferenciaInput>
+  connectOrCreate?: Prisma.empresaCreateOrConnectWithoutOperacion_transferenciaInput
+  connect?: Prisma.empresaWhereUniqueInput
+}
+
+export type empresaUpdateOneRequiredWithoutOperacion_transferenciaNestedInput = {
+  create?: Prisma.XOR<Prisma.empresaCreateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedCreateWithoutOperacion_transferenciaInput>
+  connectOrCreate?: Prisma.empresaCreateOrConnectWithoutOperacion_transferenciaInput
+  upsert?: Prisma.empresaUpsertWithoutOperacion_transferenciaInput
+  connect?: Prisma.empresaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.empresaUpdateToOneWithWhereWithoutOperacion_transferenciaInput, Prisma.empresaUpdateWithoutOperacion_transferenciaInput>, Prisma.empresaUncheckedUpdateWithoutOperacion_transferenciaInput>
+}
+
 export type empresaCreateNestedOneWithoutVentaInput = {
   create?: Prisma.XOR<Prisma.empresaCreateWithoutVentaInput, Prisma.empresaUncheckedCreateWithoutVentaInput>
   connectOrCreate?: Prisma.empresaCreateOrConnectWithoutVentaInput
@@ -800,6 +828,20 @@ export type empresaUpdateOneRequiredWithoutVentaNestedInput = {
   upsert?: Prisma.empresaUpsertWithoutVentaInput
   connect?: Prisma.empresaWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.empresaUpdateToOneWithWhereWithoutVentaInput, Prisma.empresaUpdateWithoutVentaInput>, Prisma.empresaUncheckedUpdateWithoutVentaInput>
+}
+
+export type empresaCreateNestedOneWithoutAjuste_inventarioInput = {
+  create?: Prisma.XOR<Prisma.empresaCreateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.empresaCreateOrConnectWithoutAjuste_inventarioInput
+  connect?: Prisma.empresaWhereUniqueInput
+}
+
+export type empresaUpdateOneRequiredWithoutAjuste_inventarioNestedInput = {
+  create?: Prisma.XOR<Prisma.empresaCreateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.empresaCreateOrConnectWithoutAjuste_inventarioInput
+  upsert?: Prisma.empresaUpsertWithoutAjuste_inventarioInput
+  connect?: Prisma.empresaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.empresaUpdateToOneWithWhereWithoutAjuste_inventarioInput, Prisma.empresaUpdateWithoutAjuste_inventarioInput>, Prisma.empresaUncheckedUpdateWithoutAjuste_inventarioInput>
 }
 
 export type empresaCreateWithoutCategoriaInput = {
@@ -828,6 +870,8 @@ export type empresaCreateWithoutCategoriaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutCategoriaInput = {
@@ -856,6 +900,8 @@ export type empresaUncheckedCreateWithoutCategoriaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutCategoriaInput = {
@@ -900,6 +946,8 @@ export type empresaUpdateWithoutCategoriaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutCategoriaInput = {
@@ -928,6 +976,8 @@ export type empresaUncheckedUpdateWithoutCategoriaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutClienteInput = {
@@ -956,6 +1006,8 @@ export type empresaCreateWithoutClienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutClienteInput = {
@@ -984,6 +1036,8 @@ export type empresaUncheckedCreateWithoutClienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutClienteInput = {
@@ -1028,6 +1082,8 @@ export type empresaUpdateWithoutClienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutClienteInput = {
@@ -1056,6 +1112,8 @@ export type empresaUncheckedUpdateWithoutClienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutCompraInput = {
@@ -1084,6 +1142,8 @@ export type empresaCreateWithoutCompraInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutCompraInput = {
@@ -1112,6 +1172,8 @@ export type empresaUncheckedCreateWithoutCompraInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutCompraInput = {
@@ -1156,6 +1218,8 @@ export type empresaUpdateWithoutCompraInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutCompraInput = {
@@ -1184,6 +1248,8 @@ export type empresaUncheckedUpdateWithoutCompraInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutConfiguracion_empresaInput = {
@@ -1212,6 +1278,8 @@ export type empresaCreateWithoutConfiguracion_empresaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutConfiguracion_empresaInput = {
@@ -1240,6 +1308,8 @@ export type empresaUncheckedCreateWithoutConfiguracion_empresaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutConfiguracion_empresaInput = {
@@ -1284,6 +1354,8 @@ export type empresaUpdateWithoutConfiguracion_empresaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutConfiguracion_empresaInput = {
@@ -1312,6 +1384,8 @@ export type empresaUncheckedUpdateWithoutConfiguracion_empresaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutCotizacionInput = {
@@ -1340,6 +1414,8 @@ export type empresaCreateWithoutCotizacionInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutCotizacionInput = {
@@ -1368,6 +1444,8 @@ export type empresaUncheckedCreateWithoutCotizacionInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutCotizacionInput = {
@@ -1412,6 +1490,8 @@ export type empresaUpdateWithoutCotizacionInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutCotizacionInput = {
@@ -1440,6 +1520,8 @@ export type empresaUncheckedUpdateWithoutCotizacionInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutImpuestoInput = {
@@ -1468,6 +1550,8 @@ export type empresaCreateWithoutImpuestoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutImpuestoInput = {
@@ -1496,6 +1580,8 @@ export type empresaUncheckedCreateWithoutImpuestoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutImpuestoInput = {
@@ -1540,6 +1626,8 @@ export type empresaUpdateWithoutImpuestoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutImpuestoInput = {
@@ -1568,6 +1656,8 @@ export type empresaUncheckedUpdateWithoutImpuestoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutOrden_ventaInput = {
@@ -1596,6 +1686,8 @@ export type empresaCreateWithoutOrden_ventaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutOrden_ventaInput = {
@@ -1624,6 +1716,8 @@ export type empresaUncheckedCreateWithoutOrden_ventaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutOrden_ventaInput = {
@@ -1668,6 +1762,8 @@ export type empresaUpdateWithoutOrden_ventaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutOrden_ventaInput = {
@@ -1696,6 +1792,8 @@ export type empresaUncheckedUpdateWithoutOrden_ventaInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutPedido_clienteInput = {
@@ -1724,6 +1822,8 @@ export type empresaCreateWithoutPedido_clienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutPedido_clienteInput = {
@@ -1752,6 +1852,8 @@ export type empresaUncheckedCreateWithoutPedido_clienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutPedido_clienteInput = {
@@ -1796,6 +1898,8 @@ export type empresaUpdateWithoutPedido_clienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutPedido_clienteInput = {
@@ -1824,6 +1928,8 @@ export type empresaUncheckedUpdateWithoutPedido_clienteInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutProductoInput = {
@@ -1852,6 +1958,8 @@ export type empresaCreateWithoutProductoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutProductoInput = {
@@ -1880,6 +1988,8 @@ export type empresaUncheckedCreateWithoutProductoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutProductoInput = {
@@ -1924,6 +2034,8 @@ export type empresaUpdateWithoutProductoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutProductoInput = {
@@ -1952,6 +2064,8 @@ export type empresaUncheckedUpdateWithoutProductoInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutProveedorInput = {
@@ -1980,6 +2094,8 @@ export type empresaCreateWithoutProveedorInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutProveedorInput = {
@@ -2008,6 +2124,8 @@ export type empresaUncheckedCreateWithoutProveedorInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutProveedorInput = {
@@ -2052,6 +2170,8 @@ export type empresaUpdateWithoutProveedorInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutProveedorInput = {
@@ -2080,6 +2200,8 @@ export type empresaUncheckedUpdateWithoutProveedorInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutSucursalInput = {
@@ -2108,6 +2230,8 @@ export type empresaCreateWithoutSucursalInput = {
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutSucursalInput = {
@@ -2136,6 +2260,8 @@ export type empresaUncheckedCreateWithoutSucursalInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutSucursalInput = {
@@ -2180,6 +2306,8 @@ export type empresaUpdateWithoutSucursalInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutSucursalInput = {
@@ -2208,6 +2336,8 @@ export type empresaUncheckedUpdateWithoutSucursalInput = {
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutTransferencia_almacenInput = {
@@ -2236,6 +2366,8 @@ export type empresaCreateWithoutTransferencia_almacenInput = {
   sucursal?: Prisma.sucursalCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutTransferencia_almacenInput = {
@@ -2264,6 +2396,8 @@ export type empresaUncheckedCreateWithoutTransferencia_almacenInput = {
   sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutTransferencia_almacenInput = {
@@ -2308,6 +2442,8 @@ export type empresaUpdateWithoutTransferencia_almacenInput = {
   sucursal?: Prisma.sucursalUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutTransferencia_almacenInput = {
@@ -2336,6 +2472,8 @@ export type empresaUncheckedUpdateWithoutTransferencia_almacenInput = {
   sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutUsuarioInput = {
@@ -2364,6 +2502,8 @@ export type empresaCreateWithoutUsuarioInput = {
   sucursal?: Prisma.sucursalCreateNestedManyWithoutEmpresaInput
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutUsuarioInput = {
@@ -2392,6 +2532,8 @@ export type empresaUncheckedCreateWithoutUsuarioInput = {
   sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutEmpresaInput
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutUsuarioInput = {
@@ -2436,6 +2578,8 @@ export type empresaUpdateWithoutUsuarioInput = {
   sucursal?: Prisma.sucursalUpdateManyWithoutEmpresaNestedInput
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutUsuarioInput = {
@@ -2464,6 +2608,144 @@ export type empresaUncheckedUpdateWithoutUsuarioInput = {
   sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutEmpresaNestedInput
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
+}
+
+export type empresaCreateWithoutOperacion_transferenciaInput = {
+  id?: bigint | number
+  razon_social: string
+  nombre_comercial: string
+  rfc?: string | null
+  telefono?: string | null
+  email?: string | null
+  direccion?: string | null
+  moneda?: string
+  zona_horaria?: string
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  categoria?: Prisma.categoriaCreateNestedManyWithoutEmpresaInput
+  cliente?: Prisma.clienteCreateNestedManyWithoutEmpresaInput
+  compra?: Prisma.compraCreateNestedManyWithoutEmpresaInput
+  configuracion_empresa?: Prisma.configuracion_empresaCreateNestedManyWithoutEmpresaInput
+  cotizacion?: Prisma.cotizacionCreateNestedManyWithoutEmpresaInput
+  impuesto?: Prisma.impuestoCreateNestedManyWithoutEmpresaInput
+  orden_venta?: Prisma.orden_ventaCreateNestedManyWithoutEmpresaInput
+  pedido_cliente?: Prisma.pedido_clienteCreateNestedManyWithoutEmpresaInput
+  producto?: Prisma.productoCreateNestedManyWithoutEmpresaInput
+  proveedor?: Prisma.proveedorCreateNestedManyWithoutEmpresaInput
+  sucursal?: Prisma.sucursalCreateNestedManyWithoutEmpresaInput
+  transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
+  usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
+  venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+}
+
+export type empresaUncheckedCreateWithoutOperacion_transferenciaInput = {
+  id?: bigint | number
+  razon_social: string
+  nombre_comercial: string
+  rfc?: string | null
+  telefono?: string | null
+  email?: string | null
+  direccion?: string | null
+  moneda?: string
+  zona_horaria?: string
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  categoria?: Prisma.categoriaUncheckedCreateNestedManyWithoutEmpresaInput
+  cliente?: Prisma.clienteUncheckedCreateNestedManyWithoutEmpresaInput
+  compra?: Prisma.compraUncheckedCreateNestedManyWithoutEmpresaInput
+  configuracion_empresa?: Prisma.configuracion_empresaUncheckedCreateNestedManyWithoutEmpresaInput
+  cotizacion?: Prisma.cotizacionUncheckedCreateNestedManyWithoutEmpresaInput
+  impuesto?: Prisma.impuestoUncheckedCreateNestedManyWithoutEmpresaInput
+  orden_venta?: Prisma.orden_ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  pedido_cliente?: Prisma.pedido_clienteUncheckedCreateNestedManyWithoutEmpresaInput
+  producto?: Prisma.productoUncheckedCreateNestedManyWithoutEmpresaInput
+  proveedor?: Prisma.proveedorUncheckedCreateNestedManyWithoutEmpresaInput
+  sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutEmpresaInput
+  transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
+  usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
+  venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+}
+
+export type empresaCreateOrConnectWithoutOperacion_transferenciaInput = {
+  where: Prisma.empresaWhereUniqueInput
+  create: Prisma.XOR<Prisma.empresaCreateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedCreateWithoutOperacion_transferenciaInput>
+}
+
+export type empresaUpsertWithoutOperacion_transferenciaInput = {
+  update: Prisma.XOR<Prisma.empresaUpdateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedUpdateWithoutOperacion_transferenciaInput>
+  create: Prisma.XOR<Prisma.empresaCreateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedCreateWithoutOperacion_transferenciaInput>
+  where?: Prisma.empresaWhereInput
+}
+
+export type empresaUpdateToOneWithWhereWithoutOperacion_transferenciaInput = {
+  where?: Prisma.empresaWhereInput
+  data: Prisma.XOR<Prisma.empresaUpdateWithoutOperacion_transferenciaInput, Prisma.empresaUncheckedUpdateWithoutOperacion_transferenciaInput>
+}
+
+export type empresaUpdateWithoutOperacion_transferenciaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  razon_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre_comercial?: Prisma.StringFieldUpdateOperationsInput | string
+  rfc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  zona_horaria?: Prisma.StringFieldUpdateOperationsInput | string
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categoria?: Prisma.categoriaUpdateManyWithoutEmpresaNestedInput
+  cliente?: Prisma.clienteUpdateManyWithoutEmpresaNestedInput
+  compra?: Prisma.compraUpdateManyWithoutEmpresaNestedInput
+  configuracion_empresa?: Prisma.configuracion_empresaUpdateManyWithoutEmpresaNestedInput
+  cotizacion?: Prisma.cotizacionUpdateManyWithoutEmpresaNestedInput
+  impuesto?: Prisma.impuestoUpdateManyWithoutEmpresaNestedInput
+  orden_venta?: Prisma.orden_ventaUpdateManyWithoutEmpresaNestedInput
+  pedido_cliente?: Prisma.pedido_clienteUpdateManyWithoutEmpresaNestedInput
+  producto?: Prisma.productoUpdateManyWithoutEmpresaNestedInput
+  proveedor?: Prisma.proveedorUpdateManyWithoutEmpresaNestedInput
+  sucursal?: Prisma.sucursalUpdateManyWithoutEmpresaNestedInput
+  transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
+  usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
+  venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+}
+
+export type empresaUncheckedUpdateWithoutOperacion_transferenciaInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  razon_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre_comercial?: Prisma.StringFieldUpdateOperationsInput | string
+  rfc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  zona_horaria?: Prisma.StringFieldUpdateOperationsInput | string
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categoria?: Prisma.categoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+  cliente?: Prisma.clienteUncheckedUpdateManyWithoutEmpresaNestedInput
+  compra?: Prisma.compraUncheckedUpdateManyWithoutEmpresaNestedInput
+  configuracion_empresa?: Prisma.configuracion_empresaUncheckedUpdateManyWithoutEmpresaNestedInput
+  cotizacion?: Prisma.cotizacionUncheckedUpdateManyWithoutEmpresaNestedInput
+  impuesto?: Prisma.impuestoUncheckedUpdateManyWithoutEmpresaNestedInput
+  orden_venta?: Prisma.orden_ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  pedido_cliente?: Prisma.pedido_clienteUncheckedUpdateManyWithoutEmpresaNestedInput
+  producto?: Prisma.productoUncheckedUpdateManyWithoutEmpresaNestedInput
+  proveedor?: Prisma.proveedorUncheckedUpdateManyWithoutEmpresaNestedInput
+  sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutEmpresaNestedInput
+  transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
+  usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaCreateWithoutVentaInput = {
@@ -2492,6 +2774,8 @@ export type empresaCreateWithoutVentaInput = {
   sucursal?: Prisma.sucursalCreateNestedManyWithoutEmpresaInput
   transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaUncheckedCreateWithoutVentaInput = {
@@ -2520,6 +2804,8 @@ export type empresaUncheckedCreateWithoutVentaInput = {
   sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutEmpresaInput
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
   usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
 }
 
 export type empresaCreateOrConnectWithoutVentaInput = {
@@ -2564,6 +2850,8 @@ export type empresaUpdateWithoutVentaInput = {
   sucursal?: Prisma.sucursalUpdateManyWithoutEmpresaNestedInput
   transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
 }
 
 export type empresaUncheckedUpdateWithoutVentaInput = {
@@ -2592,6 +2880,144 @@ export type empresaUncheckedUpdateWithoutVentaInput = {
   sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutEmpresaNestedInput
   transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
   usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
+}
+
+export type empresaCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  razon_social: string
+  nombre_comercial: string
+  rfc?: string | null
+  telefono?: string | null
+  email?: string | null
+  direccion?: string | null
+  moneda?: string
+  zona_horaria?: string
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  categoria?: Prisma.categoriaCreateNestedManyWithoutEmpresaInput
+  cliente?: Prisma.clienteCreateNestedManyWithoutEmpresaInput
+  compra?: Prisma.compraCreateNestedManyWithoutEmpresaInput
+  configuracion_empresa?: Prisma.configuracion_empresaCreateNestedManyWithoutEmpresaInput
+  cotizacion?: Prisma.cotizacionCreateNestedManyWithoutEmpresaInput
+  impuesto?: Prisma.impuestoCreateNestedManyWithoutEmpresaInput
+  orden_venta?: Prisma.orden_ventaCreateNestedManyWithoutEmpresaInput
+  pedido_cliente?: Prisma.pedido_clienteCreateNestedManyWithoutEmpresaInput
+  producto?: Prisma.productoCreateNestedManyWithoutEmpresaInput
+  proveedor?: Prisma.proveedorCreateNestedManyWithoutEmpresaInput
+  sucursal?: Prisma.sucursalCreateNestedManyWithoutEmpresaInput
+  transferencia_almacen?: Prisma.transferencia_almacenCreateNestedManyWithoutEmpresaInput
+  usuario?: Prisma.usuarioCreateNestedManyWithoutEmpresaInput
+  venta?: Prisma.ventaCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaCreateNestedManyWithoutEmpresaInput
+}
+
+export type empresaUncheckedCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  razon_social: string
+  nombre_comercial: string
+  rfc?: string | null
+  telefono?: string | null
+  email?: string | null
+  direccion?: string | null
+  moneda?: string
+  zona_horaria?: string
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  categoria?: Prisma.categoriaUncheckedCreateNestedManyWithoutEmpresaInput
+  cliente?: Prisma.clienteUncheckedCreateNestedManyWithoutEmpresaInput
+  compra?: Prisma.compraUncheckedCreateNestedManyWithoutEmpresaInput
+  configuracion_empresa?: Prisma.configuracion_empresaUncheckedCreateNestedManyWithoutEmpresaInput
+  cotizacion?: Prisma.cotizacionUncheckedCreateNestedManyWithoutEmpresaInput
+  impuesto?: Prisma.impuestoUncheckedCreateNestedManyWithoutEmpresaInput
+  orden_venta?: Prisma.orden_ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  pedido_cliente?: Prisma.pedido_clienteUncheckedCreateNestedManyWithoutEmpresaInput
+  producto?: Prisma.productoUncheckedCreateNestedManyWithoutEmpresaInput
+  proveedor?: Prisma.proveedorUncheckedCreateNestedManyWithoutEmpresaInput
+  sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutEmpresaInput
+  transferencia_almacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutEmpresaInput
+  usuario?: Prisma.usuarioUncheckedCreateNestedManyWithoutEmpresaInput
+  venta?: Prisma.ventaUncheckedCreateNestedManyWithoutEmpresaInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedCreateNestedManyWithoutEmpresaInput
+}
+
+export type empresaCreateOrConnectWithoutAjuste_inventarioInput = {
+  where: Prisma.empresaWhereUniqueInput
+  create: Prisma.XOR<Prisma.empresaCreateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedCreateWithoutAjuste_inventarioInput>
+}
+
+export type empresaUpsertWithoutAjuste_inventarioInput = {
+  update: Prisma.XOR<Prisma.empresaUpdateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedUpdateWithoutAjuste_inventarioInput>
+  create: Prisma.XOR<Prisma.empresaCreateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedCreateWithoutAjuste_inventarioInput>
+  where?: Prisma.empresaWhereInput
+}
+
+export type empresaUpdateToOneWithWhereWithoutAjuste_inventarioInput = {
+  where?: Prisma.empresaWhereInput
+  data: Prisma.XOR<Prisma.empresaUpdateWithoutAjuste_inventarioInput, Prisma.empresaUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
+export type empresaUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  razon_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre_comercial?: Prisma.StringFieldUpdateOperationsInput | string
+  rfc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  zona_horaria?: Prisma.StringFieldUpdateOperationsInput | string
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categoria?: Prisma.categoriaUpdateManyWithoutEmpresaNestedInput
+  cliente?: Prisma.clienteUpdateManyWithoutEmpresaNestedInput
+  compra?: Prisma.compraUpdateManyWithoutEmpresaNestedInput
+  configuracion_empresa?: Prisma.configuracion_empresaUpdateManyWithoutEmpresaNestedInput
+  cotizacion?: Prisma.cotizacionUpdateManyWithoutEmpresaNestedInput
+  impuesto?: Prisma.impuestoUpdateManyWithoutEmpresaNestedInput
+  orden_venta?: Prisma.orden_ventaUpdateManyWithoutEmpresaNestedInput
+  pedido_cliente?: Prisma.pedido_clienteUpdateManyWithoutEmpresaNestedInput
+  producto?: Prisma.productoUpdateManyWithoutEmpresaNestedInput
+  proveedor?: Prisma.proveedorUpdateManyWithoutEmpresaNestedInput
+  sucursal?: Prisma.sucursalUpdateManyWithoutEmpresaNestedInput
+  transferencia_almacen?: Prisma.transferencia_almacenUpdateManyWithoutEmpresaNestedInput
+  usuario?: Prisma.usuarioUpdateManyWithoutEmpresaNestedInput
+  venta?: Prisma.ventaUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUpdateManyWithoutEmpresaNestedInput
+}
+
+export type empresaUncheckedUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  razon_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre_comercial?: Prisma.StringFieldUpdateOperationsInput | string
+  rfc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direccion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  zona_horaria?: Prisma.StringFieldUpdateOperationsInput | string
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categoria?: Prisma.categoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+  cliente?: Prisma.clienteUncheckedUpdateManyWithoutEmpresaNestedInput
+  compra?: Prisma.compraUncheckedUpdateManyWithoutEmpresaNestedInput
+  configuracion_empresa?: Prisma.configuracion_empresaUncheckedUpdateManyWithoutEmpresaNestedInput
+  cotizacion?: Prisma.cotizacionUncheckedUpdateManyWithoutEmpresaNestedInput
+  impuesto?: Prisma.impuestoUncheckedUpdateManyWithoutEmpresaNestedInput
+  orden_venta?: Prisma.orden_ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  pedido_cliente?: Prisma.pedido_clienteUncheckedUpdateManyWithoutEmpresaNestedInput
+  producto?: Prisma.productoUncheckedUpdateManyWithoutEmpresaNestedInput
+  proveedor?: Prisma.proveedorUncheckedUpdateManyWithoutEmpresaNestedInput
+  sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutEmpresaNestedInput
+  transferencia_almacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutEmpresaNestedInput
+  usuario?: Prisma.usuarioUncheckedUpdateManyWithoutEmpresaNestedInput
+  venta?: Prisma.ventaUncheckedUpdateManyWithoutEmpresaNestedInput
+  operacion_transferencia?: Prisma.operacion_transferenciaUncheckedUpdateManyWithoutEmpresaNestedInput
 }
 
 
@@ -2614,6 +3040,8 @@ export type EmpresaCountOutputType = {
   transferencia_almacen: number
   usuario: number
   venta: number
+  ajuste_inventario: number
+  operacion_transferencia: number
 }
 
 export type EmpresaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2631,6 +3059,8 @@ export type EmpresaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   transferencia_almacen?: boolean | EmpresaCountOutputTypeCountTransferencia_almacenArgs
   usuario?: boolean | EmpresaCountOutputTypeCountUsuarioArgs
   venta?: boolean | EmpresaCountOutputTypeCountVentaArgs
+  ajuste_inventario?: boolean | EmpresaCountOutputTypeCountAjuste_inventarioArgs
+  operacion_transferencia?: boolean | EmpresaCountOutputTypeCountOperacion_transferenciaArgs
 }
 
 /**
@@ -2741,6 +3171,20 @@ export type EmpresaCountOutputTypeCountVentaArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.ventaWhereInput
 }
 
+/**
+ * EmpresaCountOutputType without action
+ */
+export type EmpresaCountOutputTypeCountAjuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ajuste_inventarioWhereInput
+}
+
+/**
+ * EmpresaCountOutputType without action
+ */
+export type EmpresaCountOutputTypeCountOperacion_transferenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.operacion_transferenciaWhereInput
+}
+
 
 export type empresaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2769,6 +3213,8 @@ export type empresaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   transferencia_almacen?: boolean | Prisma.empresa$transferencia_almacenArgs<ExtArgs>
   usuario?: boolean | Prisma.empresa$usuarioArgs<ExtArgs>
   venta?: boolean | Prisma.empresa$ventaArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.empresa$ajuste_inventarioArgs<ExtArgs>
+  operacion_transferencia?: boolean | Prisma.empresa$operacion_transferenciaArgs<ExtArgs>
   _count?: boolean | Prisma.EmpresaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["empresa"]>
 
@@ -2833,6 +3279,8 @@ export type empresaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   transferencia_almacen?: boolean | Prisma.empresa$transferencia_almacenArgs<ExtArgs>
   usuario?: boolean | Prisma.empresa$usuarioArgs<ExtArgs>
   venta?: boolean | Prisma.empresa$ventaArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.empresa$ajuste_inventarioArgs<ExtArgs>
+  operacion_transferencia?: boolean | Prisma.empresa$operacion_transferenciaArgs<ExtArgs>
   _count?: boolean | Prisma.EmpresaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type empresaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2855,6 +3303,8 @@ export type $empresaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     transferencia_almacen: Prisma.$transferencia_almacenPayload<ExtArgs>[]
     usuario: Prisma.$usuarioPayload<ExtArgs>[]
     venta: Prisma.$ventaPayload<ExtArgs>[]
+    ajuste_inventario: Prisma.$ajuste_inventarioPayload<ExtArgs>[]
+    operacion_transferencia: Prisma.$operacion_transferenciaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -3277,6 +3727,8 @@ export interface Prisma__empresaClient<T, Null = never, ExtArgs extends runtime.
   transferencia_almacen<T extends Prisma.empresa$transferencia_almacenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresa$transferencia_almacenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$transferencia_almacenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   usuario<T extends Prisma.empresa$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresa$usuarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   venta<T extends Prisma.empresa$ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresa$ventaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ventaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ajuste_inventario<T extends Prisma.empresa$ajuste_inventarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresa$ajuste_inventarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ajuste_inventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  operacion_transferencia<T extends Prisma.empresa$operacion_transferenciaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.empresa$operacion_transferenciaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$operacion_transferenciaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4044,6 +4496,54 @@ export type empresa$ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.VentaScalarFieldEnum | Prisma.VentaScalarFieldEnum[]
+}
+
+/**
+ * empresa.ajuste_inventario
+ */
+export type empresa$ajuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ajuste_inventario
+   */
+  select?: Prisma.ajuste_inventarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ajuste_inventario
+   */
+  omit?: Prisma.ajuste_inventarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ajuste_inventarioInclude<ExtArgs> | null
+  where?: Prisma.ajuste_inventarioWhereInput
+  orderBy?: Prisma.ajuste_inventarioOrderByWithRelationInput | Prisma.ajuste_inventarioOrderByWithRelationInput[]
+  cursor?: Prisma.ajuste_inventarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Ajuste_inventarioScalarFieldEnum | Prisma.Ajuste_inventarioScalarFieldEnum[]
+}
+
+/**
+ * empresa.operacion_transferencia
+ */
+export type empresa$operacion_transferenciaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the operacion_transferencia
+   */
+  select?: Prisma.operacion_transferenciaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the operacion_transferencia
+   */
+  omit?: Prisma.operacion_transferenciaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.operacion_transferenciaInclude<ExtArgs> | null
+  where?: Prisma.operacion_transferenciaWhereInput
+  orderBy?: Prisma.operacion_transferenciaOrderByWithRelationInput | Prisma.operacion_transferenciaOrderByWithRelationInput[]
+  cursor?: Prisma.operacion_transferenciaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Operacion_transferenciaScalarFieldEnum | Prisma.Operacion_transferenciaScalarFieldEnum[]
 }
 
 /**

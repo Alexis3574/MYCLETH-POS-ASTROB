@@ -69,6 +69,7 @@ export const ModelName = {
   metodo_pago: 'metodo_pago',
   movimiento_caja: 'movimiento_caja',
   movimiento_inventario: 'movimiento_inventario',
+  sincronizacion_ecommerce_inventario: 'sincronizacion_ecommerce_inventario',
   orden_venta: 'orden_venta',
   orden_venta_detalle: 'orden_venta_detalle',
   pedido_cliente: 'pedido_cliente',
@@ -86,11 +87,16 @@ export const ModelName = {
   transferencia_detalle: 'transferencia_detalle',
   unidad_medida: 'unidad_medida',
   usuario: 'usuario',
+  operacion_transferencia: 'operacion_transferencia',
   usuario_rol: 'usuario_rol',
   usuario_sucursal: 'usuario_sucursal',
   venta: 'venta',
   venta_detalle: 'venta_detalle',
-  venta_pago: 'venta_pago'
+  venta_pago: 'venta_pago',
+  devolucion_pago: 'devolucion_pago',
+  devolucion_venta: 'devolucion_venta',
+  devolucion_venta_detalle: 'devolucion_venta_detalle',
+  ajuste_inventario: 'ajuste_inventario'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -399,6 +405,25 @@ export const Movimiento_inventarioScalarFieldEnum = {
 export type Movimiento_inventarioScalarFieldEnum = (typeof Movimiento_inventarioScalarFieldEnum)[keyof typeof Movimiento_inventarioScalarFieldEnum]
 
 
+export const Sincronizacion_ecommerce_inventarioScalarFieldEnum = {
+  id: 'id',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  operation_id: 'operation_id',
+  codigo_barras: 'codigo_barras',
+  sku: 'sku',
+  adjustment: 'adjustment',
+  ecommerce_product_id: 'ecommerce_product_id',
+  estado: 'estado',
+  intentos: 'intentos',
+  ultimo_error: 'ultimo_error',
+  creado_en: 'creado_en',
+  ultimo_intento_en: 'ultimo_intento_en',
+  sincronizado_en: 'sincronizado_en'
+} as const
+
+export type Sincronizacion_ecommerce_inventarioScalarFieldEnum = (typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum)[keyof typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum]
+
+
 export const Orden_ventaScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -674,6 +699,21 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
+export const Operacion_transferenciaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  transferencia_id: 'transferencia_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  accion: 'accion',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_transferenciaScalarFieldEnum = (typeof Operacion_transferenciaScalarFieldEnum)[keyof typeof Operacion_transferenciaScalarFieldEnum]
+
+
 export const Usuario_rolScalarFieldEnum = {
   usuario_id: 'usuario_id',
   rol_id: 'rol_id'
@@ -749,6 +789,75 @@ export const Venta_pagoScalarFieldEnum = {
 } as const
 
 export type Venta_pagoScalarFieldEnum = (typeof Venta_pagoScalarFieldEnum)[keyof typeof Venta_pagoScalarFieldEnum]
+
+
+export const Devolucion_pagoScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_pago_id: 'venta_pago_id',
+  sesion_caja_id: 'sesion_caja_id',
+  monto: 'monto',
+  referencia: 'referencia',
+  fecha: 'fecha',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_pagoScalarFieldEnum = (typeof Devolucion_pagoScalarFieldEnum)[keyof typeof Devolucion_pagoScalarFieldEnum]
+
+
+export const Devolucion_ventaScalarFieldEnum = {
+  id: 'id',
+  venta_id: 'venta_id',
+  usuario_id: 'usuario_id',
+  sesion_caja_id: 'sesion_caja_id',
+  folio: 'folio',
+  motivo: 'motivo',
+  subtotal: 'subtotal',
+  descuento: 'descuento',
+  impuesto: 'impuesto',
+  total: 'total',
+  fecha: 'fecha',
+  creado_en: 'creado_en',
+  actualizado_en: 'actualizado_en'
+} as const
+
+export type Devolucion_ventaScalarFieldEnum = (typeof Devolucion_ventaScalarFieldEnum)[keyof typeof Devolucion_ventaScalarFieldEnum]
+
+
+export const Devolucion_venta_detalleScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_detalle_id: 'venta_detalle_id',
+  cantidad: 'cantidad',
+  subtotal_linea: 'subtotal_linea',
+  descuento_importe: 'descuento_importe',
+  impuesto_importe: 'impuesto_importe',
+  total_linea: 'total_linea',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_venta_detalleScalarFieldEnum = (typeof Devolucion_venta_detalleScalarFieldEnum)[keyof typeof Devolucion_venta_detalleScalarFieldEnum]
+
+
+export const Ajuste_inventarioScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  almacen_id: 'almacen_id',
+  producto_id: 'producto_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  request_hash: 'request_hash',
+  tipo: 'tipo',
+  cantidad: 'cantidad',
+  costo_unitario: 'costo_unitario',
+  motivo: 'motivo',
+  sincronizar_ecommerce: 'sincronizar_ecommerce',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Ajuste_inventarioScalarFieldEnum = (typeof Ajuste_inventarioScalarFieldEnum)[keyof typeof Ajuste_inventarioScalarFieldEnum]
 
 
 export const SortOrder = {

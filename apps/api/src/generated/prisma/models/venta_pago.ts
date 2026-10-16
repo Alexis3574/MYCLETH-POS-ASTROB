@@ -256,6 +256,7 @@ export type venta_pagoWhereInput = {
   referencia?: Prisma.StringNullableFilter<"venta_pago"> | string | null
   fecha?: Prisma.DateTimeFilter<"venta_pago"> | Date | string
   creado_en?: Prisma.DateTimeFilter<"venta_pago"> | Date | string
+  devolucion_pago?: Prisma.Devolucion_pagoListRelationFilter
   metodo_pago?: Prisma.XOR<Prisma.Metodo_pagoScalarRelationFilter, Prisma.metodo_pagoWhereInput>
   sesion_caja?: Prisma.XOR<Prisma.Sesion_cajaNullableScalarRelationFilter, Prisma.sesion_cajaWhereInput> | null
   venta?: Prisma.XOR<Prisma.VentaScalarRelationFilter, Prisma.ventaWhereInput>
@@ -270,6 +271,7 @@ export type venta_pagoOrderByWithRelationInput = {
   referencia?: Prisma.SortOrderInput | Prisma.SortOrder
   fecha?: Prisma.SortOrder
   creado_en?: Prisma.SortOrder
+  devolucion_pago?: Prisma.devolucion_pagoOrderByRelationAggregateInput
   metodo_pago?: Prisma.metodo_pagoOrderByWithRelationInput
   sesion_caja?: Prisma.sesion_cajaOrderByWithRelationInput
   venta?: Prisma.ventaOrderByWithRelationInput
@@ -287,6 +289,7 @@ export type venta_pagoWhereUniqueInput = Prisma.AtLeast<{
   referencia?: Prisma.StringNullableFilter<"venta_pago"> | string | null
   fecha?: Prisma.DateTimeFilter<"venta_pago"> | Date | string
   creado_en?: Prisma.DateTimeFilter<"venta_pago"> | Date | string
+  devolucion_pago?: Prisma.Devolucion_pagoListRelationFilter
   metodo_pago?: Prisma.XOR<Prisma.Metodo_pagoScalarRelationFilter, Prisma.metodo_pagoWhereInput>
   sesion_caja?: Prisma.XOR<Prisma.Sesion_cajaNullableScalarRelationFilter, Prisma.sesion_cajaWhereInput> | null
   venta?: Prisma.XOR<Prisma.VentaScalarRelationFilter, Prisma.ventaWhereInput>
@@ -328,6 +331,7 @@ export type venta_pagoCreateInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutVenta_pagoInput
   metodo_pago: Prisma.metodo_pagoCreateNestedOneWithoutVenta_pagoInput
   sesion_caja?: Prisma.sesion_cajaCreateNestedOneWithoutVenta_pagoInput
   venta: Prisma.ventaCreateNestedOneWithoutVenta_pagoInput
@@ -342,6 +346,7 @@ export type venta_pagoUncheckedCreateInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutVenta_pagoInput
 }
 
 export type venta_pagoUpdateInput = {
@@ -350,6 +355,7 @@ export type venta_pagoUpdateInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutVenta_pagoNestedInput
   metodo_pago?: Prisma.metodo_pagoUpdateOneRequiredWithoutVenta_pagoNestedInput
   sesion_caja?: Prisma.sesion_cajaUpdateOneWithoutVenta_pagoNestedInput
   venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_pagoNestedInput
@@ -364,6 +370,7 @@ export type venta_pagoUncheckedUpdateInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutVenta_pagoNestedInput
 }
 
 export type venta_pagoCreateManyInput = {
@@ -453,6 +460,11 @@ export type venta_pagoSumOrderByAggregateInput = {
   metodo_pago_id?: Prisma.SortOrder
   sesion_caja_id?: Prisma.SortOrder
   monto?: Prisma.SortOrder
+}
+
+export type Venta_pagoScalarRelationFilter = {
+  is?: Prisma.venta_pagoWhereInput
+  isNot?: Prisma.venta_pagoWhereInput
 }
 
 export type venta_pagoCreateNestedManyWithoutMetodo_pagoInput = {
@@ -581,12 +593,27 @@ export type venta_pagoUncheckedUpdateManyWithoutVentaNestedInput = {
   deleteMany?: Prisma.venta_pagoScalarWhereInput | Prisma.venta_pagoScalarWhereInput[]
 }
 
+export type venta_pagoCreateNestedOneWithoutDevolucion_pagoInput = {
+  create?: Prisma.XOR<Prisma.venta_pagoCreateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedCreateWithoutDevolucion_pagoInput>
+  connectOrCreate?: Prisma.venta_pagoCreateOrConnectWithoutDevolucion_pagoInput
+  connect?: Prisma.venta_pagoWhereUniqueInput
+}
+
+export type venta_pagoUpdateOneRequiredWithoutDevolucion_pagoNestedInput = {
+  create?: Prisma.XOR<Prisma.venta_pagoCreateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedCreateWithoutDevolucion_pagoInput>
+  connectOrCreate?: Prisma.venta_pagoCreateOrConnectWithoutDevolucion_pagoInput
+  upsert?: Prisma.venta_pagoUpsertWithoutDevolucion_pagoInput
+  connect?: Prisma.venta_pagoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.venta_pagoUpdateToOneWithWhereWithoutDevolucion_pagoInput, Prisma.venta_pagoUpdateWithoutDevolucion_pagoInput>, Prisma.venta_pagoUncheckedUpdateWithoutDevolucion_pagoInput>
+}
+
 export type venta_pagoCreateWithoutMetodo_pagoInput = {
   id?: bigint | number
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutVenta_pagoInput
   sesion_caja?: Prisma.sesion_cajaCreateNestedOneWithoutVenta_pagoInput
   venta: Prisma.ventaCreateNestedOneWithoutVenta_pagoInput
 }
@@ -599,6 +626,7 @@ export type venta_pagoUncheckedCreateWithoutMetodo_pagoInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutVenta_pagoInput
 }
 
 export type venta_pagoCreateOrConnectWithoutMetodo_pagoInput = {
@@ -647,6 +675,7 @@ export type venta_pagoCreateWithoutSesion_cajaInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutVenta_pagoInput
   metodo_pago: Prisma.metodo_pagoCreateNestedOneWithoutVenta_pagoInput
   venta: Prisma.ventaCreateNestedOneWithoutVenta_pagoInput
 }
@@ -659,6 +688,7 @@ export type venta_pagoUncheckedCreateWithoutSesion_cajaInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutVenta_pagoInput
 }
 
 export type venta_pagoCreateOrConnectWithoutSesion_cajaInput = {
@@ -693,6 +723,7 @@ export type venta_pagoCreateWithoutVentaInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoCreateNestedManyWithoutVenta_pagoInput
   metodo_pago: Prisma.metodo_pagoCreateNestedOneWithoutVenta_pagoInput
   sesion_caja?: Prisma.sesion_cajaCreateNestedOneWithoutVenta_pagoInput
 }
@@ -705,6 +736,7 @@ export type venta_pagoUncheckedCreateWithoutVentaInput = {
   referencia?: string | null
   fecha?: Date | string
   creado_en?: Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedCreateNestedManyWithoutVenta_pagoInput
 }
 
 export type venta_pagoCreateOrConnectWithoutVentaInput = {
@@ -733,6 +765,66 @@ export type venta_pagoUpdateManyWithWhereWithoutVentaInput = {
   data: Prisma.XOR<Prisma.venta_pagoUpdateManyMutationInput, Prisma.venta_pagoUncheckedUpdateManyWithoutVentaInput>
 }
 
+export type venta_pagoCreateWithoutDevolucion_pagoInput = {
+  id?: bigint | number
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  referencia?: string | null
+  fecha?: Date | string
+  creado_en?: Date | string
+  metodo_pago: Prisma.metodo_pagoCreateNestedOneWithoutVenta_pagoInput
+  sesion_caja?: Prisma.sesion_cajaCreateNestedOneWithoutVenta_pagoInput
+  venta: Prisma.ventaCreateNestedOneWithoutVenta_pagoInput
+}
+
+export type venta_pagoUncheckedCreateWithoutDevolucion_pagoInput = {
+  id?: bigint | number
+  venta_id: bigint | number
+  metodo_pago_id: bigint | number
+  sesion_caja_id?: bigint | number | null
+  monto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  referencia?: string | null
+  fecha?: Date | string
+  creado_en?: Date | string
+}
+
+export type venta_pagoCreateOrConnectWithoutDevolucion_pagoInput = {
+  where: Prisma.venta_pagoWhereUniqueInput
+  create: Prisma.XOR<Prisma.venta_pagoCreateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedCreateWithoutDevolucion_pagoInput>
+}
+
+export type venta_pagoUpsertWithoutDevolucion_pagoInput = {
+  update: Prisma.XOR<Prisma.venta_pagoUpdateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedUpdateWithoutDevolucion_pagoInput>
+  create: Prisma.XOR<Prisma.venta_pagoCreateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedCreateWithoutDevolucion_pagoInput>
+  where?: Prisma.venta_pagoWhereInput
+}
+
+export type venta_pagoUpdateToOneWithWhereWithoutDevolucion_pagoInput = {
+  where?: Prisma.venta_pagoWhereInput
+  data: Prisma.XOR<Prisma.venta_pagoUpdateWithoutDevolucion_pagoInput, Prisma.venta_pagoUncheckedUpdateWithoutDevolucion_pagoInput>
+}
+
+export type venta_pagoUpdateWithoutDevolucion_pagoInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  metodo_pago?: Prisma.metodo_pagoUpdateOneRequiredWithoutVenta_pagoNestedInput
+  sesion_caja?: Prisma.sesion_cajaUpdateOneWithoutVenta_pagoNestedInput
+  venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_pagoNestedInput
+}
+
+export type venta_pagoUncheckedUpdateWithoutDevolucion_pagoInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  venta_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  metodo_pago_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sesion_caja_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type venta_pagoCreateManyMetodo_pagoInput = {
   id?: bigint | number
   venta_id: bigint | number
@@ -749,6 +841,7 @@ export type venta_pagoUpdateWithoutMetodo_pagoInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutVenta_pagoNestedInput
   sesion_caja?: Prisma.sesion_cajaUpdateOneWithoutVenta_pagoNestedInput
   venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_pagoNestedInput
 }
@@ -761,6 +854,7 @@ export type venta_pagoUncheckedUpdateWithoutMetodo_pagoInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutVenta_pagoNestedInput
 }
 
 export type venta_pagoUncheckedUpdateManyWithoutMetodo_pagoInput = {
@@ -789,6 +883,7 @@ export type venta_pagoUpdateWithoutSesion_cajaInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutVenta_pagoNestedInput
   metodo_pago?: Prisma.metodo_pagoUpdateOneRequiredWithoutVenta_pagoNestedInput
   venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_pagoNestedInput
 }
@@ -801,6 +896,7 @@ export type venta_pagoUncheckedUpdateWithoutSesion_cajaInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutVenta_pagoNestedInput
 }
 
 export type venta_pagoUncheckedUpdateManyWithoutSesion_cajaInput = {
@@ -829,6 +925,7 @@ export type venta_pagoUpdateWithoutVentaInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUpdateManyWithoutVenta_pagoNestedInput
   metodo_pago?: Prisma.metodo_pagoUpdateOneRequiredWithoutVenta_pagoNestedInput
   sesion_caja?: Prisma.sesion_cajaUpdateOneWithoutVenta_pagoNestedInput
 }
@@ -841,6 +938,7 @@ export type venta_pagoUncheckedUpdateWithoutVentaInput = {
   referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devolucion_pago?: Prisma.devolucion_pagoUncheckedUpdateManyWithoutVenta_pagoNestedInput
 }
 
 export type venta_pagoUncheckedUpdateManyWithoutVentaInput = {
@@ -854,6 +952,35 @@ export type venta_pagoUncheckedUpdateManyWithoutVentaInput = {
 }
 
 
+/**
+ * Count Type Venta_pagoCountOutputType
+ */
+
+export type Venta_pagoCountOutputType = {
+  devolucion_pago: number
+}
+
+export type Venta_pagoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_pago?: boolean | Venta_pagoCountOutputTypeCountDevolucion_pagoArgs
+}
+
+/**
+ * Venta_pagoCountOutputType without action
+ */
+export type Venta_pagoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Venta_pagoCountOutputType
+   */
+  select?: Prisma.Venta_pagoCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * Venta_pagoCountOutputType without action
+ */
+export type Venta_pagoCountOutputTypeCountDevolucion_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devolucion_pagoWhereInput
+}
+
 
 export type venta_pagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -864,9 +991,11 @@ export type venta_pagoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   referencia?: boolean
   fecha?: boolean
   creado_en?: boolean
+  devolucion_pago?: boolean | Prisma.venta_pago$devolucion_pagoArgs<ExtArgs>
   metodo_pago?: boolean | Prisma.metodo_pagoDefaultArgs<ExtArgs>
   sesion_caja?: boolean | Prisma.venta_pago$sesion_cajaArgs<ExtArgs>
   venta?: boolean | Prisma.ventaDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.Venta_pagoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["venta_pago"]>
 
 export type venta_pagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -910,9 +1039,11 @@ export type venta_pagoSelectScalar = {
 
 export type venta_pagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "venta_id" | "metodo_pago_id" | "sesion_caja_id" | "monto" | "referencia" | "fecha" | "creado_en", ExtArgs["result"]["venta_pago"]>
 export type venta_pagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_pago?: boolean | Prisma.venta_pago$devolucion_pagoArgs<ExtArgs>
   metodo_pago?: boolean | Prisma.metodo_pagoDefaultArgs<ExtArgs>
   sesion_caja?: boolean | Prisma.venta_pago$sesion_cajaArgs<ExtArgs>
   venta?: boolean | Prisma.ventaDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.Venta_pagoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type venta_pagoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   metodo_pago?: boolean | Prisma.metodo_pagoDefaultArgs<ExtArgs>
@@ -928,6 +1059,7 @@ export type venta_pagoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $venta_pagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "venta_pago"
   objects: {
+    devolucion_pago: Prisma.$devolucion_pagoPayload<ExtArgs>[]
     metodo_pago: Prisma.$metodo_pagoPayload<ExtArgs>
     sesion_caja: Prisma.$sesion_cajaPayload<ExtArgs> | null
     venta: Prisma.$ventaPayload<ExtArgs>
@@ -1335,6 +1467,7 @@ readonly fields: venta_pagoFieldRefs;
  */
 export interface Prisma__venta_pagoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  devolucion_pago<T extends Prisma.venta_pago$devolucion_pagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta_pago$devolucion_pagoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devolucion_pagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   metodo_pago<T extends Prisma.metodo_pagoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.metodo_pagoDefaultArgs<ExtArgs>>): Prisma.Prisma__metodo_pagoClient<runtime.Types.Result.GetResult<Prisma.$metodo_pagoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   sesion_caja<T extends Prisma.venta_pago$sesion_cajaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta_pago$sesion_cajaArgs<ExtArgs>>): Prisma.Prisma__sesion_cajaClient<runtime.Types.Result.GetResult<Prisma.$sesion_cajaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   venta<T extends Prisma.ventaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ventaDefaultArgs<ExtArgs>>): Prisma.Prisma__ventaClient<runtime.Types.Result.GetResult<Prisma.$ventaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -1773,6 +1906,30 @@ export type venta_pagoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many venta_pagos to delete.
    */
   limit?: number
+}
+
+/**
+ * venta_pago.devolucion_pago
+ */
+export type venta_pago$devolucion_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devolucion_pago
+   */
+  select?: Prisma.devolucion_pagoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devolucion_pago
+   */
+  omit?: Prisma.devolucion_pagoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devolucion_pagoInclude<ExtArgs> | null
+  where?: Prisma.devolucion_pagoWhereInput
+  orderBy?: Prisma.devolucion_pagoOrderByWithRelationInput | Prisma.devolucion_pagoOrderByWithRelationInput[]
+  cursor?: Prisma.devolucion_pagoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Devolucion_pagoScalarFieldEnum | Prisma.Devolucion_pagoScalarFieldEnum[]
 }
 
 /**

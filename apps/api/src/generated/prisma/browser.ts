@@ -108,6 +108,11 @@ export type movimiento_caja = Prisma.movimiento_cajaModel
  */
 export type movimiento_inventario = Prisma.movimiento_inventarioModel
 /**
+ * Model sincronizacion_ecommerce_inventario
+ * 
+ */
+export type sincronizacion_ecommerce_inventario = Prisma.sincronizacion_ecommerce_inventarioModel
+/**
  * Model orden_venta
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
@@ -193,6 +198,11 @@ export type unidad_medida = Prisma.unidad_medidaModel
  */
 export type usuario = Prisma.usuarioModel
 /**
+ * Model operacion_transferencia
+ *
+ */
+export type operacion_transferencia = Prisma.operacion_transferenciaModel
+/**
  * Model usuario_rol
  * 
  */
@@ -217,3 +227,23 @@ export type venta_detalle = Prisma.venta_detalleModel
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type venta_pago = Prisma.venta_pagoModel
+/**
+ * Model devolucion_pago
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type devolucion_pago = Prisma.devolucion_pagoModel
+/**
+ * Model devolucion_venta
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type devolucion_venta = Prisma.devolucion_ventaModel
+/**
+ * Model devolucion_venta_detalle
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type devolucion_venta_detalle = Prisma.devolucion_venta_detalleModel
+/**
+ * Model ajuste_inventario
+ * Un ajuste aplicado por petición. La clave identifica reintentos dentro de una empresa.
+ */
+export type ajuste_inventario = Prisma.ajuste_inventarioModel

@@ -251,6 +251,7 @@ export type almacenWhereInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.Transferencia_almacenListRelationFilter
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.Transferencia_almacenListRelationFilter
   venta?: Prisma.VentaListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
 }
 
 export type almacenOrderByWithRelationInput = {
@@ -269,6 +270,7 @@ export type almacenOrderByWithRelationInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenOrderByRelationAggregateInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenOrderByRelationAggregateInput
   venta?: Prisma.ventaOrderByRelationAggregateInput
+  ajuste_inventario?: Prisma.ajuste_inventarioOrderByRelationAggregateInput
 }
 
 export type almacenWhereUniqueInput = Prisma.AtLeast<{
@@ -291,6 +293,7 @@ export type almacenWhereUniqueInput = Prisma.AtLeast<{
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.Transferencia_almacenListRelationFilter
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.Transferencia_almacenListRelationFilter
   venta?: Prisma.VentaListRelationFilter
+  ajuste_inventario?: Prisma.Ajuste_inventarioListRelationFilter
 }, "id" | "sucursal_id_codigo">
 
 export type almacenOrderByWithAggregationInput = {
@@ -338,6 +341,7 @@ export type almacenCreateInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateInput = {
@@ -355,6 +359,7 @@ export type almacenUncheckedCreateInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUpdateInput = {
@@ -372,6 +377,7 @@ export type almacenUpdateInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateInput = {
@@ -389,6 +395,7 @@ export type almacenUncheckedUpdateInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateManyInput = {
@@ -636,6 +643,20 @@ export type almacenUpdateOneRequiredWithoutVentaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.almacenUpdateToOneWithWhereWithoutVentaInput, Prisma.almacenUpdateWithoutVentaInput>, Prisma.almacenUncheckedUpdateWithoutVentaInput>
 }
 
+export type almacenCreateNestedOneWithoutAjuste_inventarioInput = {
+  create?: Prisma.XOR<Prisma.almacenCreateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.almacenCreateOrConnectWithoutAjuste_inventarioInput
+  connect?: Prisma.almacenWhereUniqueInput
+}
+
+export type almacenUpdateOneRequiredWithoutAjuste_inventarioNestedInput = {
+  create?: Prisma.XOR<Prisma.almacenCreateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedCreateWithoutAjuste_inventarioInput>
+  connectOrCreate?: Prisma.almacenCreateOrConnectWithoutAjuste_inventarioInput
+  upsert?: Prisma.almacenUpsertWithoutAjuste_inventarioInput
+  connect?: Prisma.almacenWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.almacenUpdateToOneWithWhereWithoutAjuste_inventarioInput, Prisma.almacenUpdateWithoutAjuste_inventarioInput>, Prisma.almacenUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
 export type almacenCreateWithoutCompraInput = {
   id?: bigint | number
   codigo: string
@@ -650,6 +671,7 @@ export type almacenCreateWithoutCompraInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutCompraInput = {
@@ -666,6 +688,7 @@ export type almacenUncheckedCreateWithoutCompraInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutCompraInput = {
@@ -698,6 +721,7 @@ export type almacenUpdateWithoutCompraInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutCompraInput = {
@@ -714,6 +738,7 @@ export type almacenUncheckedUpdateWithoutCompraInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateWithoutExistenciaInput = {
@@ -730,6 +755,7 @@ export type almacenCreateWithoutExistenciaInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutExistenciaInput = {
@@ -746,6 +772,7 @@ export type almacenUncheckedCreateWithoutExistenciaInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutExistenciaInput = {
@@ -778,6 +805,7 @@ export type almacenUpdateWithoutExistenciaInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutExistenciaInput = {
@@ -794,6 +822,7 @@ export type almacenUncheckedUpdateWithoutExistenciaInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateWithoutMovimiento_inventarioInput = {
@@ -810,6 +839,7 @@ export type almacenCreateWithoutMovimiento_inventarioInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutMovimiento_inventarioInput = {
@@ -826,6 +856,7 @@ export type almacenUncheckedCreateWithoutMovimiento_inventarioInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutMovimiento_inventarioInput = {
@@ -858,6 +889,7 @@ export type almacenUpdateWithoutMovimiento_inventarioInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutMovimiento_inventarioInput = {
@@ -874,6 +906,7 @@ export type almacenUncheckedUpdateWithoutMovimiento_inventarioInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateWithoutSucursalInput = {
@@ -890,6 +923,7 @@ export type almacenCreateWithoutSucursalInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutSucursalInput = {
@@ -906,6 +940,7 @@ export type almacenUncheckedCreateWithoutSucursalInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutSucursalInput = {
@@ -962,6 +997,7 @@ export type almacenCreateWithoutTransferencia_almacen_transferencia_almacen_alma
   movimiento_inventario?: Prisma.movimiento_inventarioCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -978,6 +1014,7 @@ export type almacenUncheckedCreateWithoutTransferencia_almacen_transferencia_alm
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -999,6 +1036,7 @@ export type almacenCreateWithoutTransferencia_almacen_transferencia_almacen_alma
   movimiento_inventario?: Prisma.movimiento_inventarioCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1015,6 +1053,7 @@ export type almacenUncheckedCreateWithoutTransferencia_almacen_transferencia_alm
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1047,6 +1086,7 @@ export type almacenUpdateWithoutTransferencia_almacen_transferencia_almacen_alma
   movimiento_inventario?: Prisma.movimiento_inventarioUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenInput = {
@@ -1063,6 +1103,7 @@ export type almacenUncheckedUpdateWithoutTransferencia_almacen_transferencia_alm
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUpsertWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1090,6 +1131,7 @@ export type almacenUpdateWithoutTransferencia_almacen_transferencia_almacen_alma
   movimiento_inventario?: Prisma.movimiento_inventarioUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenInput = {
@@ -1106,6 +1148,7 @@ export type almacenUncheckedUpdateWithoutTransferencia_almacen_transferencia_alm
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateWithoutVentaInput = {
@@ -1122,6 +1165,7 @@ export type almacenCreateWithoutVentaInput = {
   movimiento_inventario?: Prisma.movimiento_inventarioCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenUncheckedCreateWithoutVentaInput = {
@@ -1138,6 +1182,7 @@ export type almacenUncheckedCreateWithoutVentaInput = {
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
 }
 
 export type almacenCreateOrConnectWithoutVentaInput = {
@@ -1170,6 +1215,7 @@ export type almacenUpdateWithoutVentaInput = {
   movimiento_inventario?: Prisma.movimiento_inventarioUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutVentaInput = {
@@ -1186,6 +1232,91 @@ export type almacenUncheckedUpdateWithoutVentaInput = {
   movimiento_inventario?: Prisma.movimiento_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
+}
+
+export type almacenCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  codigo: string
+  nombre: string
+  descripcion?: string | null
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  sucursal: Prisma.sucursalCreateNestedOneWithoutAlmacenInput
+  compra?: Prisma.compraCreateNestedManyWithoutAlmacenInput
+  existencia?: Prisma.existenciaCreateNestedManyWithoutAlmacenInput
+  movimiento_inventario?: Prisma.movimiento_inventarioCreateNestedManyWithoutAlmacenInput
+  transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
+  transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
+  venta?: Prisma.ventaCreateNestedManyWithoutAlmacenInput
+}
+
+export type almacenUncheckedCreateWithoutAjuste_inventarioInput = {
+  id?: bigint | number
+  sucursal_id: bigint | number
+  codigo: string
+  nombre: string
+  descripcion?: string | null
+  activo?: boolean
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra?: Prisma.compraUncheckedCreateNestedManyWithoutAlmacenInput
+  existencia?: Prisma.existenciaUncheckedCreateNestedManyWithoutAlmacenInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUncheckedCreateNestedManyWithoutAlmacenInput
+  transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenInput
+  transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedCreateNestedManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenInput
+  venta?: Prisma.ventaUncheckedCreateNestedManyWithoutAlmacenInput
+}
+
+export type almacenCreateOrConnectWithoutAjuste_inventarioInput = {
+  where: Prisma.almacenWhereUniqueInput
+  create: Prisma.XOR<Prisma.almacenCreateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedCreateWithoutAjuste_inventarioInput>
+}
+
+export type almacenUpsertWithoutAjuste_inventarioInput = {
+  update: Prisma.XOR<Prisma.almacenUpdateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedUpdateWithoutAjuste_inventarioInput>
+  create: Prisma.XOR<Prisma.almacenCreateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedCreateWithoutAjuste_inventarioInput>
+  where?: Prisma.almacenWhereInput
+}
+
+export type almacenUpdateToOneWithWhereWithoutAjuste_inventarioInput = {
+  where?: Prisma.almacenWhereInput
+  data: Prisma.XOR<Prisma.almacenUpdateWithoutAjuste_inventarioInput, Prisma.almacenUncheckedUpdateWithoutAjuste_inventarioInput>
+}
+
+export type almacenUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutAlmacenNestedInput
+  compra?: Prisma.compraUpdateManyWithoutAlmacenNestedInput
+  existencia?: Prisma.existenciaUpdateManyWithoutAlmacenNestedInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUpdateManyWithoutAlmacenNestedInput
+  transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
+  transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
+  venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+}
+
+export type almacenUncheckedUpdateWithoutAjuste_inventarioInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sucursal_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra?: Prisma.compraUncheckedUpdateManyWithoutAlmacenNestedInput
+  existencia?: Prisma.existenciaUncheckedUpdateManyWithoutAlmacenNestedInput
+  movimiento_inventario?: Prisma.movimiento_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
+  transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
+  transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
+  venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenCreateManySucursalInput = {
@@ -1212,6 +1343,7 @@ export type almacenUpdateWithoutSucursalInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateWithoutSucursalInput = {
@@ -1228,6 +1360,7 @@ export type almacenUncheckedUpdateWithoutSucursalInput = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_destino_idToalmacenNestedInput
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: Prisma.transferencia_almacenUncheckedUpdateManyWithoutAlmacen_transferencia_almacen_almacen_origen_idToalmacenNestedInput
   venta?: Prisma.ventaUncheckedUpdateManyWithoutAlmacenNestedInput
+  ajuste_inventario?: Prisma.ajuste_inventarioUncheckedUpdateManyWithoutAlmacenNestedInput
 }
 
 export type almacenUncheckedUpdateManyWithoutSucursalInput = {
@@ -1252,6 +1385,7 @@ export type AlmacenCountOutputType = {
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen: number
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen: number
   venta: number
+  ajuste_inventario: number
 }
 
 export type AlmacenCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1261,6 +1395,7 @@ export type AlmacenCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: boolean | AlmacenCountOutputTypeCountTransferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenArgs
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: boolean | AlmacenCountOutputTypeCountTransferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenArgs
   venta?: boolean | AlmacenCountOutputTypeCountVentaArgs
+  ajuste_inventario?: boolean | AlmacenCountOutputTypeCountAjuste_inventarioArgs
 }
 
 /**
@@ -1315,6 +1450,13 @@ export type AlmacenCountOutputTypeCountVentaArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.ventaWhereInput
 }
 
+/**
+ * AlmacenCountOutputType without action
+ */
+export type AlmacenCountOutputTypeCountAjuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ajuste_inventarioWhereInput
+}
+
 
 export type almacenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1332,6 +1474,7 @@ export type almacenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: boolean | Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenArgs<ExtArgs>
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: boolean | Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenArgs<ExtArgs>
   venta?: boolean | Prisma.almacen$ventaArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.almacen$ajuste_inventarioArgs<ExtArgs>
   _count?: boolean | Prisma.AlmacenCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["almacen"]>
 
@@ -1379,6 +1522,7 @@ export type almacenInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen?: boolean | Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenArgs<ExtArgs>
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen?: boolean | Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenArgs<ExtArgs>
   venta?: boolean | Prisma.almacen$ventaArgs<ExtArgs>
+  ajuste_inventario?: boolean | Prisma.almacen$ajuste_inventarioArgs<ExtArgs>
   _count?: boolean | Prisma.AlmacenCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type almacenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1398,6 +1542,7 @@ export type $almacenPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen: Prisma.$transferencia_almacenPayload<ExtArgs>[]
     transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen: Prisma.$transferencia_almacenPayload<ExtArgs>[]
     venta: Prisma.$ventaPayload<ExtArgs>[]
+    ajuste_inventario: Prisma.$ajuste_inventarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1809,6 +1954,7 @@ export interface Prisma__almacenClient<T, Null = never, ExtArgs extends runtime.
   transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacen<T extends Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_destino_idToalmacenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$transferencia_almacenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacen<T extends Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.almacen$transferencia_almacen_transferencia_almacen_almacen_origen_idToalmacenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$transferencia_almacenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   venta<T extends Prisma.almacen$ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.almacen$ventaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ventaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ajuste_inventario<T extends Prisma.almacen$ajuste_inventarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.almacen$ajuste_inventarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ajuste_inventarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2388,6 +2534,30 @@ export type almacen$ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.VentaScalarFieldEnum | Prisma.VentaScalarFieldEnum[]
+}
+
+/**
+ * almacen.ajuste_inventario
+ */
+export type almacen$ajuste_inventarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ajuste_inventario
+   */
+  select?: Prisma.ajuste_inventarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ajuste_inventario
+   */
+  omit?: Prisma.ajuste_inventarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ajuste_inventarioInclude<ExtArgs> | null
+  where?: Prisma.ajuste_inventarioWhereInput
+  orderBy?: Prisma.ajuste_inventarioOrderByWithRelationInput | Prisma.ajuste_inventarioOrderByWithRelationInput[]
+  cursor?: Prisma.ajuste_inventarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Ajuste_inventarioScalarFieldEnum | Prisma.Ajuste_inventarioScalarFieldEnum[]
 }
 
 /**

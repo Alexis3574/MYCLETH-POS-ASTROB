@@ -415,6 +415,7 @@ export const ModelName = {
   metodo_pago: 'metodo_pago',
   movimiento_caja: 'movimiento_caja',
   movimiento_inventario: 'movimiento_inventario',
+  sincronizacion_ecommerce_inventario: 'sincronizacion_ecommerce_inventario',
   orden_venta: 'orden_venta',
   orden_venta_detalle: 'orden_venta_detalle',
   pedido_cliente: 'pedido_cliente',
@@ -432,11 +433,16 @@ export const ModelName = {
   transferencia_detalle: 'transferencia_detalle',
   unidad_medida: 'unidad_medida',
   usuario: 'usuario',
+  operacion_transferencia: 'operacion_transferencia',
   usuario_rol: 'usuario_rol',
   usuario_sucursal: 'usuario_sucursal',
   venta: 'venta',
   venta_detalle: 'venta_detalle',
-  venta_pago: 'venta_pago'
+  venta_pago: 'venta_pago',
+  devolucion_pago: 'devolucion_pago',
+  devolucion_venta: 'devolucion_venta',
+  devolucion_venta_detalle: 'devolucion_venta_detalle',
+  ajuste_inventario: 'ajuste_inventario'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -452,7 +458,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago"
+    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "operacion_transferencia" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1788,6 +1794,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    sincronizacion_ecommerce_inventario: {
+      payload: Prisma.$sincronizacion_ecommerce_inventarioPayload<ExtArgs>
+      fields: Prisma.sincronizacion_ecommerce_inventarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        findFirst: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        findMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        create: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        createMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        delete: {
+          args: Prisma.sincronizacion_ecommerce_inventarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        update: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.sincronizacion_ecommerce_inventarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$sincronizacion_ecommerce_inventarioPayload>
+        }
+        aggregate: {
+          args: Prisma.Sincronizacion_ecommerce_inventarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSincronizacion_ecommerce_inventario>
+        }
+        groupBy: {
+          args: Prisma.sincronizacion_ecommerce_inventarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Sincronizacion_ecommerce_inventarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.sincronizacion_ecommerce_inventarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Sincronizacion_ecommerce_inventarioCountAggregateOutputType> | number
+        }
+      }
+    }
     orden_venta: {
       payload: Prisma.$orden_ventaPayload<ExtArgs>
       fields: Prisma.orden_ventaFieldRefs
@@ -3046,6 +3126,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    operacion_transferencia: {
+      payload: Prisma.$operacion_transferenciaPayload<ExtArgs>
+      fields: Prisma.operacion_transferenciaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.operacion_transferenciaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.operacion_transferenciaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        findFirst: {
+          args: Prisma.operacion_transferenciaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.operacion_transferenciaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        findMany: {
+          args: Prisma.operacion_transferenciaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        create: {
+          args: Prisma.operacion_transferenciaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        createMany: {
+          args: Prisma.operacion_transferenciaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.operacion_transferenciaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        delete: {
+          args: Prisma.operacion_transferenciaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        update: {
+          args: Prisma.operacion_transferenciaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        deleteMany: {
+          args: Prisma.operacion_transferenciaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.operacion_transferenciaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.operacion_transferenciaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>[]
+        }
+        upsert: {
+          args: Prisma.operacion_transferenciaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_transferenciaPayload>
+        }
+        aggregate: {
+          args: Prisma.Operacion_transferenciaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOperacion_transferencia>
+        }
+        groupBy: {
+          args: Prisma.operacion_transferenciaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_transferenciaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.operacion_transferenciaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_transferenciaCountAggregateOutputType> | number
+        }
+      }
+    }
     usuario_rol: {
       payload: Prisma.$usuario_rolPayload<ExtArgs>
       fields: Prisma.usuario_rolFieldRefs
@@ -3416,6 +3570,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    devolucion_pago: {
+      payload: Prisma.$devolucion_pagoPayload<ExtArgs>
+      fields: Prisma.devolucion_pagoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.devolucion_pagoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.devolucion_pagoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        findFirst: {
+          args: Prisma.devolucion_pagoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.devolucion_pagoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        findMany: {
+          args: Prisma.devolucion_pagoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>[]
+        }
+        create: {
+          args: Prisma.devolucion_pagoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        createMany: {
+          args: Prisma.devolucion_pagoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.devolucion_pagoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>[]
+        }
+        delete: {
+          args: Prisma.devolucion_pagoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        update: {
+          args: Prisma.devolucion_pagoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        deleteMany: {
+          args: Prisma.devolucion_pagoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.devolucion_pagoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.devolucion_pagoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>[]
+        }
+        upsert: {
+          args: Prisma.devolucion_pagoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_pagoPayload>
+        }
+        aggregate: {
+          args: Prisma.Devolucion_pagoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDevolucion_pago>
+        }
+        groupBy: {
+          args: Prisma.devolucion_pagoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_pagoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.devolucion_pagoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_pagoCountAggregateOutputType> | number
+        }
+      }
+    }
+    devolucion_venta: {
+      payload: Prisma.$devolucion_ventaPayload<ExtArgs>
+      fields: Prisma.devolucion_ventaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.devolucion_ventaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.devolucion_ventaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        findFirst: {
+          args: Prisma.devolucion_ventaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.devolucion_ventaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        findMany: {
+          args: Prisma.devolucion_ventaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>[]
+        }
+        create: {
+          args: Prisma.devolucion_ventaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        createMany: {
+          args: Prisma.devolucion_ventaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.devolucion_ventaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>[]
+        }
+        delete: {
+          args: Prisma.devolucion_ventaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        update: {
+          args: Prisma.devolucion_ventaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        deleteMany: {
+          args: Prisma.devolucion_ventaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.devolucion_ventaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.devolucion_ventaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>[]
+        }
+        upsert: {
+          args: Prisma.devolucion_ventaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_ventaPayload>
+        }
+        aggregate: {
+          args: Prisma.Devolucion_ventaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDevolucion_venta>
+        }
+        groupBy: {
+          args: Prisma.devolucion_ventaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_ventaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.devolucion_ventaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_ventaCountAggregateOutputType> | number
+        }
+      }
+    }
+    devolucion_venta_detalle: {
+      payload: Prisma.$devolucion_venta_detallePayload<ExtArgs>
+      fields: Prisma.devolucion_venta_detalleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.devolucion_venta_detalleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.devolucion_venta_detalleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        findFirst: {
+          args: Prisma.devolucion_venta_detalleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.devolucion_venta_detalleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        findMany: {
+          args: Prisma.devolucion_venta_detalleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>[]
+        }
+        create: {
+          args: Prisma.devolucion_venta_detalleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        createMany: {
+          args: Prisma.devolucion_venta_detalleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.devolucion_venta_detalleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>[]
+        }
+        delete: {
+          args: Prisma.devolucion_venta_detalleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        update: {
+          args: Prisma.devolucion_venta_detalleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        deleteMany: {
+          args: Prisma.devolucion_venta_detalleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.devolucion_venta_detalleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.devolucion_venta_detalleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>[]
+        }
+        upsert: {
+          args: Prisma.devolucion_venta_detalleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$devolucion_venta_detallePayload>
+        }
+        aggregate: {
+          args: Prisma.Devolucion_venta_detalleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDevolucion_venta_detalle>
+        }
+        groupBy: {
+          args: Prisma.devolucion_venta_detalleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_venta_detalleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.devolucion_venta_detalleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Devolucion_venta_detalleCountAggregateOutputType> | number
+        }
+      }
+    }
+    ajuste_inventario: {
+      payload: Prisma.$ajuste_inventarioPayload<ExtArgs>
+      fields: Prisma.ajuste_inventarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ajuste_inventarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ajuste_inventarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        findFirst: {
+          args: Prisma.ajuste_inventarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ajuste_inventarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        findMany: {
+          args: Prisma.ajuste_inventarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        create: {
+          args: Prisma.ajuste_inventarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        createMany: {
+          args: Prisma.ajuste_inventarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ajuste_inventarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        delete: {
+          args: Prisma.ajuste_inventarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        update: {
+          args: Prisma.ajuste_inventarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.ajuste_inventarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ajuste_inventarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ajuste_inventarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.ajuste_inventarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ajuste_inventarioPayload>
+        }
+        aggregate: {
+          args: Prisma.Ajuste_inventarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAjuste_inventario>
+        }
+        groupBy: {
+          args: Prisma.ajuste_inventarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Ajuste_inventarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ajuste_inventarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Ajuste_inventarioCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3745,6 +4195,25 @@ export const Movimiento_inventarioScalarFieldEnum = {
 export type Movimiento_inventarioScalarFieldEnum = (typeof Movimiento_inventarioScalarFieldEnum)[keyof typeof Movimiento_inventarioScalarFieldEnum]
 
 
+export const Sincronizacion_ecommerce_inventarioScalarFieldEnum = {
+  id: 'id',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  operation_id: 'operation_id',
+  codigo_barras: 'codigo_barras',
+  sku: 'sku',
+  adjustment: 'adjustment',
+  ecommerce_product_id: 'ecommerce_product_id',
+  estado: 'estado',
+  intentos: 'intentos',
+  ultimo_error: 'ultimo_error',
+  creado_en: 'creado_en',
+  ultimo_intento_en: 'ultimo_intento_en',
+  sincronizado_en: 'sincronizado_en'
+} as const
+
+export type Sincronizacion_ecommerce_inventarioScalarFieldEnum = (typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum)[keyof typeof Sincronizacion_ecommerce_inventarioScalarFieldEnum]
+
+
 export const Orden_ventaScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -4020,6 +4489,21 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
+export const Operacion_transferenciaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  transferencia_id: 'transferencia_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  accion: 'accion',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_transferenciaScalarFieldEnum = (typeof Operacion_transferenciaScalarFieldEnum)[keyof typeof Operacion_transferenciaScalarFieldEnum]
+
+
 export const Usuario_rolScalarFieldEnum = {
   usuario_id: 'usuario_id',
   rol_id: 'rol_id'
@@ -4095,6 +4579,75 @@ export const Venta_pagoScalarFieldEnum = {
 } as const
 
 export type Venta_pagoScalarFieldEnum = (typeof Venta_pagoScalarFieldEnum)[keyof typeof Venta_pagoScalarFieldEnum]
+
+
+export const Devolucion_pagoScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_pago_id: 'venta_pago_id',
+  sesion_caja_id: 'sesion_caja_id',
+  monto: 'monto',
+  referencia: 'referencia',
+  fecha: 'fecha',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_pagoScalarFieldEnum = (typeof Devolucion_pagoScalarFieldEnum)[keyof typeof Devolucion_pagoScalarFieldEnum]
+
+
+export const Devolucion_ventaScalarFieldEnum = {
+  id: 'id',
+  venta_id: 'venta_id',
+  usuario_id: 'usuario_id',
+  sesion_caja_id: 'sesion_caja_id',
+  folio: 'folio',
+  motivo: 'motivo',
+  subtotal: 'subtotal',
+  descuento: 'descuento',
+  impuesto: 'impuesto',
+  total: 'total',
+  fecha: 'fecha',
+  creado_en: 'creado_en',
+  actualizado_en: 'actualizado_en'
+} as const
+
+export type Devolucion_ventaScalarFieldEnum = (typeof Devolucion_ventaScalarFieldEnum)[keyof typeof Devolucion_ventaScalarFieldEnum]
+
+
+export const Devolucion_venta_detalleScalarFieldEnum = {
+  id: 'id',
+  devolucion_venta_id: 'devolucion_venta_id',
+  venta_detalle_id: 'venta_detalle_id',
+  cantidad: 'cantidad',
+  subtotal_linea: 'subtotal_linea',
+  descuento_importe: 'descuento_importe',
+  impuesto_importe: 'impuesto_importe',
+  total_linea: 'total_linea',
+  creado_en: 'creado_en'
+} as const
+
+export type Devolucion_venta_detalleScalarFieldEnum = (typeof Devolucion_venta_detalleScalarFieldEnum)[keyof typeof Devolucion_venta_detalleScalarFieldEnum]
+
+
+export const Ajuste_inventarioScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  almacen_id: 'almacen_id',
+  producto_id: 'producto_id',
+  usuario_id: 'usuario_id',
+  clave_idempotencia: 'clave_idempotencia',
+  request_hash: 'request_hash',
+  tipo: 'tipo',
+  cantidad: 'cantidad',
+  costo_unitario: 'costo_unitario',
+  motivo: 'motivo',
+  sincronizar_ecommerce: 'sincronizar_ecommerce',
+  movimiento_inventario_id: 'movimiento_inventario_id',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Ajuste_inventarioScalarFieldEnum = (typeof Ajuste_inventarioScalarFieldEnum)[keyof typeof Ajuste_inventarioScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -4424,6 +4977,7 @@ export type GlobalOmitConfig = {
   metodo_pago?: Prisma.metodo_pagoOmit
   movimiento_caja?: Prisma.movimiento_cajaOmit
   movimiento_inventario?: Prisma.movimiento_inventarioOmit
+  sincronizacion_ecommerce_inventario?: Prisma.sincronizacion_ecommerce_inventarioOmit
   orden_venta?: Prisma.orden_ventaOmit
   orden_venta_detalle?: Prisma.orden_venta_detalleOmit
   pedido_cliente?: Prisma.pedido_clienteOmit
@@ -4441,11 +4995,16 @@ export type GlobalOmitConfig = {
   transferencia_detalle?: Prisma.transferencia_detalleOmit
   unidad_medida?: Prisma.unidad_medidaOmit
   usuario?: Prisma.usuarioOmit
+  operacion_transferencia?: Prisma.operacion_transferenciaOmit
   usuario_rol?: Prisma.usuario_rolOmit
   usuario_sucursal?: Prisma.usuario_sucursalOmit
   venta?: Prisma.ventaOmit
   venta_detalle?: Prisma.venta_detalleOmit
   venta_pago?: Prisma.venta_pagoOmit
+  devolucion_pago?: Prisma.devolucion_pagoOmit
+  devolucion_venta?: Prisma.devolucion_ventaOmit
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleOmit
+  ajuste_inventario?: Prisma.ajuste_inventarioOmit
 }
 
 /* Types for Logging */

@@ -324,6 +324,7 @@ export type venta_detalleWhereInput = {
   descuento_importe?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.Devolucion_venta_detalleListRelationFilter
   producto?: Prisma.XOR<Prisma.ProductoScalarRelationFilter, Prisma.productoWhereInput>
   venta?: Prisma.XOR<Prisma.VentaScalarRelationFilter, Prisma.ventaWhereInput>
 }
@@ -342,6 +343,7 @@ export type venta_detalleOrderByWithRelationInput = {
   descuento_importe?: Prisma.SortOrder
   impuesto_importe?: Prisma.SortOrder
   total_linea?: Prisma.SortOrder
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleOrderByRelationAggregateInput
   producto?: Prisma.productoOrderByWithRelationInput
   venta?: Prisma.ventaOrderByWithRelationInput
 }
@@ -363,6 +365,7 @@ export type venta_detalleWhereUniqueInput = Prisma.AtLeast<{
   descuento_importe?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFilter<"venta_detalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.Devolucion_venta_detalleListRelationFilter
   producto?: Prisma.XOR<Prisma.ProductoScalarRelationFilter, Prisma.productoWhereInput>
   venta?: Prisma.XOR<Prisma.VentaScalarRelationFilter, Prisma.ventaWhereInput>
 }, "id">
@@ -419,6 +422,7 @@ export type venta_detalleCreateInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleCreateNestedManyWithoutVenta_detalleInput
   producto: Prisma.productoCreateNestedOneWithoutVenta_detalleInput
   venta: Prisma.ventaCreateNestedOneWithoutVenta_detalleInput
 }
@@ -437,6 +441,7 @@ export type venta_detalleUncheckedCreateInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedCreateNestedManyWithoutVenta_detalleInput
 }
 
 export type venta_detalleUpdateInput = {
@@ -451,6 +456,7 @@ export type venta_detalleUpdateInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUpdateManyWithoutVenta_detalleNestedInput
   producto?: Prisma.productoUpdateOneRequiredWithoutVenta_detalleNestedInput
   venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_detalleNestedInput
 }
@@ -469,6 +475,7 @@ export type venta_detalleUncheckedUpdateInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedUpdateManyWithoutVenta_detalleNestedInput
 }
 
 export type venta_detalleCreateManyInput = {
@@ -605,6 +612,11 @@ export type venta_detalleSumOrderByAggregateInput = {
   total_linea?: Prisma.SortOrder
 }
 
+export type Venta_detalleScalarRelationFilter = {
+  is?: Prisma.venta_detalleWhereInput
+  isNot?: Prisma.venta_detalleWhereInput
+}
+
 export type venta_detalleCreateNestedManyWithoutProductoInput = {
   create?: Prisma.XOR<Prisma.venta_detalleCreateWithoutProductoInput, Prisma.venta_detalleUncheckedCreateWithoutProductoInput> | Prisma.venta_detalleCreateWithoutProductoInput[] | Prisma.venta_detalleUncheckedCreateWithoutProductoInput[]
   connectOrCreate?: Prisma.venta_detalleCreateOrConnectWithoutProductoInput | Prisma.venta_detalleCreateOrConnectWithoutProductoInput[]
@@ -689,6 +701,20 @@ export type venta_detalleUncheckedUpdateManyWithoutVentaNestedInput = {
   deleteMany?: Prisma.venta_detalleScalarWhereInput | Prisma.venta_detalleScalarWhereInput[]
 }
 
+export type venta_detalleCreateNestedOneWithoutDevolucion_venta_detalleInput = {
+  create?: Prisma.XOR<Prisma.venta_detalleCreateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedCreateWithoutDevolucion_venta_detalleInput>
+  connectOrCreate?: Prisma.venta_detalleCreateOrConnectWithoutDevolucion_venta_detalleInput
+  connect?: Prisma.venta_detalleWhereUniqueInput
+}
+
+export type venta_detalleUpdateOneRequiredWithoutDevolucion_venta_detalleNestedInput = {
+  create?: Prisma.XOR<Prisma.venta_detalleCreateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedCreateWithoutDevolucion_venta_detalleInput>
+  connectOrCreate?: Prisma.venta_detalleCreateOrConnectWithoutDevolucion_venta_detalleInput
+  upsert?: Prisma.venta_detalleUpsertWithoutDevolucion_venta_detalleInput
+  connect?: Prisma.venta_detalleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.venta_detalleUpdateToOneWithWhereWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUpdateWithoutDevolucion_venta_detalleInput>, Prisma.venta_detalleUncheckedUpdateWithoutDevolucion_venta_detalleInput>
+}
+
 export type venta_detalleCreateWithoutProductoInput = {
   id?: bigint | number
   descripcion?: string | null
@@ -701,6 +727,7 @@ export type venta_detalleCreateWithoutProductoInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleCreateNestedManyWithoutVenta_detalleInput
   venta: Prisma.ventaCreateNestedOneWithoutVenta_detalleInput
 }
 
@@ -717,6 +744,7 @@ export type venta_detalleUncheckedCreateWithoutProductoInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedCreateNestedManyWithoutVenta_detalleInput
 }
 
 export type venta_detalleCreateOrConnectWithoutProductoInput = {
@@ -776,6 +804,7 @@ export type venta_detalleCreateWithoutVentaInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleCreateNestedManyWithoutVenta_detalleInput
   producto: Prisma.productoCreateNestedOneWithoutVenta_detalleInput
 }
 
@@ -792,6 +821,7 @@ export type venta_detalleUncheckedCreateWithoutVentaInput = {
   descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedCreateNestedManyWithoutVenta_detalleInput
 }
 
 export type venta_detalleCreateOrConnectWithoutVentaInput = {
@@ -818,6 +848,86 @@ export type venta_detalleUpdateWithWhereUniqueWithoutVentaInput = {
 export type venta_detalleUpdateManyWithWhereWithoutVentaInput = {
   where: Prisma.venta_detalleScalarWhereInput
   data: Prisma.XOR<Prisma.venta_detalleUpdateManyMutationInput, Prisma.venta_detalleUncheckedUpdateManyWithoutVentaInput>
+}
+
+export type venta_detalleCreateWithoutDevolucion_venta_detalleInput = {
+  id?: bigint | number
+  descripcion?: string | null
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_unitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuento_porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tasa_impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  producto: Prisma.productoCreateNestedOneWithoutVenta_detalleInput
+  venta: Prisma.ventaCreateNestedOneWithoutVenta_detalleInput
+}
+
+export type venta_detalleUncheckedCreateWithoutDevolucion_venta_detalleInput = {
+  id?: bigint | number
+  venta_id: bigint | number
+  producto_id: bigint | number
+  descripcion?: string | null
+  cantidad: runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_unitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuento_porcentaje?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tasa_impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto_importe?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total_linea?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type venta_detalleCreateOrConnectWithoutDevolucion_venta_detalleInput = {
+  where: Prisma.venta_detalleWhereUniqueInput
+  create: Prisma.XOR<Prisma.venta_detalleCreateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedCreateWithoutDevolucion_venta_detalleInput>
+}
+
+export type venta_detalleUpsertWithoutDevolucion_venta_detalleInput = {
+  update: Prisma.XOR<Prisma.venta_detalleUpdateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedUpdateWithoutDevolucion_venta_detalleInput>
+  create: Prisma.XOR<Prisma.venta_detalleCreateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedCreateWithoutDevolucion_venta_detalleInput>
+  where?: Prisma.venta_detalleWhereInput
+}
+
+export type venta_detalleUpdateToOneWithWhereWithoutDevolucion_venta_detalleInput = {
+  where?: Prisma.venta_detalleWhereInput
+  data: Prisma.XOR<Prisma.venta_detalleUpdateWithoutDevolucion_venta_detalleInput, Prisma.venta_detalleUncheckedUpdateWithoutDevolucion_venta_detalleInput>
+}
+
+export type venta_detalleUpdateWithoutDevolucion_venta_detalleInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuento_porcentaje?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tasa_impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  producto?: Prisma.productoUpdateOneRequiredWithoutVenta_detalleNestedInput
+  venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_detalleNestedInput
+}
+
+export type venta_detalleUncheckedUpdateWithoutDevolucion_venta_detalleInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  venta_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  producto_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cantidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  precio_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costo_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  descuento_porcentaje?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tasa_impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotal_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type venta_detalleCreateManyProductoInput = {
@@ -847,6 +957,7 @@ export type venta_detalleUpdateWithoutProductoInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUpdateManyWithoutVenta_detalleNestedInput
   venta?: Prisma.ventaUpdateOneRequiredWithoutVenta_detalleNestedInput
 }
 
@@ -863,6 +974,7 @@ export type venta_detalleUncheckedUpdateWithoutProductoInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedUpdateManyWithoutVenta_detalleNestedInput
 }
 
 export type venta_detalleUncheckedUpdateManyWithoutProductoInput = {
@@ -907,6 +1019,7 @@ export type venta_detalleUpdateWithoutVentaInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUpdateManyWithoutVenta_detalleNestedInput
   producto?: Prisma.productoUpdateOneRequiredWithoutVenta_detalleNestedInput
 }
 
@@ -923,6 +1036,7 @@ export type venta_detalleUncheckedUpdateWithoutVentaInput = {
   descuento_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   impuesto_importe?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total_linea?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  devolucion_venta_detalle?: Prisma.devolucion_venta_detalleUncheckedUpdateManyWithoutVenta_detalleNestedInput
 }
 
 export type venta_detalleUncheckedUpdateManyWithoutVentaInput = {
@@ -941,6 +1055,35 @@ export type venta_detalleUncheckedUpdateManyWithoutVentaInput = {
 }
 
 
+/**
+ * Count Type Venta_detalleCountOutputType
+ */
+
+export type Venta_detalleCountOutputType = {
+  devolucion_venta_detalle: number
+}
+
+export type Venta_detalleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_venta_detalle?: boolean | Venta_detalleCountOutputTypeCountDevolucion_venta_detalleArgs
+}
+
+/**
+ * Venta_detalleCountOutputType without action
+ */
+export type Venta_detalleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Venta_detalleCountOutputType
+   */
+  select?: Prisma.Venta_detalleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * Venta_detalleCountOutputType without action
+ */
+export type Venta_detalleCountOutputTypeCountDevolucion_venta_detalleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devolucion_venta_detalleWhereInput
+}
+
 
 export type venta_detalleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -956,8 +1099,10 @@ export type venta_detalleSelect<ExtArgs extends runtime.Types.Extensions.Interna
   descuento_importe?: boolean
   impuesto_importe?: boolean
   total_linea?: boolean
+  devolucion_venta_detalle?: boolean | Prisma.venta_detalle$devolucion_venta_detalleArgs<ExtArgs>
   producto?: boolean | Prisma.productoDefaultArgs<ExtArgs>
   venta?: boolean | Prisma.ventaDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.Venta_detalleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["venta_detalle"]>
 
 export type venta_detalleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1014,8 +1159,10 @@ export type venta_detalleSelectScalar = {
 
 export type venta_detalleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "venta_id" | "producto_id" | "descripcion" | "cantidad" | "precio_unitario" | "costo_unitario" | "descuento_porcentaje" | "tasa_impuesto" | "subtotal_linea" | "descuento_importe" | "impuesto_importe" | "total_linea", ExtArgs["result"]["venta_detalle"]>
 export type venta_detalleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  devolucion_venta_detalle?: boolean | Prisma.venta_detalle$devolucion_venta_detalleArgs<ExtArgs>
   producto?: boolean | Prisma.productoDefaultArgs<ExtArgs>
   venta?: boolean | Prisma.ventaDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.Venta_detalleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type venta_detalleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   producto?: boolean | Prisma.productoDefaultArgs<ExtArgs>
@@ -1029,6 +1176,7 @@ export type venta_detalleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $venta_detallePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "venta_detalle"
   objects: {
+    devolucion_venta_detalle: Prisma.$devolucion_venta_detallePayload<ExtArgs>[]
     producto: Prisma.$productoPayload<ExtArgs>
     venta: Prisma.$ventaPayload<ExtArgs>
   }
@@ -1440,6 +1588,7 @@ readonly fields: venta_detalleFieldRefs;
  */
 export interface Prisma__venta_detalleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  devolucion_venta_detalle<T extends Prisma.venta_detalle$devolucion_venta_detalleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.venta_detalle$devolucion_venta_detalleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devolucion_venta_detallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   producto<T extends Prisma.productoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.productoDefaultArgs<ExtArgs>>): Prisma.Prisma__productoClient<runtime.Types.Result.GetResult<Prisma.$productoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   venta<T extends Prisma.ventaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ventaDefaultArgs<ExtArgs>>): Prisma.Prisma__ventaClient<runtime.Types.Result.GetResult<Prisma.$ventaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1882,6 +2031,30 @@ export type venta_detalleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many venta_detalles to delete.
    */
   limit?: number
+}
+
+/**
+ * venta_detalle.devolucion_venta_detalle
+ */
+export type venta_detalle$devolucion_venta_detalleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devolucion_venta_detalle
+   */
+  select?: Prisma.devolucion_venta_detalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devolucion_venta_detalle
+   */
+  omit?: Prisma.devolucion_venta_detalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devolucion_venta_detalleInclude<ExtArgs> | null
+  where?: Prisma.devolucion_venta_detalleWhereInput
+  orderBy?: Prisma.devolucion_venta_detalleOrderByWithRelationInput | Prisma.devolucion_venta_detalleOrderByWithRelationInput[]
+  cursor?: Prisma.devolucion_venta_detalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Devolucion_venta_detalleScalarFieldEnum | Prisma.Devolucion_venta_detalleScalarFieldEnum[]
 }
 
 /**
