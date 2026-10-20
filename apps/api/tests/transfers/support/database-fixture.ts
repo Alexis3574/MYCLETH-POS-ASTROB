@@ -6,8 +6,17 @@ export async function testRuntime() {
   dotenv.config({ quiet: true });
   const url = process.env.TRANSFERS_TEST_DATABASE_URL;
   if (!url || process.env.TRANSFERS_ALLOW_DB_TESTS !== "true") throw new Error("Las pruebas de base requieren una conexión de pruebas y habilitación explícita.");
-  const name = decodeURIComponent(new URL(url).pathname.slice(1));
-  if (!/(?:^|[_-])test(?:s|ing)?(?:$|[_-])/i.test(name)) throw new Error("El nombre de la base debe identificar un entorno de pruebas.");
+  const databaseUrl = new URL(url);
+  const name = decodeURIComponent(databaseUrl.pathname.slice(1));
+  const authorizedLocal =
+    name === "pos_novnix" &&
+    ["localhost", "127.0.0.1"].includes(databaseUrl.hostname) &&
+    (!databaseUrl.port || databaseUrl.port === "5432") &&
+    process.env.POS_ALLOW_TEST_DB === "SI";
+
+  if (!/(?:^|[_-])test(?:s|ing)?(?:$|[_-])/i.test(name) && !authorizedLocal) {
+    throw new Error("Base no autorizada para las pruebas de Transferencias.");
+  }
   process.env.DATABASE_URL = url;
   const { prisma } = await import("../../../src/lib/prisma.js");
   const services = await import("../../../src/modules/transfers/services/transfer-write.service.js");

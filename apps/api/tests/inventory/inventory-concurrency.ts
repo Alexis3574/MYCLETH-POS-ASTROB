@@ -4,8 +4,20 @@ import { randomUUID } from "node:crypto";
 
 const testUrl = process.env.INVENTORY_CONCURRENCY_DATABASE_URL;
 if (!testUrl) throw new Error("Define INVENTORY_CONCURRENCY_DATABASE_URL con la conexión a tu base de pruebas aislada.");
-const databaseName = decodeURIComponent(new URL(testUrl).pathname.slice(1));
-if (!/(?:test|prueba)/i.test(databaseName)) throw new Error("El nombre de la base de concurrencia debe contener test o prueba.");
+const databaseUrl = new URL(testUrl);
+const databaseName = decodeURIComponent(databaseUrl.pathname.slice(1));
+const authorizedLocal =
+  databaseName === "pos_novnix" &&
+  ["postgres:", "postgresql:"].includes(databaseUrl.protocol) &&
+  ["localhost", "127.0.0.1"].includes(databaseUrl.hostname) &&
+  (!databaseUrl.port || databaseUrl.port === "5432") &&
+  process.env.POS_ALLOW_TEST_DB === "SI";
+if (
+  !/(?:test|prueba)/i.test(databaseName) &&
+  !authorizedLocal
+) {
+  throw new Error("Base de datos no autorizada para pruebas de concurrencia.");
+}
 process.env.DATABASE_URL = testUrl;
 process.env.INVENTORY_SYNC_ENABLED = "false";
 
