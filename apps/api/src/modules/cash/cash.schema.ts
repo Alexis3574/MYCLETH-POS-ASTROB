@@ -11,7 +11,7 @@ const code = z.string().trim().min(1).max(30);
 const name = z.string().trim().min(1).max(100);
 
 export const createCashSchema = z.strictObject({
-  sucursal_id: z.string().regex(/^[1-9]\d{0,18}$/),
+  sucursal_id: z.string().regex(/^[1-9]\d{0,18}$/).refine((value) => value.length < 19 || value <= "9223372036854775807", "El identificador supera el límite BIGINT."),
   codigo: code,
   nombre: name,
 });
