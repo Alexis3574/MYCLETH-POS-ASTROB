@@ -355,6 +355,7 @@ export type compraWhereInput = {
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
   compra_detalle?: Prisma.Compra_detalleListRelationFilter
   compra_pago?: Prisma.Compra_pagoListRelationFilter
+  operacion_compra?: Prisma.Operacion_compraListRelationFilter
 }
 
 export type compraOrderByWithRelationInput = {
@@ -382,6 +383,7 @@ export type compraOrderByWithRelationInput = {
   usuario?: Prisma.usuarioOrderByWithRelationInput
   compra_detalle?: Prisma.compra_detalleOrderByRelationAggregateInput
   compra_pago?: Prisma.compra_pagoOrderByRelationAggregateInput
+  operacion_compra?: Prisma.operacion_compraOrderByRelationAggregateInput
 }
 
 export type compraWhereUniqueInput = Prisma.AtLeast<{
@@ -413,6 +415,7 @@ export type compraWhereUniqueInput = Prisma.AtLeast<{
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
   compra_detalle?: Prisma.Compra_detalleListRelationFilter
   compra_pago?: Prisma.Compra_pagoListRelationFilter
+  operacion_compra?: Prisma.Operacion_compraListRelationFilter
 }, "id" | "sucursal_id_folio">
 
 export type compraOrderByWithAggregationInput = {
@@ -483,6 +486,7 @@ export type compraCreateInput = {
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateInput = {
@@ -505,6 +509,7 @@ export type compraUncheckedCreateInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraUpdateInput = {
@@ -527,6 +532,7 @@ export type compraUpdateInput = {
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateInput = {
@@ -549,6 +555,7 @@ export type compraUncheckedUpdateInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraCreateManyInput = {
@@ -950,6 +957,20 @@ export type compraUncheckedUpdateManyWithoutUsuarioNestedInput = {
   deleteMany?: Prisma.compraScalarWhereInput | Prisma.compraScalarWhereInput[]
 }
 
+export type compraCreateNestedOneWithoutOperacion_compraInput = {
+  create?: Prisma.XOR<Prisma.compraCreateWithoutOperacion_compraInput, Prisma.compraUncheckedCreateWithoutOperacion_compraInput>
+  connectOrCreate?: Prisma.compraCreateOrConnectWithoutOperacion_compraInput
+  connect?: Prisma.compraWhereUniqueInput
+}
+
+export type compraUpdateOneRequiredWithoutOperacion_compraNestedInput = {
+  create?: Prisma.XOR<Prisma.compraCreateWithoutOperacion_compraInput, Prisma.compraUncheckedCreateWithoutOperacion_compraInput>
+  connectOrCreate?: Prisma.compraCreateOrConnectWithoutOperacion_compraInput
+  upsert?: Prisma.compraUpsertWithoutOperacion_compraInput
+  connect?: Prisma.compraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.compraUpdateToOneWithWhereWithoutOperacion_compraInput, Prisma.compraUpdateWithoutOperacion_compraInput>, Prisma.compraUncheckedUpdateWithoutOperacion_compraInput>
+}
+
 export type compraCreateWithoutAlmacenInput = {
   id?: bigint | number
   folio: string
@@ -969,6 +990,7 @@ export type compraCreateWithoutAlmacenInput = {
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutAlmacenInput = {
@@ -990,6 +1012,7 @@ export type compraUncheckedCreateWithoutAlmacenInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutAlmacenInput = {
@@ -1060,6 +1083,7 @@ export type compraCreateWithoutCompra_detalleInput = {
   sucursal: Prisma.sucursalCreateNestedOneWithoutCompraInput
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutCompra_detalleInput = {
@@ -1081,6 +1105,7 @@ export type compraUncheckedCreateWithoutCompra_detalleInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutCompra_detalleInput = {
@@ -1118,6 +1143,7 @@ export type compraUpdateWithoutCompra_detalleInput = {
   sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCompraNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutCompra_detalleInput = {
@@ -1139,6 +1165,7 @@ export type compraUncheckedUpdateWithoutCompra_detalleInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraCreateWithoutCompra_pagoInput = {
@@ -1160,6 +1187,7 @@ export type compraCreateWithoutCompra_pagoInput = {
   sucursal: Prisma.sucursalCreateNestedOneWithoutCompraInput
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutCompra_pagoInput = {
@@ -1181,6 +1209,7 @@ export type compraUncheckedCreateWithoutCompra_pagoInput = {
   creado_en?: Date | string
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutCompra_pagoInput = {
@@ -1218,6 +1247,7 @@ export type compraUpdateWithoutCompra_pagoInput = {
   sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCompraNestedInput
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutCompra_pagoInput = {
@@ -1239,6 +1269,7 @@ export type compraUncheckedUpdateWithoutCompra_pagoInput = {
   creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraCreateWithoutEmpresaInput = {
@@ -1260,6 +1291,7 @@ export type compraCreateWithoutEmpresaInput = {
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutEmpresaInput = {
@@ -1281,6 +1313,7 @@ export type compraUncheckedCreateWithoutEmpresaInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutEmpresaInput = {
@@ -1328,6 +1361,7 @@ export type compraCreateWithoutProveedorInput = {
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutProveedorInput = {
@@ -1349,6 +1383,7 @@ export type compraUncheckedCreateWithoutProveedorInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutProveedorInput = {
@@ -1396,6 +1431,7 @@ export type compraCreateWithoutSucursalInput = {
   usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutSucursalInput = {
@@ -1417,6 +1453,7 @@ export type compraUncheckedCreateWithoutSucursalInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutSucursalInput = {
@@ -1464,6 +1501,7 @@ export type compraCreateWithoutUsuarioInput = {
   sucursal: Prisma.sucursalCreateNestedOneWithoutCompraInput
   compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraCreateNestedManyWithoutCompraInput
 }
 
 export type compraUncheckedCreateWithoutUsuarioInput = {
@@ -1485,6 +1523,7 @@ export type compraUncheckedCreateWithoutUsuarioInput = {
   actualizado_en?: Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
   compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+  operacion_compra?: Prisma.operacion_compraUncheckedCreateNestedManyWithoutCompraInput
 }
 
 export type compraCreateOrConnectWithoutUsuarioInput = {
@@ -1511,6 +1550,110 @@ export type compraUpdateWithWhereUniqueWithoutUsuarioInput = {
 export type compraUpdateManyWithWhereWithoutUsuarioInput = {
   where: Prisma.compraScalarWhereInput
   data: Prisma.XOR<Prisma.compraUpdateManyMutationInput, Prisma.compraUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type compraCreateWithoutOperacion_compraInput = {
+  id?: bigint | number
+  folio: string
+  factura_proveedor?: string | null
+  fecha?: Date | string
+  estado?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  almacen: Prisma.almacenCreateNestedOneWithoutCompraInput
+  empresa: Prisma.empresaCreateNestedOneWithoutCompraInput
+  proveedor: Prisma.proveedorCreateNestedOneWithoutCompraInput
+  sucursal: Prisma.sucursalCreateNestedOneWithoutCompraInput
+  usuario: Prisma.usuarioCreateNestedOneWithoutCompraInput
+  compra_detalle?: Prisma.compra_detalleCreateNestedManyWithoutCompraInput
+  compra_pago?: Prisma.compra_pagoCreateNestedManyWithoutCompraInput
+}
+
+export type compraUncheckedCreateWithoutOperacion_compraInput = {
+  id?: bigint | number
+  empresa_id: bigint | number
+  sucursal_id: bigint | number
+  almacen_id: bigint | number
+  proveedor_id: bigint | number
+  usuario_id: bigint | number
+  folio: string
+  factura_proveedor?: string | null
+  fecha?: Date | string
+  estado?: string
+  subtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: string | null
+  creado_en?: Date | string
+  actualizado_en?: Date | string
+  compra_detalle?: Prisma.compra_detalleUncheckedCreateNestedManyWithoutCompraInput
+  compra_pago?: Prisma.compra_pagoUncheckedCreateNestedManyWithoutCompraInput
+}
+
+export type compraCreateOrConnectWithoutOperacion_compraInput = {
+  where: Prisma.compraWhereUniqueInput
+  create: Prisma.XOR<Prisma.compraCreateWithoutOperacion_compraInput, Prisma.compraUncheckedCreateWithoutOperacion_compraInput>
+}
+
+export type compraUpsertWithoutOperacion_compraInput = {
+  update: Prisma.XOR<Prisma.compraUpdateWithoutOperacion_compraInput, Prisma.compraUncheckedUpdateWithoutOperacion_compraInput>
+  create: Prisma.XOR<Prisma.compraCreateWithoutOperacion_compraInput, Prisma.compraUncheckedCreateWithoutOperacion_compraInput>
+  where?: Prisma.compraWhereInput
+}
+
+export type compraUpdateToOneWithWhereWithoutOperacion_compraInput = {
+  where?: Prisma.compraWhereInput
+  data: Prisma.XOR<Prisma.compraUpdateWithoutOperacion_compraInput, Prisma.compraUncheckedUpdateWithoutOperacion_compraInput>
+}
+
+export type compraUpdateWithoutOperacion_compraInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  factura_proveedor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  almacen?: Prisma.almacenUpdateOneRequiredWithoutCompraNestedInput
+  empresa?: Prisma.empresaUpdateOneRequiredWithoutCompraNestedInput
+  proveedor?: Prisma.proveedorUpdateOneRequiredWithoutCompraNestedInput
+  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCompraNestedInput
+  usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
+  compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
+  compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+}
+
+export type compraUncheckedUpdateWithoutOperacion_compraInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  empresa_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sucursal_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  almacen_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  proveedor_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  usuario_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  folio?: Prisma.StringFieldUpdateOperationsInput | string
+  factura_proveedor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impuesto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
+  compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraCreateManyAlmacenInput = {
@@ -1551,6 +1694,7 @@ export type compraUpdateWithoutAlmacenInput = {
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutAlmacenInput = {
@@ -1572,6 +1716,7 @@ export type compraUncheckedUpdateWithoutAlmacenInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateManyWithoutAlmacenInput = {
@@ -1631,6 +1776,7 @@ export type compraUpdateWithoutEmpresaInput = {
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutEmpresaInput = {
@@ -1652,6 +1798,7 @@ export type compraUncheckedUpdateWithoutEmpresaInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateManyWithoutEmpresaInput = {
@@ -1711,6 +1858,7 @@ export type compraUpdateWithoutProveedorInput = {
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutProveedorInput = {
@@ -1732,6 +1880,7 @@ export type compraUncheckedUpdateWithoutProveedorInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateManyWithoutProveedorInput = {
@@ -1791,6 +1940,7 @@ export type compraUpdateWithoutSucursalInput = {
   usuario?: Prisma.usuarioUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutSucursalInput = {
@@ -1812,6 +1962,7 @@ export type compraUncheckedUpdateWithoutSucursalInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateManyWithoutSucursalInput = {
@@ -1871,6 +2022,7 @@ export type compraUpdateWithoutUsuarioInput = {
   sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCompraNestedInput
   compra_detalle?: Prisma.compra_detalleUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateWithoutUsuarioInput = {
@@ -1892,6 +2044,7 @@ export type compraUncheckedUpdateWithoutUsuarioInput = {
   actualizado_en?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   compra_detalle?: Prisma.compra_detalleUncheckedUpdateManyWithoutCompraNestedInput
   compra_pago?: Prisma.compra_pagoUncheckedUpdateManyWithoutCompraNestedInput
+  operacion_compra?: Prisma.operacion_compraUncheckedUpdateManyWithoutCompraNestedInput
 }
 
 export type compraUncheckedUpdateManyWithoutUsuarioInput = {
@@ -1921,11 +2074,13 @@ export type compraUncheckedUpdateManyWithoutUsuarioInput = {
 export type CompraCountOutputType = {
   compra_detalle: number
   compra_pago: number
+  operacion_compra: number
 }
 
 export type CompraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   compra_detalle?: boolean | CompraCountOutputTypeCountCompra_detalleArgs
   compra_pago?: boolean | CompraCountOutputTypeCountCompra_pagoArgs
+  operacion_compra?: boolean | CompraCountOutputTypeCountOperacion_compraArgs
 }
 
 /**
@@ -1950,6 +2105,13 @@ export type CompraCountOutputTypeCountCompra_detalleArgs<ExtArgs extends runtime
  */
 export type CompraCountOutputTypeCountCompra_pagoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.compra_pagoWhereInput
+}
+
+/**
+ * CompraCountOutputType without action
+ */
+export type CompraCountOutputTypeCountOperacion_compraArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.operacion_compraWhereInput
 }
 
 
@@ -1978,6 +2140,7 @@ export type compraSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
   compra_detalle?: boolean | Prisma.compra$compra_detalleArgs<ExtArgs>
   compra_pago?: boolean | Prisma.compra$compra_pagoArgs<ExtArgs>
+  operacion_compra?: boolean | Prisma.compra$operacion_compraArgs<ExtArgs>
   _count?: boolean | Prisma.CompraCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["compra"]>
 
@@ -2060,6 +2223,7 @@ export type compraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
   compra_detalle?: boolean | Prisma.compra$compra_detalleArgs<ExtArgs>
   compra_pago?: boolean | Prisma.compra$compra_pagoArgs<ExtArgs>
+  operacion_compra?: boolean | Prisma.compra$operacion_compraArgs<ExtArgs>
   _count?: boolean | Prisma.CompraCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type compraIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2087,6 +2251,7 @@ export type $compraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     usuario: Prisma.$usuarioPayload<ExtArgs>
     compra_detalle: Prisma.$compra_detallePayload<ExtArgs>[]
     compra_pago: Prisma.$compra_pagoPayload<ExtArgs>[]
+    operacion_compra: Prisma.$operacion_compraPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -2507,6 +2672,7 @@ export interface Prisma__compraClient<T, Null = never, ExtArgs extends runtime.T
   usuario<T extends Prisma.usuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   compra_detalle<T extends Prisma.compra$compra_detalleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.compra$compra_detalleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$compra_detallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   compra_pago<T extends Prisma.compra$compra_pagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.compra$compra_pagoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$compra_pagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  operacion_compra<T extends Prisma.compra$operacion_compraArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.compra$operacion_compraArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$operacion_compraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2999,6 +3165,30 @@ export type compra$compra_pagoArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.Compra_pagoScalarFieldEnum | Prisma.Compra_pagoScalarFieldEnum[]
+}
+
+/**
+ * compra.operacion_compra
+ */
+export type compra$operacion_compraArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the operacion_compra
+   */
+  select?: Prisma.operacion_compraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the operacion_compra
+   */
+  omit?: Prisma.operacion_compraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.operacion_compraInclude<ExtArgs> | null
+  where?: Prisma.operacion_compraWhereInput
+  orderBy?: Prisma.operacion_compraOrderByWithRelationInput | Prisma.operacion_compraOrderByWithRelationInput[]
+  cursor?: Prisma.operacion_compraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Operacion_compraScalarFieldEnum | Prisma.Operacion_compraScalarFieldEnum[]
 }
 
 /**

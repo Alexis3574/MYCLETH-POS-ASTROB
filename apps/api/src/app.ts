@@ -1,3 +1,4 @@
+import { purchaseRouter } from "./modules/purchases/purchase.routes.js";
 import { transferRouter } from "./modules/transfers/transfer.routes.js";
 import { inventoryRouter } from "./modules/inventory/inventory.routes.js";
 import { productRouter, categoryRouter, unitRouter, taxRouter } from "./modules/products/product.routes.js";
@@ -59,5 +60,7 @@ app.use("/api/v1/cash", cashRouter);
 app.use("/api/v1/suppliers", supplierRouter);
 
 app.use("/api/v1/customers", customerRouter);
+
+app.use("/api/v1/purchases", purchaseRouter);
 
 app.use(errorMiddleware);
