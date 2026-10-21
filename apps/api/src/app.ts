@@ -1,3 +1,4 @@
+import { quoteRouter } from "./modules/quotes/quote.routes.js";
 import { paymentMethodRouter } from "./modules/payment-methods/payment-method.routes.js";
 import { organizationRouter } from "./modules/organization/organization.routes.js";
 import { purchaseRouter } from "./modules/purchases/purchase.routes.js";
@@ -68,5 +69,7 @@ app.use("/api/v1/purchases", purchaseRouter);
 app.use("/api/v1/organization", organizationRouter);
 
 app.use("/api/v1/payment-methods", paymentMethodRouter);
+
+app.use("/api/v1/quotes", quoteRouter);
 
 app.use(errorMiddleware);
