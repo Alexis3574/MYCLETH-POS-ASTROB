@@ -50,7 +50,7 @@ export const productRepository = {
   async lock(tx: ProductTransaction, empresaId: bigint, id: bigint) {
     // La empresa forma parte también del bloqueo, no solo de la lectura.
     const rows = await tx.$queryRaw<Array<{ id: bigint }>>`
-      SELECT id FROM producto WHERE id = ${id} AND empresa_id = ${empresaId} FOR UPDATE
+      SELECT id FROM "pos"."producto" WHERE id = ${id} AND empresa_id = ${empresaId} FOR UPDATE
     `;
     return rows.length > 0;
   },

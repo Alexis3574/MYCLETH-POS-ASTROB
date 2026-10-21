@@ -96,7 +96,8 @@ export const ModelName = {
   devolucion_pago: 'devolucion_pago',
   devolucion_venta: 'devolucion_venta',
   devolucion_venta_detalle: 'devolucion_venta_detalle',
-  ajuste_inventario: 'ajuste_inventario'
+  ajuste_inventario: 'ajuste_inventario',
+  operacion_compra: 'operacion_compra'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -858,6 +859,21 @@ export const Ajuste_inventarioScalarFieldEnum = {
 } as const
 
 export type Ajuste_inventarioScalarFieldEnum = (typeof Ajuste_inventarioScalarFieldEnum)[keyof typeof Ajuste_inventarioScalarFieldEnum]
+
+
+export const Operacion_compraScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  usuario_id: 'usuario_id',
+  compra_id: 'compra_id',
+  accion: 'accion',
+  clave_idempotencia: 'clave_idempotencia',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_compraScalarFieldEnum = (typeof Operacion_compraScalarFieldEnum)[keyof typeof Operacion_compraScalarFieldEnum]
 
 
 export const SortOrder = {

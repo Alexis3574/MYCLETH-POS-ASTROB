@@ -152,6 +152,7 @@ model compra {
   @@index([estado, fecha(sort: Desc)], map: "idx_compra_estado_fecha")
   @@index([fecha(sort: Desc)], map: "idx_compra_fecha")
   @@index([proveedor_id, fecha(sort: Desc)], map: "idx_compra_proveedor_fecha")
+  operacion_compra operacion_compra[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -281,6 +282,7 @@ model empresa {
   venta                 venta[]
   ajuste_inventario ajuste_inventario[]
   operacion_transferencia operacion_transferencia[]
+  operacion_compra operacion_compra[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -738,6 +740,7 @@ model usuario {
   @@index([empresa_id], map: "idx_usuario_empresa")
   ajuste_inventario ajuste_inventario[]
   operacion_transferencia operacion_transferencia[]
+  operacion_compra operacion_compra[]
 }
 
 model operacion_transferencia {
@@ -949,4 +952,22 @@ model ajuste_inventario {
 
   @@unique([empresa_id, clave_idempotencia], map: "uq_ajuste_empresa_idempotencia")
   @@index([empresa_id, almacen_id, creado_en(sort: Desc)], map: "idx_ajuste_empresa_almacen_fecha")
+}
+
+model operacion_compra {
+  id                  BigInt   @id @default(autoincrement())
+  empresa_id           BigInt
+  usuario_id           BigInt
+  compra_id            BigInt
+  empresa              empresa  @relation(fields: [empresa_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario              usuario  @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  compra               compra   @relation(fields: [compra_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  accion               String   @db.VarChar(20)
+  clave_idempotencia   String   @db.VarChar(100)
+  request_hash         String   @db.VarChar(64)
+  respuesta            Json
+  creado_en            DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([empresa_id, clave_idempotencia], map: "uq_operacion_compra_empresa_clave")
+  @@index([compra_id, creado_en], map: "idx_operacion_compra_compra")
 }

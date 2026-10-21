@@ -39,7 +39,7 @@ export const supplierListSchema = z.strictObject({
 });
 
 const addressFields = {
-  tipo: text(20).optional(),
+  tipo: z.enum(["FISCAL", "ENTREGA", "OTRA"]).optional(),
   calle: optionalText(180),
   numero_exterior: optionalText(30),
   numero_interior: optionalText(30),

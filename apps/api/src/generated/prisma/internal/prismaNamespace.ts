@@ -442,7 +442,8 @@ export const ModelName = {
   devolucion_pago: 'devolucion_pago',
   devolucion_venta: 'devolucion_venta',
   devolucion_venta_detalle: 'devolucion_venta_detalle',
-  ajuste_inventario: 'ajuste_inventario'
+  ajuste_inventario: 'ajuste_inventario',
+  operacion_compra: 'operacion_compra'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -458,7 +459,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "operacion_transferencia" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario"
+    modelProps: "almacen" | "auditoria" | "caja" | "categoria" | "cliente" | "cliente_direccion" | "compra" | "compra_detalle" | "compra_pago" | "configuracion_empresa" | "cotizacion" | "cotizacion_detalle" | "empresa" | "existencia" | "impuesto" | "metodo_pago" | "movimiento_caja" | "movimiento_inventario" | "sincronizacion_ecommerce_inventario" | "orden_venta" | "orden_venta_detalle" | "pedido_cliente" | "pedido_cliente_detalle" | "permiso" | "producto" | "producto_impuesto" | "proveedor" | "proveedor_direccion" | "rol" | "rol_permiso" | "sesion_caja" | "sucursal" | "transferencia_almacen" | "transferencia_detalle" | "unidad_medida" | "usuario" | "operacion_transferencia" | "usuario_rol" | "usuario_sucursal" | "venta" | "venta_detalle" | "venta_pago" | "devolucion_pago" | "devolucion_venta" | "devolucion_venta_detalle" | "ajuste_inventario" | "operacion_compra"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3866,6 +3867,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    operacion_compra: {
+      payload: Prisma.$operacion_compraPayload<ExtArgs>
+      fields: Prisma.operacion_compraFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.operacion_compraFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.operacion_compraFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        findFirst: {
+          args: Prisma.operacion_compraFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.operacion_compraFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        findMany: {
+          args: Prisma.operacion_compraFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>[]
+        }
+        create: {
+          args: Prisma.operacion_compraCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        createMany: {
+          args: Prisma.operacion_compraCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.operacion_compraCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>[]
+        }
+        delete: {
+          args: Prisma.operacion_compraDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        update: {
+          args: Prisma.operacion_compraUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        deleteMany: {
+          args: Prisma.operacion_compraDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.operacion_compraUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.operacion_compraUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>[]
+        }
+        upsert: {
+          args: Prisma.operacion_compraUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$operacion_compraPayload>
+        }
+        aggregate: {
+          args: Prisma.Operacion_compraAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOperacion_compra>
+        }
+        groupBy: {
+          args: Prisma.operacion_compraGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_compraGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.operacion_compraCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Operacion_compraCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4650,6 +4725,21 @@ export const Ajuste_inventarioScalarFieldEnum = {
 export type Ajuste_inventarioScalarFieldEnum = (typeof Ajuste_inventarioScalarFieldEnum)[keyof typeof Ajuste_inventarioScalarFieldEnum]
 
 
+export const Operacion_compraScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  usuario_id: 'usuario_id',
+  compra_id: 'compra_id',
+  accion: 'accion',
+  clave_idempotencia: 'clave_idempotencia',
+  request_hash: 'request_hash',
+  respuesta: 'respuesta',
+  creado_en: 'creado_en'
+} as const
+
+export type Operacion_compraScalarFieldEnum = (typeof Operacion_compraScalarFieldEnum)[keyof typeof Operacion_compraScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -5005,6 +5095,7 @@ export type GlobalOmitConfig = {
   devolucion_venta?: Prisma.devolucion_ventaOmit
   devolucion_venta_detalle?: Prisma.devolucion_venta_detalleOmit
   ajuste_inventario?: Prisma.ajuste_inventarioOmit
+  operacion_compra?: Prisma.operacion_compraOmit
 }
 
 /* Types for Logging */

@@ -47,7 +47,7 @@ export const customerListSchema = z.object({
 
 const addressFields = {
   // El listado exacto de tipos permitidos por los CHECK físicos se confirmará en la fase de validación.
-  tipo: text(20).optional(),
+  tipo: z.enum(["FISCAL", "ENVIO", "OTRA"]).optional(),
   calle: optionalText(180),
   numero_exterior: optionalText(30),
   numero_interior: optionalText(30),

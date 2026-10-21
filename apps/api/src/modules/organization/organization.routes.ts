@@ -1,0 +1,21 @@
+import { Router } from "express";
+import { requireAuth } from "../../middleware/auth.middleware.js";
+import { requirePermission } from "../../middleware/permission.middleware.js";
+import { organizationController as ctrl } from "./controllers/organization.controller.js";
+
+export const organizationRouter = Router();
+organizationRouter.use(requireAuth);
+organizationRouter.use(requirePermission("CONFIGURACION.GESTIONAR"));
+organizationRouter.get("/company", ctrl.company);
+organizationRouter.patch("/company", ctrl.updateCompany);
+organizationRouter.get("/branches", ctrl.branches);
+organizationRouter.post("/branches", ctrl.createBranch);
+organizationRouter.get("/branches/:branchId", ctrl.branch);
+organizationRouter.patch("/branches/:branchId", ctrl.updateBranch);
+organizationRouter.get("/branches/:branchId/users", ctrl.branchUsers);
+organizationRouter.post("/branches/:branchId/users", ctrl.assignBranchUser);
+organizationRouter.delete("/branches/:branchId/users/:userId", ctrl.unassignBranchUser);
+organizationRouter.get("/warehouses", ctrl.warehouses);
+organizationRouter.post("/warehouses", ctrl.createWarehouse);
+organizationRouter.get("/warehouses/:warehouseId", ctrl.warehouse);
+organizationRouter.patch("/warehouses/:warehouseId", ctrl.updateWarehouse);
