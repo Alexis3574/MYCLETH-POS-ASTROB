@@ -61,6 +61,7 @@ interface PersistSaleInput {
 
   totals:
     SaleTotals;
+  ordenVentaId?: bigint;
 }
 
 interface CreatedPaymentResult {
@@ -96,12 +97,14 @@ export async function persistCompletedSale({
   preparedPayments,
   condicionPago,
   totals,
+  ordenVentaId,
 }: PersistSaleInput) {
   const sale =
     await saleWriteRepository
       .createSale(
         tx,
         {
+          orden_venta_id: ordenVentaId ?? null,
           empresa_id:
             input.empresaId,
 
