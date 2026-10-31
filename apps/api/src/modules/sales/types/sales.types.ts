@@ -47,6 +47,7 @@ export interface CancelSaleInput {
 
 export interface CreateSaleData {
   orden_venta_id?: bigint | null;
+  pedido_cliente_id?: bigint | null;
   empresa_id: bigint;
   sucursal_id: bigint;
   almacen_id: bigint;

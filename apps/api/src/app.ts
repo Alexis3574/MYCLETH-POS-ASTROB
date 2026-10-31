@@ -1,3 +1,4 @@
+import { customerOrderRouter } from "./modules/customer-orders/customer-order.routes.js";
 import { orderRouter, orderQuoteRouter } from "./modules/sales-orders/order.routes.js";
 import { quoteRouter } from "./modules/quotes/quote.routes.js";
 import { paymentMethodRouter } from "./modules/payment-methods/payment-method.routes.js";
@@ -74,5 +75,6 @@ app.use("/api/v1/payment-methods", paymentMethodRouter);
 app.use("/api/v1/quotes", quoteRouter);
 app.use("/api/v1/sales-orders", orderRouter);
 app.use("/api/v1/quotes", orderQuoteRouter);
+app.use("/api/v1/customer-orders", customerOrderRouter);
 
 app.use(errorMiddleware);
