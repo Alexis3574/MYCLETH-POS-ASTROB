@@ -1,3 +1,4 @@
+import { ecommerceSyncRouter } from "./modules/ecommerce-sync/ecommerce-sync.routes.js";
 import { customerOrderRouter } from "./modules/customer-orders/customer-order.routes.js";
 import { orderRouter, orderQuoteRouter } from "./modules/sales-orders/order.routes.js";
 import { quoteRouter } from "./modules/quotes/quote.routes.js";
@@ -76,5 +77,6 @@ app.use("/api/v1/quotes", quoteRouter);
 app.use("/api/v1/sales-orders", orderRouter);
 app.use("/api/v1/quotes", orderQuoteRouter);
 app.use("/api/v1/customer-orders", customerOrderRouter);
+app.use("/api/v1/ecommerce-sync", ecommerceSyncRouter);
 
 app.use(errorMiddleware);

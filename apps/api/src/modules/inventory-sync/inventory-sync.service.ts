@@ -16,6 +16,8 @@ import {
   inventorySyncRepository,
 } from "./inventory-sync.repository.js";
 
+import { getRetryPolicy, retryExhausted } from "./inventory-sync.retry-policy.js";
+
 function formatError(error: unknown): string {
   if (error instanceof EcommerceApiError) {
     let response = "";
@@ -61,6 +63,19 @@ export const inventorySyncService = {
       };
     }
 
+    if (current.estado === "AGOTADO") {
+      return { status: "EXHAUSTED" as const };
+    }
+
+    const policy = getRetryPolicy();
+
+    if (
+      current.estado === "PENDIENTE" &&
+      retryExhausted(current.intentos, policy)
+    ) {
+      return { status: "EXHAUSTED" as const };
+    }
+
     const claim =
       await inventorySyncRepository.tryClaim(
         id,
@@ -88,6 +103,16 @@ export const inventorySyncService = {
         };
       }
 
+      if (
+        refreshed.estado === "AGOTADO" ||
+        (
+          refreshed.estado === "PENDIENTE" &&
+          retryExhausted(refreshed.intentos, policy)
+        )
+      ) {
+        return { status: "EXHAUSTED" as const };
+      }
+
       return {
         status: "BUSY" as const,
       };
@@ -102,6 +127,16 @@ export const inventorySyncService = {
       return {
         status: "NOT_FOUND" as const,
       };
+    }
+
+    if (
+      sync.estado !== (
+        claim.mode === "MANUAL"
+          ? "PROCESANDO_MANUAL" : "PROCESANDO"
+      ) ||
+      sync.intentos !== claim.attempts
+    ) {
+      return { status: "STALE_CLAIM" as const };
     }
 
     try {
@@ -146,10 +181,13 @@ export const inventorySyncService = {
             sync.adjustment,
         });
 
-      await inventorySyncRepository.markSynchronized(
-        sync.id,
-        ecommerceProductId,
+      const finalized = await inventorySyncRepository.markSynchronized(
+        sync.id, ecommerceProductId, claim.attempts, claim.mode
       );
+
+      if (finalized.count !== 1) {
+        return { status: "STALE_CLAIM" as const };
+      }
 
       return {
         status:
@@ -168,14 +206,19 @@ export const inventorySyncService = {
       const message =
         formatError(error);
 
-      await inventorySyncRepository.markFailed(
-        sync.id,
-        message,
+      const finalized = await inventorySyncRepository.markFailed(
+        sync.id, message, claim.attempts, claim.mode
       );
 
+      if (finalized.count !== 1) {
+        return { status: "STALE_CLAIM" as const };
+      }
+
       return {
-        status:
-          "PENDING_RETRY" as const,
+        status: claim.mode === "MANUAL" ||
+          retryExhausted(claim.attempts, policy)
+          ? "EXHAUSTED" as const
+          : "PENDING_RETRY" as const,
 
         error:
           message,
@@ -197,6 +240,8 @@ export const inventorySyncService = {
     await inventorySyncRepository.requeueStaleProcessing(
       staleBefore,
     );
+
+    await inventorySyncRepository.markExhaustedPending();
 
     const pending =
       await inventorySyncRepository.findPending(
