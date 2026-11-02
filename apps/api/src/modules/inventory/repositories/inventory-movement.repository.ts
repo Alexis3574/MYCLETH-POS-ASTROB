@@ -1,5 +1,6 @@
 import type { Prisma } from "../../../generated/prisma/client.js";
 import type { AdjustmentInput, InventoryActor, InventoryTransaction, MovementsQuery } from "../types/inventory.types.js";
+import { allowedBranchWhere, type BranchAccess } from "../authorization/branch-access.js";
 
 export const movementInclude = {
   producto: { select: { id: true, sku: true, codigo_barras: true, nombre: true } },
@@ -9,10 +10,10 @@ export const movementInclude = {
 export type MovementRecord = Prisma.movimiento_inventarioGetPayload<{ include: typeof movementInclude }>;
 
 export const inventoryMovementRepository = {
-  async list(tx: InventoryTransaction, empresaId: bigint, query: MovementsQuery) {
-    // Se verifican ambas pertenencias aunque existan datos antiguos inconsistentes.
+  async list(tx: InventoryTransaction, empresaId: bigint, query: MovementsQuery, access: BranchAccess) {
+    // Requiere el alcance de sucursales del usuario para evitar consultas globales accidentales.
     const where: Prisma.movimiento_inventarioWhereInput = {
-      producto: { empresa_id: empresaId }, almacen: { sucursal: { empresa_id: empresaId } },
+      producto: { empresa_id: empresaId }, almacen: { sucursal: allowedBranchWhere(access) },
     };
     if (query.almacen_id !== undefined) where.almacen_id = query.almacen_id;
     if (query.producto_id !== undefined) where.producto_id = query.producto_id;

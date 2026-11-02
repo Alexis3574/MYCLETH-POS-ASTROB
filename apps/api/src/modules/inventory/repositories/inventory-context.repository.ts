@@ -1,9 +1,10 @@
 import type { Prisma } from "../../../generated/prisma/client.js";
 import type { InventoryTransaction, WarehousesQuery } from "../types/inventory.types.js";
+import { allowedBranchWhere, type BranchAccess } from "../authorization/branch-access.js";
 
 export const inventoryContextRepository = {
-  async listWarehouses(tx: InventoryTransaction, empresaId: bigint, query: WarehousesQuery) {
-    const where: Prisma.almacenWhereInput = { sucursal: { empresa_id: empresaId } };
+  async listWarehouses(tx: InventoryTransaction, access: BranchAccess, query: WarehousesQuery) {
+    const where: Prisma.almacenWhereInput = { sucursal: allowedBranchWhere(access) };
     if (query.activo !== undefined) where.activo = query.activo;
     if (query.search !== undefined) where.OR = [
       { nombre: { contains: query.search, mode: "insensitive" } },

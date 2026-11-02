@@ -32,6 +32,7 @@ try {
       const warehouseA = await tx.almacen.create({ data: { sucursal_id: branchA.id, codigo: "TEST", nombre: "Almacén de prueba" } });
       const warehouseB = await tx.almacen.create({ data: { sucursal_id: branchB.id, codigo: "TEST", nombre: "Otro almacén" } });
       const userA = await tx.usuario.create({ data: { empresa_id: companyA.id, username: `invtest_${suffix}`, password_hash: "synthetic-test-only", nombre: "Prueba" } });
+      await tx.usuario_sucursal.create({ data: { usuario_id: userA.id, sucursal_id: branchA.id, es_predeterminada: true } });
       const unit = await tx.unidad_medida.create({ data: { codigo: `IT_${suffix}`, nombre: "Unidad de prueba", permite_decimales: true } });
       const integerUnit = await tx.unidad_medida.create({ data: { codigo: `IE_${suffix}`, nombre: "Pieza de prueba", permite_decimales: false } });
       const productA = await tx.producto.create({ data: { empresa_id: companyA.id, sku: `IT_${suffix}`, nombre: "Producto de prueba", codigo_barras: `INVTEST-${suffix}`, unidad_medida_id: unit.id } });
@@ -105,7 +106,8 @@ try {
       assert.equal(stockResult.rows.some((row) => row.id === productB.id), false);
       assert.equal(stockResult.rows.some((row) => row.id === service.id), false);
       assert.equal(stockResult.rows.find((row) => row.id === noBarcode.id)?.existencia.length, 0);
-      const moveResult = await inventoryMovementRepository.list(tx, companyA.id, movementsQuerySchema.parse({ producto_id: productA.id.toString(), tipo: "AJUSTE_NEGATIVO" }));
+      const moveResult = await inventoryMovementRepository.list(tx, companyA.id, movementsQuerySchema.parse({ producto_id: productA.id.toString(), tipo: "AJUSTE_NEGATIVO" }),
+        { empresaId: companyA.id, global: false, sucursalIds: [branchA.id] });
       assert.equal(moveResult.total, 1);
       passed("Consultas de existencias y movimientos con filtros de empresa");
 

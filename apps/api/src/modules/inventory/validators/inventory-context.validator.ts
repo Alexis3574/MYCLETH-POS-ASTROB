@@ -1,10 +1,18 @@
 import { inventoryContextRepository as context } from "../repositories/inventory-context.repository.js";
 import { InventoryError, inventoryProductNotFound, warehouseNotFound } from "../errors/inventory.errors.js";
 import type { InventoryActor, InventoryTransaction } from "../types/inventory.types.js";
+import { canAccessBranch, loadBranchAccess, type BranchAccess } from "../authorization/branch-access.js";
 
 export async function validateReadWarehouse(tx: InventoryTransaction, empresaId: bigint, id: bigint) {
   const warehouse = await context.findWarehouse(tx, empresaId, id);
   if (!warehouse) throw warehouseNotFound();
+  return warehouse;
+}
+
+/** No revelar si un almacén de otra sucursal existe. */
+export async function validateAuthorizedWarehouse(tx: InventoryTransaction, access: BranchAccess, id: bigint) {
+  const warehouse = await validateReadWarehouse(tx, access.empresaId, id);
+  if (!canAccessBranch(access, warehouse.sucursal.id)) throw warehouseNotFound();
   return warehouse;
 }
 
@@ -23,9 +31,12 @@ export async function validateActor(tx: InventoryTransaction, actor: InventoryAc
   }
 }
 
-export async function validateAdjustmentContext(tx: InventoryTransaction, actor: InventoryActor, almacenId: bigint, productoId: bigint) {
+export async function validateAdjustmentContext(tx: InventoryTransaction, actor: InventoryActor, almacenId: bigint, productoId: bigint, access?: BranchAccess) {
+  const scope = access ?? await loadBranchAccess(tx, actor);
+  // Comprobar la sucursal ANTES de tomar bloqueos o de devolver datos.
+  await validateAuthorizedWarehouse(tx, scope, almacenId);
   if (!await context.lockWarehouse(tx, actor.empresaId, almacenId)) throw warehouseNotFound();
-  const warehouse = await validateReadWarehouse(tx, actor.empresaId, almacenId);
+  const warehouse = await validateAuthorizedWarehouse(tx, scope, almacenId);
   if (!warehouse.activo || !warehouse.sucursal.activo) {
     throw new InventoryError(400, "INVENTORY_WAREHOUSE_INACTIVE", "El almacén o su sucursal está inactivo.", "almacen_id");
   }

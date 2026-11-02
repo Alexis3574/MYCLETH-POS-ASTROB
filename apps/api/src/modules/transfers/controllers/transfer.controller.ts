@@ -35,10 +35,10 @@ function endpoint(action: Action): RequestHandler {
 
 export const transferController = {
   list: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, ...await transferQueryService.list(actor.empresaId, transferQuerySchema.parse(req.query)) });
+    res.json({ ok: true, ...await transferQueryService.list(actor, transferQuerySchema.parse(req.query)) });
   }),
   detail: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, data: await transferQueryService.get(actor.empresaId, transferIdSchema.parse(req.params.id)) });
+    res.json({ ok: true, data: await transferQueryService.get(actor, transferIdSchema.parse(req.params.id)) });
   }),
   create: endpoint(async (req, res, actor) => {
     const key = transferKeySchema.parse(req.get("Idempotency-Key"));

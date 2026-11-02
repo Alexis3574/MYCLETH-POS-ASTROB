@@ -2,6 +2,7 @@ import { TransferError } from "../errors/transfer.errors.js";
 import { transferContextRepository as context } from "../repositories/transfer-context.repository.js";
 import type { StockState, TransferActor, TransferTransaction } from "../types/transfer.types.js";
 import { compareIds, decimalUnits, MAX_STOCK_UNITS, orderedDetails, wholeQuantity } from "../utils/transfer-values.js";
+import { canAccessBranch, loadBranchAccess } from "../../inventory/authorization/branch-access.js";
 
 export function requireDraft(state: string): void {
   if (state !== "BORRADOR") throw new TransferError(409, "TRANSFER_INVALID_STATE", "La operación requiere una transferencia en BORRADOR.", "estado");
@@ -27,11 +28,15 @@ export async function validateTransferActor(tx: TransferTransaction, actor: Tran
 export async function validateTransferContext(tx: TransferTransaction, actor: TransferActor, originId: bigint, destinationId: bigint,
   details: Array<{ producto_id: bigint; cantidad: string }>) {
   if (originId === destinationId) throw new TransferError(400, "TRANSFER_WAREHOUSE_INVALID", "Los almacenes deben ser distintos.", "almacen_destino_id");
+  const access = await loadBranchAccess(tx, actor);
   for (const warehouseId of [originId, destinationId].sort(compareIds)) {
     if (!await context.lockWarehouse(tx, actor.empresaId, warehouseId)) {
       throw new TransferError(404, "TRANSFER_WAREHOUSE_NOT_FOUND", "Almacén no encontrado en la empresa.", "almacen_id");
     }
     const warehouse = await context.findWarehouse(tx, actor.empresaId, warehouseId);
+    if (warehouse && !canAccessBranch(access, warehouse.sucursal.id)) {
+      throw new TransferError(404, "TRANSFER_WAREHOUSE_NOT_FOUND", "Almacén no encontrado en la empresa.", "almacen_id");
+    }
     if (!warehouse?.activo || !warehouse.sucursal.activo) {
       throw new TransferError(400, "TRANSFER_WAREHOUSE_INVALID", "El almacén y su sucursal deben estar activos.", "almacen_id");
     }

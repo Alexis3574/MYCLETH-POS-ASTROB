@@ -4,7 +4,9 @@ import { inventoryStockRepository } from "../repositories/inventory-stock.reposi
 import { inventoryMovementRepository } from "../repositories/inventory-movement.repository.js";
 import { inventoryKardexRepository } from "../repositories/inventory-kardex.repository.js";
 import type { InventoryTransaction, StockQuery, MovementsQuery, KardexQuery, WarehousesQuery } from "../types/inventory.types.js";
-import { validateReadProduct, validateReadWarehouse } from "../validators/inventory-context.validator.js";
+import { validateReadProduct, validateReadWarehouse, validateAuthorizedWarehouse } from "../validators/inventory-context.validator.js";
+import { loadBranchAccess } from "../authorization/branch-access.js";
+import type { InventoryActor } from "../types/inventory.types.js";
 import { countToNumber, pagination, serializeKardexRow, serializeMovement, serializeStock, stockState } from "../utils/inventory.serializer.js";
 import { formatSignedDecimal } from "../utils/inventory-values.js";
 
@@ -40,30 +42,39 @@ export async function getKardexInTransaction(tx: InventoryTransaction, empresaId
 }
 
 export const inventoryQueryService = {
-  warehouses(empresaId: bigint, query: WarehousesQuery) {
+  warehouses(actor: InventoryActor, query: WarehousesQuery) {
     return read(async (tx) => {
-      const result = await inventoryContextRepository.listWarehouses(tx, empresaId, query);
+      const access = await loadBranchAccess(tx, actor);
+      const result = await inventoryContextRepository.listWarehouses(tx, access, query);
       return { data: result.rows.map((row) => ({ ...row, id: row.id.toString(),
         sucursal: { ...row.sucursal, id: row.sucursal.id.toString(), empresa_id: row.sucursal.empresa_id.toString() } })),
         pagination: pagination(query.page, query.limit, result.total) };
     });
   },
-  stock(empresaId: bigint, query: StockQuery) {
+  stock(actor: InventoryActor, query: StockQuery) {
     return read(async (tx) => {
-      const warehouse = await validateReadWarehouse(tx, empresaId, query.almacen_id);
-      if (query.producto_id !== undefined) await validateReadProduct(tx, empresaId, query.producto_id, true);
-      const result = await inventoryStockRepository.list(tx, empresaId, query);
+      const access = await loadBranchAccess(tx, actor);
+      const warehouse = await validateAuthorizedWarehouse(tx, access, query.almacen_id);
+      if (query.producto_id !== undefined) await validateReadProduct(tx, actor.empresaId, query.producto_id, true);
+      const result = await inventoryStockRepository.list(tx, actor.empresaId, query);
       return { almacen: { id: warehouse.id.toString(), codigo: warehouse.codigo, nombre: warehouse.nombre, activo: warehouse.activo },
         data: result.rows.map((row) => serializeStock(row, query.almacen_id)), pagination: pagination(query.page, query.limit, result.total) };
     });
   },
-  movements(empresaId: bigint, query: MovementsQuery) {
+  movements(actor: InventoryActor, query: MovementsQuery) {
     return read(async (tx) => {
-      if (query.almacen_id !== undefined) await validateReadWarehouse(tx, empresaId, query.almacen_id);
-      if (query.producto_id !== undefined) await validateReadProduct(tx, empresaId, query.producto_id);
-      const result = await inventoryMovementRepository.list(tx, empresaId, query);
+      const access = await loadBranchAccess(tx, actor);
+      if (query.almacen_id !== undefined) await validateAuthorizedWarehouse(tx, access, query.almacen_id);
+      if (query.producto_id !== undefined) await validateReadProduct(tx, actor.empresaId, query.producto_id);
+      const result = await inventoryMovementRepository.list(tx, actor.empresaId, query, access);
       return { data: result.rows.map(serializeMovement), pagination: pagination(query.page, query.limit, result.total) };
     });
   },
-  kardex(empresaId: bigint, query: KardexQuery) { return read((tx) => getKardexInTransaction(tx, empresaId, query)); },
+  kardex(actor: InventoryActor, query: KardexQuery) {
+    return read(async (tx) => {
+      const access = await loadBranchAccess(tx, actor);
+      await validateAuthorizedWarehouse(tx, access, query.almacen_id);
+      return getKardexInTransaction(tx, actor.empresaId, query);
+    });
+  },
 };

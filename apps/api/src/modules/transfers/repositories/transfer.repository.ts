@@ -1,6 +1,7 @@
 import type { Prisma } from "../../../generated/prisma/client.js";
 import type { CreateTransferInput, TransferActor, TransferQuery, TransferTransaction } from "../types/transfer.types.js";
 import { orderedDetails } from "../utils/transfer-values.js";
+import { allowedBranchWhere, type BranchAccess } from "../../inventory/authorization/branch-access.js";
 
 const warehouseSelect = { id: true, codigo: true, nombre: true, activo: true,
   sucursal: { select: { id: true, codigo: true, nombre: true, activo: true, empresa_id: true } } } satisfies Prisma.almacenSelect;
@@ -26,10 +27,22 @@ export function transferScope(empresaId: bigint): Prisma.transferencia_almacenWh
     transferencia_detalle: { every: { producto: { empresa_id: empresaId } } } };
 }
 
+/** Se requiere autorización sobre AMBOS extremos de una transferencia. */
+function visibleTransferScope(access: BranchAccess): Prisma.transferencia_almacenWhereInput {
+  const scope = transferScope(access.empresaId);
+  if (access.global) return scope;
+  const branch = allowedBranchWhere(access);
+  return { ...scope, AND: [
+    { almacen_transferencia_almacen_almacen_origen_idToalmacen: { sucursal: branch } },
+    { almacen_transferencia_almacen_almacen_destino_idToalmacen: { sucursal: branch } },
+  ] };
+}
+
 export const transferRepository = {
-  async list(tx: TransferTransaction, empresaId: bigint, query: TransferQuery) {
-    const where: Prisma.transferencia_almacenWhereInput = { ...transferScope(empresaId) };
+  async list(tx: TransferTransaction, access: BranchAccess, query: TransferQuery) {
+    const where: Prisma.transferencia_almacenWhereInput = { ...visibleTransferScope(access) };
     const and: Prisma.transferencia_almacenWhereInput[] = [];
+    if (where.AND) and.push(...(Array.isArray(where.AND) ? where.AND : [where.AND]));
     if (query.estado !== undefined) where.estado = query.estado;
     if (query.almacen_origen_id !== undefined) where.almacen_origen_id = query.almacen_origen_id;
     if (query.almacen_destino_id !== undefined) where.almacen_destino_id = query.almacen_destino_id;
@@ -45,6 +58,9 @@ export const transferRepository = {
   },
   find(tx: TransferTransaction, empresaId: bigint, id: bigint) {
     return tx.transferencia_almacen.findFirst({ where: { ...transferScope(empresaId), id }, select: detailSelect });
+  },
+  findVisible(tx: TransferTransaction, access: BranchAccess, id: bigint) {
+    return tx.transferencia_almacen.findFirst({ where: { ...visibleTransferScope(access), id }, select: detailSelect });
   },
   async lock(tx: TransferTransaction, empresaId: bigint, id: bigint) {
     const rows = await tx.$queryRaw<Array<{ id: bigint }>>`
