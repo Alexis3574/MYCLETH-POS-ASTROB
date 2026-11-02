@@ -1,3 +1,4 @@
+import { reportsRouter } from "./modules/reports/reports.routes.js";
 import { dashboardRouter } from "./modules/dashboard/dashboard.routes.js";
 import { companySettingsRouter } from "./modules/company-settings/company-settings.routes.js";
 import { auditRouter } from "./modules/audit-logs/audit.routes.js";
@@ -87,5 +88,7 @@ app.use("/api/v1/audit-logs", auditRouter);
 app.use("/api/v1/company-settings", companySettingsRouter);
 
 app.use("/api/v1/dashboard", dashboardRouter);
+
+app.use("/api/v1/reports", reportsRouter);
 
 app.use(errorMiddleware);
