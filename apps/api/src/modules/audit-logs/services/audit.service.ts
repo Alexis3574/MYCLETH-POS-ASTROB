@@ -37,7 +37,7 @@ function serializeRow(row: AuditDatabaseRow) {
     tabla: row.tabla,
     registro_id: row.registro_id?.toString() ?? null,
     accion: row.accion,
-    sucursal_id: row.sucursal_id.toString(),
+    sucursal_id: row.sucursal_id?.toString() ?? null,
     creado_en: row.creado_en
   };
 }

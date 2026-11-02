@@ -1,3 +1,4 @@
+import { companySettingsRouter } from "./modules/company-settings/company-settings.routes.js";
 import { auditRouter } from "./modules/audit-logs/audit.routes.js";
 import { ecommerceSyncRouter } from "./modules/ecommerce-sync/ecommerce-sync.routes.js";
 import { customerOrderRouter } from "./modules/customer-orders/customer-order.routes.js";
@@ -81,5 +82,7 @@ app.use("/api/v1/customer-orders", customerOrderRouter);
 app.use("/api/v1/ecommerce-sync", ecommerceSyncRouter);
 
 app.use("/api/v1/audit-logs", auditRouter);
+
+app.use("/api/v1/company-settings", companySettingsRouter);
 
 app.use(errorMiddleware);

@@ -12,6 +12,16 @@ import { Prisma } from "../../../generated/prisma/client.js";
  */
 const targets: Prisma.Sql[] = [
   Prisma.sql`
+    SELECT c.empresa_id,
+           NULL::bigint AS sucursal_id,
+           NULL::bigint AS sucursal_destino_id,
+           TRUE AS solo_admin
+    FROM pos.configuracion_empresa c
+    WHERE a.tabla = 'configuracion_empresa'
+      AND c.id = a.registro_id
+  `,
+
+  Prisma.sql`
     SELECT v.empresa_id, v.sucursal_id,
            NULL::bigint AS sucursal_destino_id,
            FALSE AS solo_admin

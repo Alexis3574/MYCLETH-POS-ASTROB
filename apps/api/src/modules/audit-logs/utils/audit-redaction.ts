@@ -6,6 +6,7 @@ type SafeRecord = Record<string, SafeValue>;
  * Nunca devolver JSONB completo ni objetos anidados sin revisar.
  */
 const ALLOWED: Readonly<Record<string, readonly string[]>> = {
+  configuracion_empresa: ["clave", "operacion"],
   venta: [
     "folio", "estado", "total", "condicion_pago",
     "unidades_reintegradas"
