@@ -9,12 +9,16 @@ import { createTransferContent, compareIds, decimalUnits, destinationAverage, or
 import type { TransferAction } from "../utils/transfer-values.js";
 import type { CreateTransferInput, StockState, TransferActor, TransferSnapshot, TransferStockChange, TransferTransaction } from "../types/transfer.types.js";
 import { serializeTransfer, serializeTransferMovements, stockState } from "../utils/transfer.serializer.js";
+import { loadBranchAccess } from "../../inventory/authorization/branch-access.js";
 
 async function replay(tx: TransferTransaction, actor: TransferActor, key: string, action: TransferAction, hash: string) {
   await validateTransferActor(tx, actor);
   await operations.lockKey(tx, actor.empresaId, key);
   const existing = await operations.findByKey(tx, actor.empresaId, key);
   if (!existing) return null;
+  // La respuesta persistida no puede eludir una revocación posterior de sucursal.
+  const access = await loadBranchAccess(tx, actor);
+  if (!await transfers.findVisible(tx, access, existing.transferencia_id)) throw transferNotFound();
   if (existing.accion !== action || existing.request_hash !== hash || existing.usuario_id !== actor.userId) {
     throw new TransferError(409, "TRANSFER_IDEMPOTENCY_CONFLICT", "La clave ya se utilizó con otro contenido, acción o usuario.", "Idempotency-Key");
   }
@@ -44,8 +48,12 @@ export async function createTransferInTransaction(tx: TransferTransaction, actor
 }
 
 async function draft(tx: TransferTransaction, actor: TransferActor, id: bigint) {
+  // Verificar ambos almacenes antes de bloquear y de revelar el estado del documento.
+  const access = await loadBranchAccess(tx, actor);
+  if (!await transfers.findVisible(tx, access, id)) throw transferNotFound();
   if (!await transfers.lock(tx, actor.empresaId, id)) throw transferNotFound();
-  const row = await transfers.find(tx, actor.empresaId, id);
+  const refreshed = await loadBranchAccess(tx, actor);
+  const row = await transfers.findVisible(tx, refreshed, id);
   if (!row) throw transferNotFound();
   requireDraft(row.estado);
   if (await movements.countAll(tx, id)) throw new TransferError(409, "TRANSFER_MOVEMENTS_EXIST", "La transferencia ya tiene movimientos registrados.");

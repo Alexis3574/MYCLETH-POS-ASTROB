@@ -1,3 +1,10 @@
+import { reportsRouter } from "./modules/reports/reports.routes.js";
+import { dashboardRouter } from "./modules/dashboard/dashboard.routes.js";
+import { companySettingsRouter } from "./modules/company-settings/company-settings.routes.js";
+import { auditRouter } from "./modules/audit-logs/audit.routes.js";
+import { ecommerceSyncRouter } from "./modules/ecommerce-sync/ecommerce-sync.routes.js";
+import { customerOrderRouter } from "./modules/customer-orders/customer-order.routes.js";
+import { orderRouter, orderQuoteRouter } from "./modules/sales-orders/order.routes.js";
 import { quoteRouter } from "./modules/quotes/quote.routes.js";
 import { paymentMethodRouter } from "./modules/payment-methods/payment-method.routes.js";
 import { organizationRouter } from "./modules/organization/organization.routes.js";
@@ -71,5 +78,17 @@ app.use("/api/v1/organization", organizationRouter);
 app.use("/api/v1/payment-methods", paymentMethodRouter);
 
 app.use("/api/v1/quotes", quoteRouter);
+app.use("/api/v1/sales-orders", orderRouter);
+app.use("/api/v1/quotes", orderQuoteRouter);
+app.use("/api/v1/customer-orders", customerOrderRouter);
+app.use("/api/v1/ecommerce-sync", ecommerceSyncRouter);
+
+app.use("/api/v1/audit-logs", auditRouter);
+
+app.use("/api/v1/company-settings", companySettingsRouter);
+
+app.use("/api/v1/dashboard", dashboardRouter);
+
+app.use("/api/v1/reports", reportsRouter);
 
 app.use(errorMiddleware);

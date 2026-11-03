@@ -35,6 +35,7 @@ try {
     const branch = await tx.sucursal.create({ data: { empresa_id: company.id, codigo: "TEST", nombre: "Prueba concurrente" } });
     const warehouse = await tx.almacen.create({ data: { sucursal_id: branch.id, codigo: "TEST", nombre: "Prueba concurrente" } });
     const user = await tx.usuario.create({ data: { empresa_id: company.id, username: `invconc_${suffix}`, nombre: "Prueba", password_hash: "synthetic-test-only" } });
+    await tx.usuario_sucursal.create({ data: { usuario_id: user.id, sucursal_id: branch.id, es_predeterminada: true } });
     const unit = await tx.unidad_medida.create({ data: { codigo: `IC_${suffix}`, nombre: "Prueba concurrente" } });
     const product = await tx.producto.create({ data: { empresa_id: company.id, sku: `IC_${suffix}`, codigo_barras: `INVCONC-${suffix}`, nombre: "Prueba concurrente", unidad_medida_id: unit.id } });
     return { companyId: company.id, warehouseId: warehouse.id, userId: user.id, productId: product.id, unitId: unit.id };

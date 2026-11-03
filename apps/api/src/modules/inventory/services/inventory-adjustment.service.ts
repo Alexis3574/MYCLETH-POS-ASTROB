@@ -5,7 +5,8 @@ import { inventoryMovementRepository as movements } from "../repositories/invent
 import { inventoryStockRepository as stocks } from "../repositories/inventory-stock.repository.js";
 import { InventoryError, errorCode } from "../errors/inventory.errors.js";
 import type { AdjustmentInput, AdjustmentSnapshot, InventoryActor, InventoryTransaction } from "../types/inventory.types.js";
-import { validateActor, validateAdjustmentContext } from "../validators/inventory-context.validator.js";
+import { validateActor, validateAdjustmentContext, validateAuthorizedWarehouse } from "../validators/inventory-context.validator.js";
+import { loadBranchAccess } from "../authorization/branch-access.js";
 import { validateAdjustmentQuantity } from "../validators/inventory-adjustment.validator.js";
 import { adjustmentHash, adjustmentOperationId, decimalUnits } from "../utils/inventory-values.js";
 import { stockState } from "../utils/inventory.serializer.js";
@@ -13,6 +14,9 @@ import { stockState } from "../utils/inventory.serializer.js";
 export async function adjustInTransaction(tx: InventoryTransaction, actor: InventoryActor, input: AdjustmentInput, key: string) {
   await validateActor(tx, actor);
   await adjustments.lockKey(tx, actor.empresaId, key);
+  // Revisar asignaciones después de esperar el bloqueo de idempotencia.
+  const access = await loadBranchAccess(tx, actor);
+  await validateAuthorizedWarehouse(tx, access, input.almacen_id);
   const hash = adjustmentHash(actor.userId, input);
   const existing = await adjustments.findByKey(tx, actor.empresaId, key);
   if (existing) {
@@ -22,7 +26,7 @@ export async function adjustInTransaction(tx: InventoryTransaction, actor: Inven
     return { replayed: true, data: existing.respuesta as unknown as AdjustmentSnapshot };
   }
 
-  const { product } = await validateAdjustmentContext(tx, actor, input.almacen_id, input.producto_id);
+  const { product } = await validateAdjustmentContext(tx, actor, input.almacen_id, input.producto_id, access);
   const before = stockState(await stocks.lock(tx, actor.empresaId, input.producto_id, input.almacen_id));
   validateAdjustmentQuantity(input, product, before);
   const ajusteId = await adjustments.nextId(tx);

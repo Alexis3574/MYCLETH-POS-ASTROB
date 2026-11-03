@@ -61,6 +61,8 @@ interface PersistSaleInput {
 
   totals:
     SaleTotals;
+  ordenVentaId?: bigint;
+  pedidoClienteId?: bigint;
 }
 
 interface CreatedPaymentResult {
@@ -96,12 +98,19 @@ export async function persistCompletedSale({
   preparedPayments,
   condicionPago,
   totals,
+  ordenVentaId,
+  pedidoClienteId,
 }: PersistSaleInput) {
+  if (ordenVentaId != null && pedidoClienteId != null) {
+    throw new SaleContextError("documento_origen", "Una venta admite un único documento de origen.");
+  }
   const sale =
     await saleWriteRepository
       .createSale(
         tx,
         {
+          orden_venta_id: ordenVentaId ?? null,
+          pedido_cliente_id: pedidoClienteId ?? null,
           empresa_id:
             input.empresaId,
 

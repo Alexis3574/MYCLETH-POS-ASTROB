@@ -34,6 +34,7 @@ export async function createFixture(tx: TransferTransaction, tag = randomUUID())
   const user = await tx.usuario.create({ data: { empresa_id: company.id, username: `tr-${tag}`, password_hash: "TEST_ONLY_NO_LOGIN", nombre: "Usuario de pruebas" } });
   const role = await tx.rol.create({ data: { codigo: `TR-${tag}`, nombre: "Rol de pruebas", rol_permiso: { create: { permiso_id: permission.id } } } });
   await tx.usuario_rol.create({ data: { usuario_id: user.id, rol_id: role.id } });
+  await tx.usuario_sucursal.create({ data: { usuario_id: user.id, sucursal_id: branch.id, es_predeterminada: true } });
   const products: bigint[] = [];
   for (const number of [1, 2]) {
     const product = await tx.producto.create({ data: { empresa_id: company.id, unidad_medida_id: unit.id,

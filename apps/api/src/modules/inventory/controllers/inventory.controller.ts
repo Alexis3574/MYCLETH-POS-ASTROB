@@ -39,16 +39,16 @@ function endpoint(action: Action): RequestHandler {
 
 export const inventoryController = {
   warehouses: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, ...await inventoryQueryService.warehouses(actor.empresaId, warehousesQuerySchema.parse(req.query)) });
+    res.json({ ok: true, ...await inventoryQueryService.warehouses(actor, warehousesQuerySchema.parse(req.query)) });
   }),
   stock: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, ...await inventoryQueryService.stock(actor.empresaId, stockQuerySchema.parse(req.query)) });
+    res.json({ ok: true, ...await inventoryQueryService.stock(actor, stockQuerySchema.parse(req.query)) });
   }),
   movements: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, ...await inventoryQueryService.movements(actor.empresaId, movementsQuerySchema.parse(req.query)) });
+    res.json({ ok: true, ...await inventoryQueryService.movements(actor, movementsQuerySchema.parse(req.query)) });
   }),
   kardex: endpoint(async (req, res, actor) => {
-    res.json({ ok: true, ...await inventoryQueryService.kardex(actor.empresaId, kardexQuerySchema.parse(req.query)) });
+    res.json({ ok: true, ...await inventoryQueryService.kardex(actor, kardexQuerySchema.parse(req.query)) });
   }),
   adjust: endpoint(async (req, res, actor) => {
     const key = idempotencyKeySchema.parse(req.get("Idempotency-Key"));
