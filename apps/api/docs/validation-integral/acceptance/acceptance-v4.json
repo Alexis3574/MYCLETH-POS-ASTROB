@@ -1,0 +1,77 @@
+{
+  "project": "POSMYCLETH",
+  "version": "v4",
+  "started": "2026-11-02T23:49:04.514Z",
+  "finished": "2026-11-02T23:51:38.137Z",
+  "branch": "devalex",
+  "head": "f9fca834cb5c6c23db4e8564ae2f9e816af3e49a",
+  "database": "pos_novnix",
+  "v3": {
+    "status": "PASS",
+    "counts": {
+      "PASS": 107,
+      "FAIL": 0,
+      "SKIP": 5
+    },
+    "report": null
+  },
+  "counts": {
+    "PASS": 7,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "status": "ACEPTACION_FUNCIONAL_ENTORNO_PRUEBAS",
+  "production_approved": false,
+  "limitations": [
+    "Ecommerce: se verifica un mock HTTP local, NO una integración con servicio real externo/staging.",
+    "Carga: umbrales SLO provisionales y base pequeña; NO establece SLA de producción.",
+    "Fixture E2E comprueba un flujo secuencial real; no certifica atomicidad de múltiples transacciones como una sola operación.",
+    "Las secuencias PostgreSQL pueden avanzar con los fixtures aunque las tablas queden restauradas.",
+    "Revisar cambios locales de los parches v2/v3 antes de hacer commit; este script no realiza commits ni migraciones."
+  ],
+  "notes": [],
+  "results": [
+    {
+      "name": "Regresión integral v3",
+      "status": "PASS",
+      "detail": "{\"counts\":{\"PASS\":107,\"FAIL\":0,\"SKIP\":5},\"dirty_tables\":[],\"process\":\"exit=0,signal=none,elapsed_ms=138258\"}",
+      "log": "01-Regresion-integral-v3.log"
+    },
+    {
+      "name": "Multiempresa/multisucursal HTTP",
+      "status": "PASS",
+      "detail": "exit=0,signal=none,elapsed_ms=3080; 47 tablas con huellas restauradas",
+      "log": "02-Multiempresa-multisucursal-HTTP.log"
+    },
+    {
+      "name": "Multiempresa HTTP: aislamiento positivo/negativo",
+      "status": "PASS",
+      "detail": "2 empresas, 3 sucursales, usuarios con alcance parcial comprobados",
+      "log": ""
+    },
+    {
+      "name": "Multisucursal HTTP: acceso parcial en JSON/CSV",
+      "status": "PASS",
+      "detail": "Rutas JSON/CSV y límites sucursales bajo mismo fixture",
+      "log": ""
+    },
+    {
+      "name": "Flujo E2E: compra-recepción-transferencia-venta-devolución",
+      "status": "PASS",
+      "detail": "exit=0,signal=none,elapsed_ms=2778; 47 tablas con huellas restauradas",
+      "log": "05-Flujo-E2E-compra-recepci-n-transferencia-venta-devoluci-n.log"
+    },
+    {
+      "name": "Contrato Ecommerce con mock HTTP independiente",
+      "status": "PASS",
+      "detail": "exit=0,signal=none,elapsed_ms=1961; 47 tablas con huellas restauradas",
+      "log": "06-Contrato-Ecommerce-con-mock-HTTP-independiente.log"
+    },
+    {
+      "name": "Carga HTTP 500 solicitudes y SLO provisional",
+      "status": "PASS",
+      "detail": "exit=0,signal=none,elapsed_ms=7109; 47 tablas con huellas restauradas",
+      "log": "07-Carga-HTTP-500-solicitudes-y-SLO-provisional.log"
+    }
+  ]
+}

@@ -68,8 +68,15 @@ async function snapshot() {
 }
 async function preflight() {
   const before=await snapshot();
-  guard(before.counts.sincronizacion_ecommerce_inventario === 73 && before.counts.auditoria === 44,
-    'Baseline distinto del historial validado (73 outbox, 44 auditorías). Revisar antes de ejecutar.');
+  // Runner integral v2 supplies the exact pre-execution historical audit count.
+  // For standalone invocation, retain the legacy 44-event safety gate.
+  const rawExpected = process.env.POS_INTEGRAL_BASELINE_AUDIT_COUNT;
+  const expectedAudits = rawExpected === undefined ? 44 : Number(rawExpected);
+  guard(Number.isSafeInteger(expectedAudits) && expectedAudits >= 44,
+    'Conteo esperado de auditorías inválido. No se modifica la historia.');
+  guard(before.counts.sincronizacion_ecommerce_inventario === 73 &&
+    before.counts.auditoria === expectedAudits,
+    `Baseline inconsistente: outbox esperado=73; auditoria esperada=${expectedAudits}. Revisar antes de ejecutar.`);
   guard(before.outstanding === 0, `Hay ${before.outstanding} eventos no sincronizados; no se inicia.`);
   const dangling = await one(`SELECT count(*)::int AS n FROM pos.empresa WHERE left(razon_social,5)='INVH_'`);
   guard(dangling.n===0, 'Se encontraron fixtures INVH previos: recuperar antes de ejecutar.');

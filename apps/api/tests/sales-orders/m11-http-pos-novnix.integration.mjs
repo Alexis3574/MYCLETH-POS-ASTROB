@@ -50,7 +50,7 @@ async function preflight() {
     EXISTS (SELECT 1 FROM pg_namespace WHERE nspname='pos') AS schema_exists`)).rows[0];
   ASSERT_ENV(where.db === EXPECTED_DB && where.port === 5432 && where.schema_exists,
     'Servidor/base/esquema reales no coinciden con pos_novnix/pos.');
-  ASSERT_ENV(where.readonly === 'off', 'Base de desarrollo está en modo solo lectura.');
+  ASSERT_ENV(where.readonly === 'off' || (preflightOnly && where.readonly === 'on'), 'Modo escritura requiere PostgreSQL de lectura/escritura.');
   const expected = ['empresa','sucursal','usuario','rol','permiso','usuario_rol','usuario_sucursal',
     'producto','impuesto','producto_impuesto','almacen','existencia','movimiento_inventario',
     'cotizacion','cotizacion_detalle','orden_venta','orden_venta_detalle','venta','venta_detalle',

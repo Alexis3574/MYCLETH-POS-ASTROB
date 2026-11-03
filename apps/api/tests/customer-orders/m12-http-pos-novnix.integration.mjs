@@ -64,7 +64,7 @@ async function preflight() {
     EXISTS(SELECT 1 FROM pg_namespace WHERE nspname='pos') AS schema_exists`);
   safety(loc.db === DB_NAME && loc.puerto === 5432 && loc.schema_exists,
     'El servidor real no corresponde a pos_novnix.pos:5432.');
-  safety(loc.readonly === 'off', 'PostgreSQL está en modo solo lectura.');
+  safety(loc.readonly === 'off' || (preflightOnly && loc.readonly === 'on'), 'Modo escritura requiere PostgreSQL de lectura/escritura.');
   const requiredTables = ['empresa','sucursal','usuario','usuario_rol','usuario_sucursal','rol','rol_permiso',
     'permiso','cliente','producto','unidad_medida','impuesto','producto_impuesto','pedido_cliente',
     'pedido_cliente_detalle','venta','auditoria','movimiento_inventario','existencia',
