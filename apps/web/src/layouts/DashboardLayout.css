@@ -1,0 +1,486 @@
+#root:has(> .dashboard-shell) {
+  display: block;
+  width: 100%;
+  min-height: 100svh;
+  padding: 0;
+}
+
+.dashboard-shell {
+  display: flex;
+  min-height: 100svh;
+  width: 100%;
+  color: #152b47;
+  background: #f3f6fb;
+}
+
+.dashboard-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 260px;
+  min-height: 100svh;
+  padding: 28px 18px;
+  color: #fff;
+  background: linear-gradient(
+    180deg,
+    #102e54,
+    #0b203b
+  );
+}
+
+.dashboard-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 8px 34px;
+}
+
+.dashboard-brand-icon {
+  display: grid;
+  place-items: center;
+  width: 41px;
+  height: 41px;
+  border-radius: 12px;
+  background: #1464d5;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.dashboard-brand strong {
+  display: block;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+}
+
+.dashboard-brand small {
+  display: block;
+  margin-top: 4px;
+  color: #a5c2e5;
+  font-size: 10px;
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-nav-label {
+  padding: 0 12px;
+  color: #91b5dc;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.dashboard-nav-active {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  background: #1a5ba5;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.dashboard-nav-active:hover {
+  background: #216bbd;
+  color: #fff;
+  text-decoration: none;
+}
+
+.dashboard-nav-active:focus-visible {
+  outline: 3px solid #6ba7f5;
+  outline-offset: 3px;
+}
+
+.dashboard-nav-active span {
+  font-size: 21px;
+}
+
+.dashboard-nav-note {
+  margin: 15px 12px;
+  color: #a0b8d4;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.dashboard-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+  padding: 20px 10px 0;
+  border-top: 1px solid #304b6d;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-sidebar-footer small {
+  color: #91b5dc;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.dashboard-sidebar-footer strong {
+  color: #e7f2ff;
+  font-size: 13px;
+}
+
+.dashboard-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 82px;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid #e3eaf3;
+}
+
+.dashboard-header-left,
+.dashboard-account {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.dashboard-header-left > div,
+.dashboard-account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.dashboard-header-label {
+  color: #6a82a0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dashboard-header-left strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-account-info {
+  text-align: right;
+}
+
+.dashboard-account-info strong {
+  font-size: 13px;
+}
+
+.dashboard-account-info small {
+  color: #73859e;
+  font-size: 12px;
+}
+
+.dashboard-logout {
+  padding: 10px 14px;
+  border: 1px solid #d6e1ee;
+  border-radius: 9px;
+  background: #fff;
+  color: #285385;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.dashboard-logout:hover {
+  background: #eff6ff;
+}
+
+.dashboard-logout:focus-visible,
+.dashboard-menu-button:focus-visible {
+  outline: 3px solid #6ba7f5;
+  outline-offset: 3px;
+}
+
+.dashboard-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.dashboard-menu-button {
+  display: none;
+  padding: 8px 12px;
+  border: 1px solid #d6e1ee;
+  border-radius: 8px;
+  background: white;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.dashboard-backdrop {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .dashboard-sidebar {
+    position: fixed;
+    z-index: 30;
+    inset: 0 auto 0 0;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+  }
+
+  .dashboard-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .dashboard-backdrop {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: block;
+    width: 100%;
+    border: 0;
+    background: rgba(6, 20, 40, 0.55);
+  }
+
+  .dashboard-menu-button {
+    display: block;
+  }
+
+  .dashboard-header {
+    padding: 14px 20px;
+  }
+
+  .dashboard-content {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .dashboard-account-info {
+    display: none;
+  }
+
+  .dashboard-header {
+    gap: 10px;
+  }
+
+  .dashboard-content {
+    padding: 20px 16px;
+  }
+}
+
+
+/* ========================================
+   MENU MODULAR POSMYCLETH
+   ======================================== */
+
+.dashboard-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #456486 transparent;
+  transition:
+    width 0.25s ease,
+    padding 0.25s ease;
+}
+
+.dashboard-main {
+  min-width: 0;
+}
+
+.dashboard-nav {
+  gap: 18px;
+}
+
+.dashboard-nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dashboard-nav-section .dashboard-nav-label {
+  margin-bottom: 5px;
+}
+
+.dashboard-nav-link,
+.dashboard-nav-pending {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dashboard-nav-link {
+  color: #d7e6f8;
+  background: transparent;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.dashboard-nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.dashboard-nav-link:focus-visible {
+  outline: 3px solid #6ba7f5;
+  outline-offset: 3px;
+}
+
+.dashboard-nav-active {
+  min-height: 46px;
+}
+
+.dashboard-nav-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  font-size: 19px;
+}
+
+.dashboard-nav-active .dashboard-nav-icon {
+  font-size: 19px;
+}
+
+.dashboard-nav-item-label,
+.dashboard-nav-active .dashboard-nav-item-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+}
+
+.dashboard-nav-pending {
+  color: #b5c6dc;
+  background: rgba(255, 255, 255, 0.035);
+  cursor: default;
+}
+
+.dashboard-nav-pending:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.dashboard-collapse-button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #dce5f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #45617f;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dashboard-collapse-button:hover {
+  background: #eff6ff;
+  border-color: #b8d2f2;
+  color: #1464d5;
+}
+
+.dashboard-collapse-button:focus-visible {
+  outline: 3px solid #6ba7f5;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   SIDEBAR CONTRAIDO EN ESCRITORIO
+   ======================================== */
+
+@media (min-width: 851px) {
+  .dashboard-shell.is-collapsed .dashboard-sidebar {
+    width: 78px;
+    padding: 28px 12px;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-brand {
+    justify-content: center;
+    padding: 5px 0 34px;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-brand-copy,
+  .dashboard-shell.is-collapsed .dashboard-nav-label,
+  .dashboard-shell.is-collapsed .dashboard-nav-item-label,
+  .dashboard-shell.is-collapsed .dashboard-sidebar-footer {
+    display: none;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-nav {
+    align-items: center;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-nav-section {
+    align-items: center;
+    width: 100%;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-nav-link,
+  .dashboard-shell.is-collapsed .dashboard-nav-active,
+  .dashboard-shell.is-collapsed .dashboard-nav-pending {
+    justify-content: center;
+    width: 48px;
+    min-height: 48px;
+    padding: 12px;
+  }
+
+  .dashboard-shell.is-collapsed .dashboard-nav-icon {
+    width: 24px;
+    font-size: 21px;
+  }
+}
+
+/* ========================================
+   SIDEBAR RESPONSIVO
+   ======================================== */
+
+@media (max-width: 850px) {
+  .dashboard-sidebar {
+    position: fixed;
+    z-index: 30;
+    inset: 0 auto 0 0;
+    width: 260px;
+    height: 100svh;
+    overflow-y: auto;
+  }
+
+  .dashboard-collapse-button {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-sidebar,
+  .dashboard-collapse-button,
+  .dashboard-nav-link {
+    transition: none;
+  }
+}
