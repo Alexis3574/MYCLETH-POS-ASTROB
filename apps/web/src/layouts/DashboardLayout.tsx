@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useRef,
   useState,
 } from 'react'
 
@@ -36,6 +37,8 @@ export default function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const sidebarRef = useRef<HTMLElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   const [collapsed, setCollapsed] = useState(
     readSidebarPreference,
@@ -51,6 +54,82 @@ export default function DashboardLayout({
       // La preferencia funciona durante la sesión actual.
     }
   }, [collapsed])
+
+  useEffect(() => {
+    const sidebar = sidebarRef.current
+    const menuButton = menuButtonRef.current
+
+    if (!menuOpen || !sidebar) {
+      return
+    }
+
+    const mobileViewport = window.matchMedia('(max-width: 850px)')
+
+    function getFocusableElements() {
+      return Array.from(
+        sidebar!.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex="0"]',
+        ),
+      ).filter((element) => element.getClientRects().length > 0)
+    }
+
+    const firstElement = getFocusableElements()[0] ?? sidebar
+    firstElement.focus()
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setMenuOpen(false)
+        return
+      }
+
+      if (event.key !== 'Tab') {
+        return
+      }
+
+      const elements = getFocusableElements()
+      const first = elements[0]
+      const last = elements[elements.length - 1]
+
+      if (!first || !last) {
+        event.preventDefault()
+        sidebar!.focus()
+        return
+      }
+
+      const activeElement = document.activeElement
+      const outsideMenu = !sidebar!.contains(activeElement)
+
+      if (event.shiftKey && (activeElement === first || outsideMenu)) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && (activeElement === last || outsideMenu)) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    function handleViewportChange() {
+      if (!mobileViewport.matches) {
+        if (sidebar!.contains(document.activeElement)) {
+          sidebar!.querySelector<HTMLElement>('a[href]')?.focus()
+        }
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    mobileViewport.addEventListener('change', handleViewportChange)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      mobileViewport.removeEventListener('change', handleViewportChange)
+
+      if (mobileViewport.matches && menuButton?.isConnected) {
+        menuButton.focus()
+      }
+    }
+  }, [menuOpen])
 
   const fullName = [
     user.nombre,
@@ -85,6 +164,8 @@ export default function DashboardLayout({
       )}
 
       <aside
+        ref={sidebarRef}
+        tabIndex={-1}
         id="pos-sidebar"
         className={
           `dashboard-sidebar${menuOpen ? ' is-open' : ''}`
@@ -101,6 +182,14 @@ export default function DashboardLayout({
             <small>Panel administrativo</small>
           </div>
         </div>
+
+        <button
+          type="button"
+          className="dashboard-menu-close"
+          onClick={closeMenu}
+        >
+          Cerrar menú
+        </button>
 
         <nav
           className="dashboard-nav"
@@ -180,11 +269,12 @@ export default function DashboardLayout({
         </div>
       </aside>
 
-      <div className="dashboard-main">
+      <div className="dashboard-main" inert={menuOpen}>
         <header className="dashboard-header">
           <div className="dashboard-header-left">
             <button
               type="button"
+              ref={menuButtonRef}
               className="dashboard-menu-button"
               aria-label="Abrir menú"
               aria-controls="pos-sidebar"

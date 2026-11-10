@@ -15,6 +15,8 @@ import DashboardLayout from '../../layouts/DashboardLayout'
 
 import LoginPage from '../../pages/LoginPage'
 import DashboardPage from '../../pages/DashboardPage'
+import SalesPage from '../../pages/SalesPage'
+import SaleDetail from '../../features/sales/SaleDetail'
 
 import { authService } from '../../features/auth/auth.service'
 
@@ -153,6 +155,21 @@ function AppRoutes() {
           )
         }
       />
+
+      <Route
+        path="/sales"
+        element={
+          session ? (
+            <DashboardLayout user={session.user} onLogout={clearAuthSession}>
+              <SalesPage />
+            </DashboardLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      >
+        <Route path=":saleId" element={<SaleDetail />} />
+      </Route>
 
       <Route
         path="*"

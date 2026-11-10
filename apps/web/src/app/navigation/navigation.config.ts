@@ -33,6 +33,7 @@ export const navigationSections: NavigationSection[] = [
         id: 'sales',
         label: 'Ventas',
         icon: '▤',
+        to: '/sales',
         permission: 'VENTAS.VER',
       },
       {
