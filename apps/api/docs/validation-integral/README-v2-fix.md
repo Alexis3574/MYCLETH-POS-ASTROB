@@ -15,16 +15,15 @@ La suite v1 ejecutó `src/modules/company-settings/company-settings.http.integra
 5. Reemplaza la condición rígida de 44 auditorías en el preflight del test HTTP de inventario por una condición de igualdad con la **huella tomada antes de ejecutar** la corrida integral, proporcionada por el orquestador. En ejecución aislada del test permanece la condición de 44 auditorías. El outbox histórico sigue exigiendo 73 eventos y todas las comprobaciones de restauración se conservan. Ninguna auditoría es eliminada.
 6. Añade un inspector SQL solo lectura para revisar los eventos y configuraciones M15, sin mostrar valores o credenciales.
 
-## Instalación protegida
+## Corrección integrada
 
-Extraer este ZIP desde la raíz del repositorio `POSMYCLETH` con `unzip -n`. No sobrescribe el ejecutor por descompresión. Luego ejecutar desde `apps/api`:
+Las correcciones descritas ya forman parte del código del repositorio. El instalador del paquete histórico fue retirado; no es necesario extraer un ZIP ni sobrescribir el orquestador o las pruebas.
+
+El inspector vigente está en `scripts/validation/inspect-audit-incident.mjs`. Su ejecución consulta PostgreSQL y requiere revisar y autorizar el entorno antes de usarlo:
 
 ```bash
-node.exe scripts/validation/apply-v2.mjs
 node.exe scripts/validation/inspect-audit-incident.mjs
 ```
-
-El instalador compara el contenido SHA-256 de las versiones v1 originales **antes de modificar** el orquestador o el test de inventario. Si detecta cambios desconocidos, interrumpe sin sobrescribirlos. No realiza backups, operaciones SQL ni Git.
 
 ## Validación
 

@@ -21,17 +21,11 @@ Archivos de pruebas modificados:
 
 No altera los módulos de negocio, el esquema, el orquestador v2, el historial de auditoría ni PostgreSQL.
 
-## Instalación
+## Corrección integrada
 
-Desde la raíz del repositorio:
+Las tres comprobaciones de preflight ya están incorporadas a los archivos de prueba del repositorio. El instalador del paquete histórico fue retirado; usa los archivos actuales sin aplicar otro ZIP ni parchear las fuentes.
 
-```bash
-unzip -n '/c/Users/taiga/Downloads/POSMYCLETH-suite-integral-parche-v3.zip'
-cd apps/api
-node.exe scripts/validation/apply-v3.mjs --check
-node.exe scripts/validation/apply-v3.mjs --apply
-node.exe scripts/validation/apply-v3.mjs --check
-```
+Los resultados históricos mencionados se conservan en el respaldo externo de evidencias, no en el código versionado.
 
 ## Siguiente corrida
 

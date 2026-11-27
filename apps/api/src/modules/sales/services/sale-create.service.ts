@@ -1,3 +1,5 @@
+import { SaleContextError } from '../errors/sale.errors.js';
+import { replaySale, nextSaleFolio, storeSaleOperation } from './create/sale-operation.js';
 import {
   saleWriteRepository,
 } from "../repositories/sale.repository.js";
@@ -35,6 +37,8 @@ export const saleCreateService = {
   async createSale(
     input: CreateSaleInput,
   ) {
+    input = { ...input, claveIdempotencia: input.claveIdempotencia?.toLowerCase() };
+    if (!input.folio && !input.claveIdempotencia) throw new SaleContextError('clave_idempotencia', 'El folio automático requiere un identificador de intento.');
     if (
       input.detalles.length ===
       0
@@ -55,10 +59,9 @@ export const saleCreateService = {
 
     return saleWriteRepository.transaction(
       async (tx) => {
-        await validateSaleContext(
-          tx,
-          input,
-        );
+        const replay = await replaySale(tx, input);
+        if (replay) return replay as Awaited<ReturnType<typeof persistCompletedSale>>;
+        await validateSaleContext(tx, input);
 
         const {
           preparedPayments,
@@ -94,14 +97,17 @@ export const saleCreateService = {
           totals.total,
         );
 
-        return persistCompletedSale({
+        const resolvedInput = { ...input, folio: input.folio || await nextSaleFolio(tx, input) };
+        const result = await persistCompletedSale({
           tx,
-          input,
+          input: resolvedInput,
           preparedDetails,
           preparedPayments,
           condicionPago,
           totals,
         });
+        await storeSaleOperation(tx, input, result);
+        return result;
       },
     );
   },

@@ -784,6 +784,7 @@ model usuario_sucursal {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model venta {
+  operaciones_pos operacion_venta[]
   id                BigInt             @id @default(autoincrement())
   empresa_id        BigInt
   sucursal_id       BigInt
@@ -970,4 +971,28 @@ model operacion_compra {
 
   @@unique([empresa_id, clave_idempotencia], map: "uq_operacion_compra_empresa_clave")
   @@index([compra_id, creado_en], map: "idx_operacion_compra_compra")
+}
+
+// Contador transaccional compartido por los tipos de documento que se incorporen.
+model folio_documento {
+  empresa_id BigInt
+  sucursal_id BigInt
+  tipo String @db.VarChar(30)
+  periodo String @db.VarChar(8)
+  ultimo BigInt
+  @@id([empresa_id, sucursal_id, tipo, periodo])
+}
+
+model operacion_venta {
+  empresa_id BigInt
+  usuario_id BigInt
+  sucursal_id BigInt
+  clave_idempotencia String @db.Uuid
+  venta_id BigInt
+  request_hash String @db.VarChar(64)
+  respuesta Json
+  creado_en DateTime @default(now()) @db.Timestamptz(6)
+  venta venta @relation(fields: [venta_id], references: [id], onDelete: Restrict, map: "operacion_venta_venta_fkey")
+  @@id([empresa_id, clave_idempotencia])
+  @@index([venta_id], map: "idx_operacion_venta_venta")
 }

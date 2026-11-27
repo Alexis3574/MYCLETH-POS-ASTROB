@@ -1,0 +1,23 @@
+# Dependencias y resultados generados localmente
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.vite/
+*.tsbuildinfo
+/apps/api/src/generated/prisma/
+/apps/api/generated/prisma/
+
+# Configuración privada; las plantillas sí se versionan
+.env
+.env.*
+!.env.example
+
+# Evidencias temporales, paquetes y respaldos
+*.log
+*.zip
+*.tar.gz
+*.bak
+*.backup*
+/apps/api/docs/validation-integral/results/
+/apps/api/purchases-install-backup/

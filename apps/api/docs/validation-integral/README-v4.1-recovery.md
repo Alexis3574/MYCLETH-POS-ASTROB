@@ -9,13 +9,14 @@ El fixture implicado es **`V4_E2E_2fe98f82087b`**. La transacción de limpieza f
 ## Archivos
 
 - `scripts/validation/recover-v4-e2e.mjs`: inspector + ensayo reversible + recuperación atómica por marcador exacto.
-- `scripts/validation/apply-v4.1.mjs`: añade la transición exclusivamente temporal de estados para limpiar detalles, y bloquea nuevas corridas si hay fixtures V4 previos.
+- `scripts/validation/run-v4.mjs`: bloquea nuevas corridas si hay fixtures V4 previos.
+- `tests/integral/v4-end-to-end.mjs`: incorpora la transición exclusivamente temporal de estados para limpiar detalles del fixture. El instalador del paquete histórico fue retirado; la corrección ya está integrada.
 
 ## Secuencia obligatoria
 
 1. Detener realmente POS y workers que usen `pos_novnix`.
-2. Instalar ZIP mediante `unzip -n`.
-3. Ejecutar `node.exe scripts/validation/apply-v4.1.mjs --check`, después `--apply` y nuevamente `--check`.
+2. Usar los scripts vigentes del checkout del repositorio, sin instalar un ZIP ni sobrescribir las fuentes.
+3. Confirmar el entorno y obtener autorización para la inspección y cada operación de recuperación descrita a continuación.
 4. Ejecutar `INVENTORY_SYNC_ENABLED=false node.exe --import tsx scripts/validation/recover-v4-e2e.mjs --inspect V4_E2E_2fe98f82087b`.
 5. Evaluar la lista de IDs y los conteos en la salida.
 6. Ejecutar **solo con POS/workers detenidos** la simulación del mismo script `--dry-run`, con `POS_INTEGRAL_ALLOW_WRITES=SI POS_INTEGRAL_WORKERS_STOPPED=SI POS_ALLOW_TEST_DB=SI INVENTORY_SYNC_ENABLED=false`. Esta simulación usa una única transacción y fuerza `ROLLBACK`.

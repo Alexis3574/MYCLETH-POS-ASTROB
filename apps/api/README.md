@@ -49,71 +49,30 @@ El alta admite `PRODUCTO` o `SERVICIO`. Un servicio tiene `controla_inventario=f
 
 Este módulo administra el catálogo del POS. Las altas, cambios de nombre/precio/estado no se publican automáticamente al Ecommerce. Se conserva el worker de movimientos de inventario existente. Para vender productos sincronizados, el código de barras debe coincidir con el Ecommerce; el módulo actual de sales sincroniza cantidades enteras. La importación y la sincronización administrativa de productos quedan para otro bloque.
 
-## 1. Instalar en tu repositorio
+## 1. Preparar el módulo integrado
 
-Extrae el ZIP. Desde tu terminal Bash del POS:
+El catálogo ya está integrado en `src/modules/products` y sus rutas están registradas en `src/app.ts`. Trabaja desde el checkout del repositorio; no se requiere un instalador de entrega ni volver a copiar o montar el módulo.
 
-```bash
-cd ~/Documentos/POSMYCLETH/apps/api
-```
-
-Ejecuta el instalador indicando la ruta real a la carpeta extraída. Por ejemplo, si la extraes en Descargas de tu directorio personal:
+Desde `apps/api`, con las dependencias instaladas y las variables locales configuradas según el README principal:
 
 ```bash
-node "$HOME/Downloads/pos-products-catalogo/install-products.mjs"
-```
-
-Ese ejemplo requiere que esa carpeta exista; usa la ruta de donde hayas extraído el ZIP. También puedes ejecutar desde la carpeta del paquete indicando la API:
-
-```bash
-node install-products.mjs "$HOME/Documentos/POSMYCLETH/apps/api"
-```
-
-El instalador:
-
-- Comprueba la estructura de la API y que no exista previamente `products`.
-- Copia el módulo a `src/modules/products`.
-- Copia el script de permisos a `scripts/products-catalogo` y el SQL a `sql/products-catalogo`.
-- Respalda `src/app.ts` en `products-backups/<fecha>/app.ts`.
-- Agrega importaciones y rutas antes de `apiRoutes` y del middleware de errores, usando el formato del snapshot adjunto.
-- Se detiene si encuentra rutas de catálogo ya registradas o una estructura que no puede adaptar.
-
-No modifica `sales`, autenticación, Prisma ni `package.json`. Usa las dependencias que ya contiene tu API. Si debes montar rutas manualmente, agrega:
-
-```typescript
-import { productRouter, categoryRouter, unitRouter, taxRouter } from "./modules/products/product.routes.js";
-
-app.use("/api/v1/products", productRouter);
-app.use("/api/v1/categories", categoryRouter);
-app.use("/api/v1/units", unitRouter);
-app.use("/api/v1/taxes", taxRouter);
-```
-
-Colócalas antes de `app.use("/api/v1", apiRoutes)` y `app.use(errorMiddleware)`.
-
-Comprueba:
-
-```bash
+npx --no-install prisma validate
+npx --no-install prisma generate
 npm run typecheck
-
-npx prisma validate
+npm run build
 ```
 
-Si tu cliente generado ya está actualizado, no necesitas regenerarlo por este módulo. Si falta o está desactualizado:
-
-```bash
-npx prisma generate
-```
+El cliente Prisma se genera en `src/generated/prisma/` y la compilación en `dist/`. Ambos permanecen locales y deben regenerarse después de clonar el repositorio o actualizar el esquema. Estos comandos no aplican migraciones ni ejecutan las pruebas contra PostgreSQL.
 
 ## 2. Crear y asignar permisos
 
 Desde `apps/api`:
 
 ```bash
-npx tsx scripts/products-catalogo/create-product-permissions.ts
+npx tsx scripts/create-product-permissions.ts
 ```
 
-El script es idempotente: crea los cuatro permisos si faltan, imprime sus IDs y no los asigna automáticamente a ningún rol. Alternativamente puedes ejecutar `sql/products-catalogo/01-product-permissions.sql` en tu administrador PostgreSQL. Basta con una de las dos opciones.
+El script es idempotente: crea los cuatro permisos si faltan, imprime sus IDs y no los asigna automáticamente a ningún rol. Alternativamente puedes ejecutar `sql/01-product-permissions.sql` en tu administrador PostgreSQL. Basta con una de las dos opciones.
 
 Con tu token existente:
 
@@ -290,7 +249,7 @@ El producto de prueba queda inactivo. Cambia a `true` en el último cuerpo para 
 
 El arnés usa firmas equivalentes de middleware y un cliente Prisma real generado; no ejecuta el backend completo, tu PostgreSQL, JWT real ni el Ecommerce. Las pruebas HTTP, concurrencia contra la BD y regresión de sales quedan pendientes. No declarar este módulo cerrado hasta completarlas.
 
-El instalador también copia las pruebas a `tests/products-catalogo`. Desde `apps/api`, ejecútalas con las dependencias existentes:
+Las pruebas del catálogo están en `tests/products-catalogo`. Desde `apps/api`, ejecútalas con las dependencias existentes:
 
 ```bash
 node --import tsx --test tests/products-catalogo/product-values.test.mjs tests/products-catalogo/product-schema.test.ts

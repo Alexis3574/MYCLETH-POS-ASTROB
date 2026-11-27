@@ -1,3 +1,4 @@
+import { getSaleOperation } from './sale-operation.controller.js';
 import {
   Router,
 } from "express";
@@ -37,6 +38,8 @@ saleRouter.get(
   ),
   saleQueryController.list,
 );
+
+saleRouter.get('/operations/:key', requireAuth, requirePermission('VENTAS.CREAR'), getSaleOperation);
 
 saleRouter.get(
   "/:id/financial-summary",
