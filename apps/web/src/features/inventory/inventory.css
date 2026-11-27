@@ -1,0 +1,21 @@
+.inventory-tabs { display:flex; gap:6px; flex-wrap:wrap; border-bottom:1px solid #dce6f2; margin-bottom:20px; }
+.inventory-tabs button { padding:13px 16px; border:0; border-bottom:3px solid transparent; background:transparent; color:#607895; font:inherit; font-size:13px; font-weight:650; cursor:pointer; }
+.inventory-tabs button[aria-pressed=true] { color:#1764c0; border-bottom-color:#1764c0; }
+.inventory-row-actions { display:flex; flex-direction:column; align-items:flex-start; min-width:120px; }
+.inventory-form { max-width:760px; }
+.inventory-form label { margin:18px 0; }
+.inventory-form p,.inventory-confirm p,.inventory-confirm li,.inventory-pending p { line-height:1.65; font-size:14px; overflow-wrap:anywhere; }
+.inventory-confirm { max-width:760px; }
+.inventory-destination { border:1px solid #dce6f2; border-radius:10px; margin:20px 0; padding:16px; min-width:0; }
+.inventory-destination legend { font-size:14px; font-weight:650; padding:0 8px; }
+.inventory-totals { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; max-width:700px; font-size:14px; }
+.inventory-totals dt { color:#60758d; }
+.inventory-totals dd { margin:0; text-align:right; font-weight:650; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.inventory-ledger-filters { display:flex; flex-wrap:wrap; gap:14px; align-items:end; margin:18px 0; }
+.inventory-ledger-filters .commercial-actions { margin:0; }
+.inventory-transfer-line { border-top:1px solid #e1e9f3; padding:16px 0; }
+.inventory-transfer-line label { max-width:420px; }
+.inventory-document-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:18px; }
+.inventory-document-heading h2 { overflow-wrap:anywhere; max-width:100%; margin:0; }
+.inventory-notes { white-space:pre-wrap; overflow-wrap:anywhere; }
+@media(max-width:600px) { .inventory-tabs button { padding:12px 10px; font-size:12px; } .inventory-ledger-filters label { width:100%; } .inventory-totals { gap:12px; font-size:13px; } .inventory-confirm .sales-button,.inventory-pending .sales-button { max-width:100%; white-space:normal; } }

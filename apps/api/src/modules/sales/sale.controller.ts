@@ -1,3 +1,4 @@
+import { SaleOperationConflict } from './services/create/sale-operation.js';
 import type {
   NextFunction,
   Request,
@@ -130,8 +131,11 @@ export const saleController = {
         return;
       }
 
-      const input =
-        validation.data;
+      const input = validation.data;
+      if (BigInt(input.empresa_id) !== req.auth.empresaId) {
+        res.status(403).json({ ok: false, message: 'La empresa no corresponde a tu sesión.' });
+        return;
+      }
 
       const result =
         await saleService.createSale({
@@ -177,8 +181,8 @@ export const saleController = {
                   input.sesion_caja_id,
                 ),
 
-          folio:
-            input.folio,
+          folio: input.folio ?? '',
+          claveIdempotencia: input.clave_idempotencia,
 
           observaciones:
             input.observaciones ??
@@ -238,6 +242,9 @@ export const saleController = {
           result,
       });
     } catch (error) {
+      if (error instanceof SaleOperationConflict) {
+        res.status(409).json({ ok: false, code: error.code, message: error.message }); return;
+      }
       if (
         error instanceof
         SaleContextError

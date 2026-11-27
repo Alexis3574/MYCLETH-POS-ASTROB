@@ -1,0 +1,12 @@
+.cash-section-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.cash-section-heading h2 { margin:0; }
+.cash-totals { display:grid; grid-template-columns:minmax(0,1fr) minmax(90px,auto); gap:14px 20px; margin:22px 0; font-size:14px; }
+.cash-totals dt { color:#60758d; }
+.cash-totals dd { margin:0; text-align:right; font-weight:650; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
+.cash-form { max-width:720px; }
+.cash-form label { margin-bottom:18px; }
+.cash-form p,.cash-pending p,.cash-confirm p { font-size:14px; line-height:1.65; overflow-wrap:anywhere; }
+.cash-confirm { max-width:720px; }
+.cash-notes { white-space:pre-wrap; overflow-wrap:anywhere; font-size:13px; line-height:1.65; }
+.cash-reference { min-width:130px; max-width:260px; overflow-wrap:anywhere; }
+@media(max-width:600px) { .cash-totals { gap:13px; font-size:13px; } .cash-section-heading { align-items:flex-start; } .cash-confirm .commercial-actions .sales-button { white-space:normal; } .cash-pending .sales-button { max-width:100%; white-space:normal; } }

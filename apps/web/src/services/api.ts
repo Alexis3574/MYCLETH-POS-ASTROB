@@ -10,6 +10,7 @@ export interface ApiRequestOptions {
   body?: unknown
   token?: string
   signal?: AbortSignal
+  idempotencyKey?: string
 }
 
 export class ApiHttpError extends Error {
@@ -51,7 +52,8 @@ export async function apiRequest<T>(
   path: `/${string}`,
   options: ApiRequestOptions = {},
 ): Promise<T> {
-  const { method = 'GET', body, token, signal } = options
+  const { method = 'GET', body, token, signal, idempotencyKey } = options
+  if (idempotencyKey !== undefined && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idempotencyKey)) throw new Error('Clave de operación no válida.')
 
   const response = await fetch(
     `${API_BASE_URL}${path}`,
@@ -60,6 +62,7 @@ export async function apiRequest<T>(
       signal,
       headers: {
         Accept: 'application/json',
+        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
         ...(body !== undefined
           ? { 'Content-Type': 'application/json' }
           : {}),

@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router'
+import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate, useOutletContext, useParams } from 'react-router'
+import SaleOperations from './returns/SaleOperations'
 import { useAuthSession } from '../auth/useAuthSession'
 import { formatSaleAmount, formatSaleDate, isSaleId, saleLabel } from './sales.query'
 import { useSaleDetail, useSaleFinancial } from './useSales'
@@ -14,10 +15,16 @@ export default function SaleDetail() {
   const detail = useSaleDetail(saleId, allowed && validId)
   const financial = useSaleFinancial(saleId, allowed && validId)
   const [tab, setTab] = useState('general')
+  const [operationBusy, setOperationBusy] = useState(false)
+  const busyRef = useRef(false)
+  const setBusy = useCallback((busy: boolean) => { busyRef.current = busy; setOperationBusy(busy) }, [])
+  const [operationNotice, setOperationNotice] = useState<{ id: string; text: string } | null>(null)
+  const outlet = useOutletContext<{ refreshList?: () => void } | undefined>()
   const dialogRef = useRef<HTMLDialogElement>(null)
   const sale = detail.data
   const summary = financial.data
   function close() {
+    if (busyRef.current) return
     dialogRef.current?.close()
     navigate('/sales' + search, { replace: true })
   }
@@ -43,8 +50,9 @@ export default function SaleDetail() {
           <div><p className="sales-eyebrow">CONSULTA DE DOCUMENTO</p>
             <h2 id="sale-detail-title">{sale ? 'Venta ' + sale.folio : 'Detalle de venta'}</h2>
             {sale && <p>{formatSaleDate(sale.fecha)} UTC · {sale.sucursal.nombre}</p>}</div>
-          <button type="button" className="sales-button sales-button--secondary" onClick={close}>Cerrar detalle</button>
+          <button type="button" className="sales-button sales-button--secondary" disabled={operationBusy} onClick={close}>Cerrar detalle</button>
         </header>
+        {operationNotice?.id === saleId && <p className="sale-operation-notice" role="status">{operationNotice.text}</p>}
         {detail.status === 'loading' && <div className="sales-feedback" role="status"><h3>Cargando documento…</h3></div>}
         {problem && <div className="sales-feedback" role="alert"><h3>No se puede mostrar el documento</h3><p>{problem}</p>
           {detail.status === 'error' && <button type="button" className="sales-button" onClick={detail.refresh}>Reintentar detalle</button>}</div>}
@@ -56,8 +64,8 @@ export default function SaleDetail() {
               <strong>Total: {formatSaleAmount(sale.total)}</strong>
             </div>
             <nav className="sale-detail-tabs" aria-label="Secciones del detalle">
-              {[['general', 'General'], ['items', 'Artículos (' + sale.detalles.length + ')'], ['payments', 'Pagos y devoluciones']].map(([value, label]) =>
-                <button type="button" key={value} aria-pressed={tab === value} onClick={() => setTab(value)}>{label}</button>)}
+              {[['general', 'General'], ['items', 'Artículos (' + sale.detalles.length + ')'], ['payments', 'Pagos y devoluciones'], ['operations', 'Devoluciones y cancelación']].map(([value, label]) =>
+                <button type="button" key={value} aria-pressed={tab === value} disabled={operationBusy} onClick={() => setTab(value)}>{label}</button>)}
             </nav>
             {tab === 'general' && <section className="sale-detail-section" aria-label="Información general">
               <div className="sale-detail-grid">
@@ -96,6 +104,9 @@ export default function SaleDetail() {
               </div>
               {sale.detalles.length === 0 && <p className="sales-empty">El documento no contiene artículos.</p>}
             </section>}
+            {tab === 'operations' && <SaleOperations key={sale.id} sale={sale} onBusy={busy => { setBusy(busy); if (busy) setOperationNotice(null) }} onChanged={message => {
+              setOperationNotice({ id: sale.id, text: message }); detail.refresh(); financial.refresh(); outlet?.refreshList?.()
+            }} />}
             {tab === 'payments' && <section className="sale-detail-section" aria-label="Pagos y devoluciones">
               <h3>Pagos originales</h3>
               <div className="sales-table-scroll" tabIndex={0} role="region" aria-label="Pagos con desplazamiento horizontal">

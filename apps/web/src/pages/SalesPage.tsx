@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { KeyboardEvent } from 'react'
-import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router'
+import { Link, Outlet, useLocation, useNavigate, useSearchParams } from 'react-router'
 import { useAuthSession } from '../features/auth/useAuthSession'
 import { readSalesQuery, salesSearch } from '../features/sales/sales.query'
 import type { SalesFilterValues } from '../features/sales/sales.types'
@@ -46,8 +46,10 @@ export default function SalesPage() {
       <header className="sales-heading">
         <div><p className="sales-eyebrow">OPERACIONES / CONSULTA</p><h1 id="sales-title">Ventas</h1>
           <p>Encuentra tus documentos y consulta el detalle de cada operación.</p></div>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        {session?.user.permisos.some((permission) => permission.codigo === 'VENTAS.CREAR') && <Link className="sales-button" style={{ textDecoration: 'none' }} to="/pos">Nueva venta</Link>}
         <button type="button" className="sales-button sales-button--secondary" disabled={loading || !!queryError}
-          onClick={resource.refresh}>Actualizar</button>
+          onClick={resource.refresh}>Actualizar</button></div>
       </header>
       <SalesFilters key={search} query={query} onApply={apply} onClear={() => setParams({})} />
       {queryError && <div className="sales-feedback" role="alert"><h2>Revisa los filtros</h2><p>{queryError}</p></div>}
@@ -84,7 +86,7 @@ export default function SalesPage() {
           </footer>
         </div>
       )}
-      <Outlet />
+      <Outlet context={{ refreshList: resource.refresh }} />
     </section>
   )
 }

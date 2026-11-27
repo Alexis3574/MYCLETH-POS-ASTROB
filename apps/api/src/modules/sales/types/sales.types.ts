@@ -33,6 +33,7 @@ export interface CreateSaleInput {
   usuarioId: bigint;
   sesionCajaId?: bigint | null;
   folio: string;
+  claveIdempotencia?: string;
   observaciones?: string | null;
   ipOrigen?: string | null;
   detalles: SaleDetailInput[];

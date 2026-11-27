@@ -1,6 +1,8 @@
 import {
   useEffect,
   useState,
+  lazy,
+  Suspense,
 } from 'react'
 
 import {
@@ -16,6 +18,17 @@ import DashboardLayout from '../../layouts/DashboardLayout'
 import LoginPage from '../../pages/LoginPage'
 import DashboardPage from '../../pages/DashboardPage'
 import SalesPage from '../../pages/SalesPage'
+import PosPage from '../../pages/PosPage'
+import PurchasesPage from '../../pages/PurchasesPage'
+import SuppliersPage from '../../pages/SuppliersPage'
+const QuotationsPage = lazy(() => import('../../pages/QuotationsPage'))
+const OrdersPage = lazy(() => import('../../pages/OrdersPage'))
+const CustomerOrdersPage = lazy(() => import('../../pages/CustomerOrdersPage'))
+const CreditsPage = lazy(() => import('../../pages/CreditsPage'))
+const UsersPage = lazy(() => import('../../pages/UsersPage'))
+const RolesPage = lazy(() => import('../../pages/RolesPage'))
+const PermissionsPage = lazy(() => import('../../pages/PermissionsPage'))
+import { ProductsPage, CustomersPage, InventoryPage, CashPage } from '../../pages/CommercialPages'
 import SaleDetail from '../../features/sales/SaleDetail'
 
 import { authService } from '../../features/auth/auth.service'
@@ -171,6 +184,24 @@ function AppRoutes() {
         <Route path=":saleId" element={<SaleDetail />} />
       </Route>
 
+      {[
+        { path: '/pos', page: <PosPage /> },
+        { path: '/products', page: <ProductsPage /> },
+        { path: '/customers', page: <CustomersPage /> },
+        { path: '/inventory', page: <InventoryPage /> },
+        { path: '/cash', page: <CashPage /> },
+        { path: '/purchases/:purchaseId?', page: <PurchasesPage /> },
+        { path: '/suppliers', page: <SuppliersPage /> },
+        { path: '/quotes/:documentId?', page: <QuotationsPage /> },
+        { path: '/sales-orders/:documentId?', page: <OrdersPage /> },
+        { path: '/customer-orders/:documentId?', page: <CustomerOrdersPage /> },
+        { path: '/credits', page: <CreditsPage /> },
+        { path: '/users/:userId?', page: <UsersPage /> },
+        { path: '/roles', page: <RolesPage /> },
+        { path: '/permissions', page: <PermissionsPage /> },
+      ].map(({ path, page }) => <Route key={path} path={path} element={session
+        ? <DashboardLayout user={session.user} onLogout={clearAuthSession}><Suspense fallback={<p role="status">Cargando módulo…</p>}>{page}</Suspense></DashboardLayout>
+        : <Navigate to="/login" replace />} />)}
       <Route
         path="*"
         element={<Navigate to={defaultPath} replace />}

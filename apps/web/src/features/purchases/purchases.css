@@ -1,0 +1,17 @@
+.purchase-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:18px 0; }
+.purchase-document-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.purchase-document-heading h2 { overflow-wrap:anywhere; min-width:0; max-width:100%; margin:0; }
+.purchase-catalog .sales-table-scroll { max-height:340px; overflow:auto; }
+.purchase-line { border-top:1px solid #e3ebf4; padding:20px 0; }
+.purchase-line h3 { font-size:15px; margin:0; }
+.purchase-line h3 small { display:block; color:#607895; font-weight:400; margin-top:6px; }
+.purchase-totals { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; max-width:650px; font-size:14px; }
+.purchase-totals dt { color:#60758d; }
+.purchase-totals dd { margin:0; text-align:right; font-weight:650; font-variant-numeric:tabular-nums; }
+.purchase-notes { white-space:pre-wrap; overflow-wrap:anywhere; }
+.purchase-confirm,.purchase-action { max-width:760px; }
+.purchase-confirm p,.purchase-confirm li,.purchase-supplier-detail p { font-size:14px; line-height:1.65; overflow-wrap:anywhere; }
+.purchase-action label { margin:18px 0; }
+.purchase-reference { max-width:240px; overflow-wrap:anywhere; }
+.purchase-supplier-detail { margin-top:24px; border-top:1px solid #dce6f2; padding-top:18px; }
+@media(max-width:600px) { .purchase-fields { grid-template-columns:1fr; gap:14px; } .purchase-confirm .sales-button { max-width:100%; white-space:normal; } }

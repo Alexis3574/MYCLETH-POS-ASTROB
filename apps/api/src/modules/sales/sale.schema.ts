@@ -184,7 +184,10 @@ export const createSaleSchema =
         1,
         "El folio es obligatorio",
       )
-      .max(50),
+      .max(50)
+      .optional(),
+
+    clave_idempotencia: z.string().uuid().transform(value => value.toLowerCase()).optional(),
 
     observaciones: z
       .string()
@@ -209,6 +212,8 @@ export const createSaleSchema =
         1,
         "La venta debe contener al menos un pago",
       ),
+  }).superRefine((input, ctx) => {
+    if (!input.folio && !input.clave_idempotencia) ctx.addIssue({ code: 'custom', path: ['clave_idempotencia'], message: 'Una venta con folio automático requiere clave de idempotencia.' });
   });
 
 export type CreateSaleInput =
